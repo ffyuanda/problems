@@ -66,8 +66,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="355" />
-    <option name="y" value="-30" />
+    <option name="x" value="97" />
+    <option name="y" value="364" />
     <option name="width" value="981" />
     <option name="height" value="552" />
   </component>
@@ -96,6 +96,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunDashboard">
@@ -217,11 +219,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.Python" />
-      <item itemvalue="Python.tester" />
       <item itemvalue="Python.Allocation" />
       <item itemvalue="Python.Bike Tour" />
       <item itemvalue="Python.Even Digits" />
+      <item itemvalue="Python.Python" />
+      <item itemvalue="Python.tester" />
     </list>
     <recent_temporary>
       <list>

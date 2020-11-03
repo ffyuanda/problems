@@ -22,20 +22,14 @@ def calculate(cases):
                 go_down = num_original_string[:i] + str(int(num_original_string[i]) - 1) + \
                                           (length - i - 1) * '8'
 
-                if i == length - 1:
-                    num_original_string = go_up
-                    break
-
-                elif int(num_original_string[i]) == 9:  # handle 9s
+                if int(num_original_string[i]) == 9:  # handle 9s
                     num_original_string = go_down
-
-                elif int(num_original_string[i+1]) >= 5:
-                    num_original_string = go_up
-                    break
 
                 else:
-                    num_original_string = go_down
-                    break
+
+                    num_original_string = go_up if abs(int(go_up) - num_original) <= abs(int(go_down) - num_original) \
+                                            else go_down
+                break
 
         count = abs(num_original - int(num_original_string))
     return 'Case #{}: {}'.format(cases, count)
