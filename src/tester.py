@@ -39,5 +39,24 @@
 # answers = [input() for i in range (5)]
 # answers_modified = list(map(lambda x: x == 'Yes', answers))
 # print('The recorded answers were ', answers, answers_modified)
-tu = (0, 1)
-print(tu[1])
+# tu = (0, 1)
+# print(tu[1])
+# import copy
+#
+# def combine(l, n):
+#     answers = []
+#     one = [0] * n
+#     def next_c(li = 0, ni = 0):
+#         if ni == n:
+#             answers.append(copy.copy(one))
+#             return
+#         for k in range(li, len(l)):
+#             one[ni] = l[k]
+#             next_c(k+1, ni+1)
+#     next_c()
+#     return answers
+
+# print(combine([1,2,3,4],2))
+
+i = [1,2,3,4,5,6]
+print(i[1:4])
