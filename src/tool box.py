@@ -13,3 +13,14 @@ def combination(in_list, n):
             step_forward(i+1, n_num+1)
     step_forward()
     return answer
+
+
+def intersection(lst1, lst2):
+    return list(set(lst1) & set(lst2))
+
+
+def decimal_to_binary(num):
+    if num > 0:
+        decimal_to_binary(num // 2)
+        print(num % 2, end='')
+decimal_to_binary(18)
