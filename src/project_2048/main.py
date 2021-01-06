@@ -1,14 +1,17 @@
 from utilities import *
 import copy
+DEV_MODE = False
+game_over = True
+quit = False
 
+test_board = [[1, 0, 0, 0],
+              [4, 0, 0, 2],
+              [16, 0, 0, 0],
+              [1024, 0, 0, 0]]
 board = [[0, 0, 0, 0],
-         [0, 0, 0, 0],
-         [2, 0, 0, 0],
-         [0, 0, 2, 0]]
-test_board = [[4, 2, 3, 1],
-              [5, 8, 9, 2],
-              [6, 7, 10, 2],
-              [16, 20, 15, 3]]
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0]]
 
 
 def basic_move(in_row):
@@ -96,48 +99,50 @@ def place_random_wrapper(in_board):
 def move(in_board):
     """Respond to user's input and move the board.
     :param in_board: the board
-    :return in_board: the board after move"""
+    :return the board after move"""
     checker = copy.deepcopy(in_board)
+    after_board = copy.deepcopy(in_board)
     direc = str.upper(input())
+    global quit
 
     if direc == "W":
         # Moving up
         for i in range(3):
-            in_board = rotation(in_board)
-        move_board(in_board)
-        in_board = rotation(in_board)
+            after_board = rotation(after_board)
+        move_board(after_board)
+        after_board = rotation(after_board)
 
     elif direc == "S":
         # Moving down
-        in_board = rotation(in_board)
-        move_board(in_board)
+        after_board = rotation(after_board)
+        move_board(after_board)
         for i in range(3):
-            in_board = rotation(in_board)
+            after_board = rotation(after_board)
     elif direc == "A":
         # Moving left
-        move_board(in_board)
+        move_board(after_board)
     elif direc == "D":
         # Moving right
         for i in range(2):
-            in_board = rotation(in_board)
-        move_board(in_board)
+            after_board = rotation(after_board)
+        move_board(after_board)
         for i in range(2):
-            in_board = rotation(in_board)
+            after_board = rotation(after_board)
     elif direc == 'Q':
         print('Goodbye')
-        # Return None to end the game.
-        return 'None'
+        # Change the quit to true to end the game.
+        quit = True
     else:
         # For the invalid inputs, keep the board the same.
-        return in_board
+        pass
 
     # See if the board has been changed. Only the board after a change
     # can be added a random number.
-    if checker != in_board:
+    if checker != after_board:
         # Place a random int on the board.
-        place_random_wrapper(in_board)
+        place_random_wrapper(after_board)
 
-    return in_board
+    return after_board
 
 
 def empty_check(in_board):
@@ -147,15 +152,17 @@ def empty_check(in_board):
     :return: if the board has any empty cells (True) or not (False)
     """
     empty = False
-    for row in in_board:
-        for col in row:
-            if col == 0:
+    for row in range(len(in_board)):
+        for col in range(len(in_board[0])):
+            if in_board[row][col] == 2048:
+                return 'win'
+            elif in_board[row][col] == 0:
                 empty = True
-                return empty
+
     return empty
 
 
-def game_over_check(in_board):
+def game_over(in_board):
     """
     Check if the game is over (the player is lost) by rotating the board around
     and try to move the board until it cannot be moved from any direction, then
@@ -189,21 +196,33 @@ def main(game_board):
     :return: returns the ending game board
     """
     # Initial game board display.
+    global quit
+    if empty_check(game_board):
+        place_random_wrapper(game_board)
+        place_random_wrapper(game_board)
     print_board(game_board)
 
     while True:
 
-        if not empty_check(game_board) and game_over_check(game_board):
+        if not empty_check(game_board) and game_over(game_board):
             print('Game Over')
             return game_board
+
         game_board = move(game_board)
-        if game_board == 'None':
-            break
+
+        # When q(uit) is entered
+        if quit:
+            quit = False
+            return game_board
+
+        # when not quit
         else:
             print_board(game_board)
-
-    return game_board
+            if empty_check(game_board) == 'win':
+                print('You Win')
+                return game_board
 
 
 if __name__ == "__main__":
+
     main(board)
