@@ -100,13 +100,13 @@ def command_L_f(path):
 def command_L(commands):
 
     if len(commands) < 2:
-        print('needs at least one more input')
-    elif commands[0] == 'L':
+        raise Exception("needs at least one more input")
+    else:
         p = Path(commands[1])
         try:
             all_items, dirs, files = command_L_get_items(p)
         except WindowsError:
-            print("Path not valid.")
+            raise WindowsError("Path not valid")
 
         if len(commands) == 2:
             for i in files:
@@ -145,9 +145,50 @@ def command_L(commands):
                 command_L_r_e(p, commands[4])
 
 
+def command_C(commands):
+    if len(commands) < 2:
+        raise Exception("Need at least one more input")
+    else:
+        p = commands[1] + '\\'
+        name = commands[3]
+        extention = '.dsu'
+        path = p + name + extention
+        path = Path(path)
+        if commands[2] == '-n':
+            path.touch()
+
+
+def command_D(commands):
+    path = Path(commands[1])
+
+    if not str(path).endswith('.dsu'):
+        print('ERROR')
+    else:
+        try:
+            path.unlink()
+            print(str(path) + ' DELETED')
+        except FileNotFoundError:
+            print("File not found!")
+
+
+def command_R(commands):
+    path = Path(commands[1])
+
+    if not str(path).endswith('.dsu'):
+        print('ERROR')
+    else:
+        with open(str(path), 'r') as f:
+            if path.stat().st_size == 0:
+                print('EMPTY')
+            else:
+                output = f.readlines()
+                for i in output:
+                    print(i)
+
+
 def main_func():
 
-    print('Usage: [COMMAND] [INPUT] [[-]OPTION] [INPUT]')
+    print('\nUsage: [COMMAND] [INPUT] [[-]OPTION] [INPUT]')
 
     in_commands = input()
     commands = [x for x in in_commands.split(' ')]
@@ -156,8 +197,16 @@ def main_func():
 
     if commands[0] == 'L':
         command_L(commands)
+    elif commands[0] == 'C':
+        command_C(commands)
+    elif commands[0] == 'D':
+        command_D(commands)
+    elif commands[0] == 'R':
+        command_R(commands)
+    elif commands[0] == 'Q':
+        pass
     else:
-        raise Exception("Error occur")
+        raise Exception("Incorrect COMMAND")
 
 
 if __name__ == '__main__':
