@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98785467-6f8f-4963-a449-5c3d8be14401" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/ICS32/a1_validitychecker_v-0.1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ICS31.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ICS31.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/a1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a0.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS32/a0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a0_sanitycheck.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS32/a0_sanitycheck.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS32/a1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,20 +32,21 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/ICS 32" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/ICS32" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ThinkPad\Desktop\problems\src\project debug_delivery" />
       <recent name="C:\Users\ThinkPad\Desktop\problems\src\2048" />
       <recent name="C:\Users\ThinkPad\Desktop\problems\src\kick start1" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS32" />
+      <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.a1">
+  <component name="RunManager" selected="Python.a1_validitychecker_v-0.1 (1)">
     <configuration name="Even Digits" type="PythonConfigurationType" factoryName="Python">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -84,7 +89,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="a0" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="a0_sanitycheck (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -92,32 +97,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS32" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a0.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="a0_sanitycheck" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ICS31" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a0_sanitycheck.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS32/a0_sanitycheck.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -147,7 +131,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="a1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -155,11 +139,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS32" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/tests/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS32/a1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -168,7 +152,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="tester" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="a1_validitychecker_v-0.1 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -176,11 +160,32 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS32" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/tester.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS32/a1_validitychecker_v-0.1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="a1_validitychecker_v-0.1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ICS31" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a1_validitychecker_v-0.1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -191,19 +196,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.Even Digits" />
-      <item itemvalue="Python.tester" />
-      <item itemvalue="Python.main" />
-      <item itemvalue="Python.a0" />
-      <item itemvalue="Python.a0_sanitycheck" />
       <item itemvalue="Python.a1" />
+      <item itemvalue="Python.a1_validitychecker_v-0.1" />
+      <item itemvalue="Python.a0_sanitycheck (1)" />
+      <item itemvalue="Python.a1_validitychecker_v-0.1 (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.a1_validitychecker_v-0.1 (1)" />
         <item itemvalue="Python.a1" />
-        <item itemvalue="Python.tester" />
-        <item itemvalue="Python.a0" />
-        <item itemvalue="Python.a0_sanitycheck" />
-        <item itemvalue="Python.main" />
+        <item itemvalue="Python.a0_sanitycheck (1)" />
+        <item itemvalue="Python.a1_validitychecker_v-0.1" />
+        <item itemvalue="Python.a1" />
       </list>
     </recent_temporary>
   </component>
@@ -243,22 +247,22 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1609297125999" />
-    <state width="1259" height="267" key="GridCell.Tab.0.bottom" timestamp="1611231491797">
+    <state width="1259" height="198" key="GridCell.Tab.0.bottom" timestamp="1611246135952">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1259" height="267" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1611231491797" />
-    <state width="1259" height="267" key="GridCell.Tab.0.center" timestamp="1611231491796">
+    <state width="1259" height="198" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1611246135952" />
+    <state width="1259" height="198" key="GridCell.Tab.0.center" timestamp="1611246135952">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1259" height="267" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1611231491796" />
-    <state width="1259" height="267" key="GridCell.Tab.0.left" timestamp="1611231491796">
+    <state width="1259" height="198" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1611246135952" />
+    <state width="1259" height="198" key="GridCell.Tab.0.left" timestamp="1611246135952">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1259" height="267" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1611231491796" />
-    <state width="1259" height="267" key="GridCell.Tab.0.right" timestamp="1611231491797">
+    <state width="1259" height="198" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1611246135952" />
+    <state width="1259" height="198" key="GridCell.Tab.0.right" timestamp="1611246135952">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1259" height="267" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1611231491797" />
+    <state width="1259" height="198" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1611246135952" />
     <state width="1259" height="219" key="GridCell.Tab.1.bottom" timestamp="1608224329087">
       <screen x="0" y="0" width="1280" height="720" />
     </state>

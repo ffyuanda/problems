@@ -5,8 +5,7 @@ quitted = False
 
 def command_Q(commands):
     global quitted
-    if commands[0] == 'Q':
-        quitted = True
+    quitted = True
 
 
 def command_L_get_items(path):
@@ -86,6 +85,13 @@ def command_L_r_e(path, extension):
             print(i)
 
 
+def command_L_r_f(path):
+    recursive_items = command_L_r(path, [])
+    for i in recursive_items:
+        if Path(i).is_file():
+            print(i)
+
+
 def command_L_f(path):
     """
     Output only files (non-directories)
@@ -100,7 +106,7 @@ def command_L_f(path):
 def command_L(commands):
 
     if len(commands) < 2:
-        raise Exception("needs at least one more input")
+        raise Exception("ERROR")
     else:
         p = Path(commands[1])
         try:
@@ -118,7 +124,7 @@ def command_L(commands):
             # options -r -f
 
             if commands[2] == '-r':
-                r = command_L_r(p)
+                r = command_L_r(p, [])
                 for i in r:
                     print(i)
             elif commands[2] == '-f':
@@ -127,12 +133,14 @@ def command_L(commands):
                 print('ERROR')
 
         elif len(commands) == 4:
-            # options -s -e
+            # options -s -e -r-f
 
             if commands[2] == '-s':
                 command_L_s(p, commands[3])
             elif commands[2] == '-e':
                 command_L_e(p, commands[3])
+            elif commands[2] == '-r' and commands[3] == '-f':
+                command_L_r_f(p)
 
         elif len(commands) == 5:
             # options -r-s -r-e
@@ -146,8 +154,8 @@ def command_L(commands):
 
 
 def command_C(commands):
-    if len(commands) < 2:
-        raise Exception("Need at least one more input")
+    if len(commands) < 4:
+        print("ERROR")
     else:
         p = commands[1] + '\\'
         name = commands[3]
@@ -156,44 +164,51 @@ def command_C(commands):
         path = Path(path)
         if commands[2] == '-n':
             path.touch()
+            print(str(path))
 
 
 def command_D(commands):
-    path = Path(commands[1])
-
-    if not str(path).endswith('.dsu'):
+    if len(commands) < 2:
         print('ERROR')
     else:
-        try:
-            path.unlink()
-            print(str(path) + ' DELETED')
-        except FileNotFoundError:
-            print("File not found!")
+        path = Path(commands[1])
+
+        if not str(path).endswith('.dsu'):
+            print('ERROR')
+        else:
+            try:
+                path.unlink()
+                print(str(path) + ' DELETED')
+            except FileNotFoundError:
+                print("File not found!")
 
 
 def command_R(commands):
-    path = Path(commands[1])
-
-    if not str(path).endswith('.dsu'):
+    if len(commands) < 2:
         print('ERROR')
     else:
-        with open(str(path), 'r') as f:
-            if path.stat().st_size == 0:
-                print('EMPTY')
-            else:
-                output = f.readlines()
-                for i in output:
-                    print(i)
+        path = Path(commands[1])
+
+        if not str(path).endswith('.dsu'):
+            print('ERROR')
+        else:
+            with open(str(path), 'r') as f:
+                if path.stat().st_size == 0:
+                    print('EMPTY')
+                else:
+                    output = f.readlines()
+                    for i in range(len(output)):
+                        if i == len(output) - 1:
+                            # should not print a newline at the end
+                            print(output[i], end='')
+                        else:
+                            print(output[i])
 
 
 def main_func():
 
-    print('\nUsage: [COMMAND] [INPUT] [[-]OPTION] [INPUT]')
-
     in_commands = input()
     commands = [x for x in in_commands.split(' ')]
-
-    command_Q(commands)
 
     if commands[0] == 'L':
         command_L(commands)
@@ -204,7 +219,7 @@ def main_func():
     elif commands[0] == 'R':
         command_R(commands)
     elif commands[0] == 'Q':
-        pass
+        command_Q(commands)
     else:
         raise Exception("Incorrect COMMAND")
 
@@ -215,4 +230,3 @@ if __name__ == '__main__':
             main_func()
         except Exception as e:
             print(e)
-

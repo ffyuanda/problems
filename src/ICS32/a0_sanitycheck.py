@@ -1,6 +1,6 @@
 # a0_sanitycheck.py
 #
-# ICS 32 Fall 2020
+# ICS32 Fall 2020
 # Assignment #0: Getting Started with Python
 # Adapted from Alex Thornton's original project0_sanitycheck program by Mark Baldwin.
 #
