@@ -112,7 +112,7 @@ def command_L(commands):
         try:
             all_items, dirs, files = command_L_get_items(p)
         except WindowsError:
-            raise WindowsError("Path not valid")
+            raise WindowsError("ERROR")
 
         if len(commands) == 2:
             for i in files:
@@ -205,10 +205,55 @@ def command_R(commands):
                             print(output[i])
 
 
+def input_analyzer(in_commands):
+    out_commands = []
+    command_list = ['L', 'Q', 'C', 'D', 'R']
+    option_list = ['-s', '-r', '-f', '-e', '-n']
+    built_ins = command_list + option_list
+    real_path = ''
+
+    # raw split by space
+    commands = [x for x in in_commands.split(' ')]
+    length = len(commands)
+
+    # try to find out the real path that may contain whitespace, which
+    # 1. has to not in the built_ins keywords
+    # 2. its left and right elements are not both built-ins keywords
+    for i in range(length):
+        # does not check first and last element
+        if 0 < i < length-1:
+
+            if commands[i] not in built_ins:
+                if (commands[i+1] not in built_ins) \
+                        or (commands[i-1] not in built_ins):
+                    # this is a path with whitespaces
+                    real_path += commands[i] + ' '
+                else:
+                    # this is a path without whitespaces
+                    real_path = commands[i]
+            else:
+                # built-ins keywords
+                out_commands.append(commands[i])
+        else:
+            # first and last element
+            out_commands.append(commands[i])
+
+    # remove trailing whitespaces
+    if len(real_path) > 0:
+        real_path = real_path.strip()
+        out_commands.insert(1, real_path)
+    return out_commands
+
+
 def main_func():
 
     in_commands = input()
-    commands = [x for x in in_commands.split(' ')]
+    commands = input_analyzer(in_commands)
+
+    # for test purpose
+    test_mode = False
+    if test_mode:
+        print(commands)
 
     if commands[0] == 'L':
         command_L(commands)
