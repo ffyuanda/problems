@@ -9,6 +9,7 @@ ID: 89832399
 
 from pathlib import Path
 quitted = False
+test_mode = False
 # common interface: all_items, dirs, files = command_L_get_items(path)
 
 
@@ -281,16 +282,38 @@ def input_analyzer(in_commands):
     # 2. its left and right elements are not both built-ins keywords
     for i in range(length):
         # does not check first and last element
-        if 0 < i < length-1:
+        if test_mode:
+            print(real_path)
+
+        if 0 < i <= length-1:
 
             if commands[i] not in built_ins:
-                if (commands[i+1] not in built_ins) \
-                        or (commands[i-1] not in built_ins):
+
+                # i is not the last digit
+                if i < length-1:
                     # this is a path with whitespaces
-                    real_path += commands[i] + ' '
-                else:
+                    if (commands[i+1] not in built_ins) \
+                            or (commands[i-1] not in built_ins):
+                        real_path += commands[i] + ' '
                     # this is a path without whitespaces
-                    real_path = commands[i]
+                    else:
+                        real_path = commands[i]
+
+                # i is the last digit
+                else:
+
+                    # this is a path with whitespaces
+                    if commands[i-1] not in built_ins:
+                        real_path += commands[i] + ' '
+
+                    # there are only two elements, and command[i] is a
+                    # valid path without whitespace
+                    elif commands[i-1] in command_list:
+                        real_path = commands[i]
+
+                    # the last element (extension/filename etc.)
+                    else:
+                        out_commands.append(commands[i])
             else:
                 # built-ins keywords
                 out_commands.append(commands[i])
@@ -314,7 +337,7 @@ def main_func():
     commands = input_analyzer(in_commands)
 
     # for test purpose
-    test_mode = False
+
     if test_mode:
         print(commands)
 
