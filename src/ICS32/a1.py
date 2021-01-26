@@ -1,9 +1,23 @@
+"""
+Homework a1 for I&C SCI 32: PROG SOFTWARE LIBR
+at University of California, Irvine
+
+Student info:
+Name: Shaoxuan Yuan
+ID: 89832399
+"""
+
 from pathlib import Path
 quitted = False
 # common interface: all_items, dirs, files = command_L_get_items(path)
 
 
-def command_Q(commands):
+def command_Q():
+    """
+    Quit functionality that changes global quitted variable
+    :param commands:
+    :return:
+    """
     global quitted
     quitted = True
 
@@ -22,10 +36,12 @@ def command_L_get_items(path):
     return all_items, dirs, files
 
 
-def command_L_r(path, output: list):
+def command_L_r(path, output):
     """
-    For -r option of command L. Recursively go through the current path. Usage:
-    print(command_L_r(path)); with loop if you want a nice layout.
+    For -r option of command L. Recursively go through the current path.
+    Usage:
+    command_L_r(path, [])
+
     :param path: current working path
     :param output: an empty list (initially) that collects the info
     after each recursion.
@@ -57,6 +73,12 @@ def command_L_s(path, input_search):
 
 
 def command_L_e(path, extension):
+    """
+    Search by extension
+    :param path: current working path
+    :param extension: the extension type that you need to search
+    :return: None
+    """
     all_items, dirs, files = command_L_get_items(path)
     for i in all_items:
         if str(i).endswith('.' + extension):
@@ -69,7 +91,7 @@ def command_L_r_s(path, input_search):
     search the required file.
     :param path: current path
     :param input_search: the filename
-    :return:
+    :return: None
     """
     recursive_items = command_L_r(path, [])
     for i in recursive_items:
@@ -79,6 +101,12 @@ def command_L_r_s(path, input_search):
 
 
 def command_L_r_e(path, extension):
+    """
+    Recursively search by extension
+    :param path: current working path
+    :param extension: the extension type that you need to search
+    :return: None
+    """
     recursive_items = command_L_r(path, [])
     for i in recursive_items:
         if str(i).endswith('.' + extension):
@@ -86,6 +114,11 @@ def command_L_r_e(path, extension):
 
 
 def command_L_r_f(path):
+    """
+    Recursively print out all the files.
+    :param path: current working path
+    :return: None
+    """
     recursive_items = command_L_r(path, [])
     for i in recursive_items:
         if Path(i).is_file():
@@ -104,7 +137,12 @@ def command_L_f(path):
 
 
 def command_L(commands):
-
+    """
+    Functionalities within command L.
+    List the contents of the user specified directory.
+    :param commands: the input command
+    :return: None
+    """
     if len(commands) < 2:
         raise Exception("ERROR")
     else:
@@ -154,6 +192,12 @@ def command_L(commands):
 
 
 def command_C(commands):
+    """
+    Functionalities within command C,
+    will read the input and create a new file.
+    :param commands: the input command
+    :return: None
+    """
     if len(commands) < 4:
         print("ERROR")
     else:
@@ -168,6 +212,11 @@ def command_C(commands):
 
 
 def command_D(commands):
+    """
+    Functionalities within command D, allow the user to delete a DSU file.
+    :param commands: the input command
+    :return: None
+    """
     if len(commands) < 2:
         print('ERROR')
     else:
@@ -184,6 +233,11 @@ def command_D(commands):
 
 
 def command_R(commands):
+    """
+    Functionalities within command R, print the content of a DSU file.
+    :param commands: the input command
+    :return: None
+    """
     if len(commands) < 2:
         print('ERROR')
     else:
@@ -206,6 +260,12 @@ def command_R(commands):
 
 
 def input_analyzer(in_commands):
+    """
+    Analyze the input string and turn it into
+    readable list format.
+    :param in_commands: the user input string
+    :return: a list that contains the processed user input (commands)
+    """
     out_commands = []
     command_list = ['L', 'Q', 'C', 'D', 'R']
     option_list = ['-s', '-r', '-f', '-e', '-n']
@@ -246,7 +306,10 @@ def input_analyzer(in_commands):
 
 
 def main_func():
-
+    """
+    The function wrapper.
+    :return: None
+    """
     in_commands = input()
     commands = input_analyzer(in_commands)
 
@@ -264,7 +327,7 @@ def main_func():
     elif commands[0] == 'R':
         command_R(commands)
     elif commands[0] == 'Q':
-        command_Q(commands)
+        command_Q()
     else:
         raise Exception("Incorrect COMMAND")
 
