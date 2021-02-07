@@ -1,2 +1,9 @@
-y = [1, 2, 3]
-print(y[0:2])
+import tester
+
+def test_func():
+    print('I am the test_func() in playground')
+
+if __name__ == '__main__':
+    print('I am playground')
+    tester.test_func()
+    # tester.test_func()

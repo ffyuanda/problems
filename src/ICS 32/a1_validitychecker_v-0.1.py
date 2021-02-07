@@ -451,7 +451,7 @@ def run_test() -> None:
         run_test_lines(process, test_lines)
         print_labeled_output(
             'PASSED',
-            'Your "a1.py" passed the sanity checker.  Note that there are',
+            'Your "a2.py" passed the sanity checker.  Note that there are',
             'many other tests you\'ll want to run on your own, because there are',
             'many different combinations of inputs that are legal.')
 
@@ -469,20 +469,20 @@ def run_test() -> None:
 def start_process() -> TextProcess:
     filenames_in_dir = [p.name for p in list(pathlib.Path.cwd().iterdir()) if p.is_file()]
 
-    if not 'a1.py' in filenames_in_dir:
+    if not 'a2.py' in filenames_in_dir:
         print_labeled_output(
             'ERROR',
-            'Cannot find file "a1.py" in this directory.',
+            'Cannot find file "a2.py" in this directory.',
             'Make sure that the validity checker is in the same directory as the',
-            '"a1.py" that comprises your Assignment #1 solution.  Also, be',
-            'sure that you\'ve named your "a1.py" file correctly, noting',
+            '"a2.py" that comprises your Assignment #1 solution.  Also, be',
+            'sure that you\'ve named your "a2.py" file correctly, noting',
             'that capitalization and spacing matter.')
 
         raise TestFailure()
 
     else:
         return TextProcess(
-            [sys.executable, str(pathlib.Path.cwd() / 'a1.py')],
+            [sys.executable, str(pathlib.Path.cwd() / 'a2.py')],
             str(pathlib.Path.cwd()))
 
 
