@@ -9,8 +9,11 @@ ID: 89832399
 
 from pathlib import Path
 import Profile
+import ds_client as client
 quitted = False
 test_mode = False
+PORT = 2021
+HOST = "168.235.86.101"
 # common interface: all_items, dirs, files = command_L_get_items(path)
 
 
@@ -200,20 +203,91 @@ def create_profile(path: str):
     :return:
     """
     assert type(path) is str, 'path needs to be str'
-    save = ''
 
-    dsuserver = input('DSU server: ')
+    # get the users data
+    dsuserver = input('DSU server (type it directly without quotation marks): ')
     username = input('username: ')
     password = input('password: ')
-    bio = input('bio (optional, skip by pressing enter): ')
     post = Profile.Post()
     entry = input('post (optional, skip by pressing enter): ')
     post.set_entry(entry)
+    bio = input('bio (optional, skip by pressing enter): ')
 
+    # create the profile and pass data in
     profile = Profile.Profile(dsuserver, username, password)
     profile.bio = bio
     profile.add_post(post)
     profile.save_profile(path)
+    print('DSU file storing...')
+    print("Local file stored at: " + str(path))
+    # ask if the user wants to upload
+    upload_option(profile)
+
+
+def upload_option(profile: Profile):
+    """
+    The interface to upload profile to server,
+    working with ds_client module's send().
+    :param profile: current working profile object
+    :return: None
+    """
+    option = input("Do you want to also upload it to the server? (y/n)\n").upper()
+    server = profile.dsuserver
+    username = profile.username
+    password = profile.password
+    message = profile.get_posts()[0].get_entry()
+    # TODO send a list of posts up
+    bio = profile.bio
+
+    if option == 'Y':
+        print("Send post (p)")
+        print("Update bio (b)")
+        print("Send post and update bio (pb)")
+        option = input()
+        client.send(option, server, PORT, username, password,
+                    message, bio)
+        print("Upload done.")
+
+    elif option == 'N':
+        print("Done.")
+
+    else:
+        print('please enter either y or n\n')
+        upload_option(profile)
+
+
+def modify_profile(profile: Profile, path):
+
+    while True:
+        print("""Which part you want to modify?\n
+    username (u)
+    password (pwd)
+    bio (b)
+    posts (p)
+    save modification(s)""")
+
+        option = input().lower()
+        if option == "u":
+            mod = input("Enter the new username: \n")
+            profile.username = mod
+
+        elif option == "pwd":
+            mod = input("Enter the new password: \n")
+            profile.password = mod
+
+        elif option == "b":
+            mod = input("Enter the new bio: \n")
+            profile.bio = mod
+
+        elif option == "p":
+
+
+            mod = input("Enter the new password: \n")
+            profile.password = mod
+
+        elif option == "s":
+            profile.save_profile(path)
+            break
 
 
 def command_C(commands):
@@ -241,7 +315,6 @@ def command_C(commands):
             path.touch()
             # for Profile creation (after the dsu file is created)
             create_profile(str(path))
-            print(str(path))
 
 
 def command_D(commands):
@@ -292,6 +365,7 @@ def command_R(commands):
                             print(output[i])
     # -l option to load
     elif len(commands) == 3 and commands[2] == '-l':
+        # TODO It should allow adding post or change bio to the loaded file
         profile = Profile.Profile()
         profile.load_profile(commands[1])
         print(profile.dsuserver,
@@ -299,6 +373,7 @@ def command_R(commands):
               profile.username,
               profile.bio,
               profile.get_posts())
+        upload_option(profile)
     else:
         raise Exception('ERROR')
 
@@ -396,8 +471,12 @@ def helper():
                 Simply press Q.
     
     COMMAND: C - Create a new file in the specified directory.
-                 And you need to enter dsuserver, username, and
+                 And you need to enter DSU server, username, and
                  password by the following prompt.
+                 
+                 After the creation of DSU file and profile, the
+                 program will ask you if you want to upload things
+                 to the DSU server.
                 
                 OPTIONs:
                 -n Specify the name to be used for a new file.
@@ -415,6 +494,10 @@ def helper():
     
                 OPTIONs:
                 -l load the specified file from the path
+                
+                After the loading of DSU file and profile, the
+                program will ask you if you want to upload things
+                to the DSU server.
     
                 Example usage:
                 R c:\\users\\mark\\a1\\mark.dsu
@@ -453,9 +536,12 @@ def main_func():
 
 
 if __name__ == '__main__':
-    print("If you need any help, input 'H' for help.")
-    while not quitted:
-        try:
-            main_func()
-        except Exception as e:
-            print(e)
+    # print("If you need any help, input 'H' for help.")
+    # while not quitted:
+    #     try:
+    #         main_func()
+    #     except Exception as e:
+    #         print(e)
+
+    profile = Profile.Profile('server', 'name', 'pwd')
+    modify_profile(profile, "C:\Users\ThinkPad\Desktop\test\mark.dsu")
