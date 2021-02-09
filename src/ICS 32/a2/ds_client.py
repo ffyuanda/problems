@@ -1,4 +1,6 @@
 import socket
+import color
+import time
 from ds_protocol import response, send_post_processor,\
   send_bio_processor, send_join_processor
 
@@ -6,23 +8,38 @@ test_mode = False
 PORT = 2021
 HOST = "168.235.86.101"
 token = ''
+color_mod = color.bcolors()
 
-def join(sock: socket, join_msg: str):
+
+def join(sock: socket, username, password):
     global token
+    join_msg = send_join_processor(username, password)
     send = sock.makefile('w')
     send.write(join_msg + '\r\n')  # bio
     send.flush()
     token = response(sock).token
 
 
-def post(sock: socket, post_msg: str):
+def post(sock: socket, message):
     send = sock.makefile('w')
-    send.write(post_msg + '\r\n')  # bio
-    send.flush()
+    for single_post in message:
+        entry = single_post.get_entry()
+        if test_mode:
+            print(entry)
+        timestamp = single_post.get_time()
+        post_msg = send_post_processor(token, entry, timestamp)
+        send.write(post_msg + '\r\n')  # bio
+        send.flush()
+        # the server's message reception time interval must be long enough
+        # and I set 1 for convenience, or it will print an error cause I'm
+        # sending message to it too frequently.
+        time.sleep(1)
     response(sock)
 
 
-def _bio(sock: socket, bio_msg: str):
+def _bio(sock: socket, bio):
+    timestamp = ''
+    bio_msg = send_bio_processor(token, bio, timestamp)
     send = sock.makefile('w')
     send.write(bio_msg + '\r\n')  # bio
     send.flush()
@@ -30,7 +47,7 @@ def _bio(sock: socket, bio_msg: str):
 
 
 def send(send_type, server: str, port: int, username: str, password: str,
-         message: str, bio: str = None):
+         message: list, bio: str = None):
     '''
     The send function joins a ds server and sends a message, bio, or both
     :param send_type the sending type of this send (post / bio / post and bio)
@@ -38,41 +55,31 @@ def send(send_type, server: str, port: int, username: str, password: str,
     :param port: The port where the ICS 32 DS server is accepting connections.
     :param username: The user name to be assigned to the message.
     :param password: The password associated with the username.
-    :param message: The message to be sent to the server.
+    :param message: The list of posts to be sent to the server.
     :param bio: Optional, a bio for the user.
     '''
     global token
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect((str(server), port))
+    done = color_mod.color_code("Upload done.", 'ok')
 
-    # join the server
-    join_msg = send_join_processor(username, password)
-    join(sock, join_msg)
+    send_types = ['p', 'b', 'pb']
+    # make sure the send type is a valid one
+    if send_type in send_types:
+        # join the server
+        join(sock, username, password)
 
-    # TODO timestamp get()
-    test_timestamp = 1612701039.1189523
-    post_msg = send_post_processor(token, message, test_timestamp)
-    bio_msg = send_bio_processor(token, bio, test_timestamp)
-
-    if send_type == 'p':
-        post(sock, post_msg)
-    elif send_type == 'b':
-        _bio(sock, bio_msg)
-    elif send_type == 'pb':
-        post(sock, post_msg)
-        _bio(sock, bio_msg)
+        if send_type == 'p':
+            post(sock, message)
+            print(done)
+        elif send_type == 'b':
+            _bio(sock, bio)
+            print(done)
+        elif send_type == 'pb':
+            post(sock, message)
+            _bio(sock, bio)
+            print(done)
     else:
-        print("Please provide a valid send type.")
-
-
-if __name__ == '__main__':
-    """
-    
-    {"dsuserver": "123", "username": "456", "password": "789", "bio": "123", 
-    "_posts": [{"entry": "222", "timestamp": 1612701039.1189523}]}
-    
-    """
-    test_token = '551db8b5-7adb-4f9c-b610-a8aecd5793b0'
-    send_mode = 'pb'
-
-    send(send_mode, HOST, PORT, 'ffyuanda', 'ffyuanda123', "post1", "bio3")
+        msg = color_mod.color_code("Please provide a valid send type.\n"
+              "Upload failed.", 'error')
+        print(msg)

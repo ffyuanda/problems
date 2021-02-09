@@ -1,7 +1,8 @@
 import socket
 import json
+import color
 from collections import namedtuple
-
+color_mod = color.bcolors()
 
 
 def send_join_processor(username, password, token='') -> str:
@@ -134,19 +135,31 @@ def response(sock: socket) -> DataTuple:
     # DataTuple conversion
     resp = extract_json(resp)
     if resp.type == 'ok':
+
         if resp.message.startswith('Welcome back'):
-            print('Successfully logged in.\n'
-                  'Server says: {}'.format(resp.message))
+            msg = color_mod.color_code("Successfully logged in.\n", 'ok')
+            print('{}'
+                  'Server says: {}'.format(msg, resp.message))
+
+        elif resp.message.startswith('Welcome to'):
+            msg = color_mod.color_code("Successfully registered in.\n", 'ok')
+            print('{}'
+                  'Server says: {}'.format(msg, resp.message))
+
         elif 'Bio' in resp.message:
-            print('Bio successfully updated.\n'
-                  'Server says: {}'.format(resp.message))
+            msg = color_mod.color_code("Bio successfully updated.\n", 'ok')
+            print('{}'
+                  'Server says: {}'.format(msg, resp.message))
+
         elif 'Post' in resp.message:
-            print('Post successfully sent.\n'
-                  'Server says: {}'.format(resp.message))
+            msg = color_mod.color_code("Post successfully sent.\n", 'ok')
+            print('{}'
+                  'Server says: {}'.format(msg, resp.message))
 
     elif resp.type == 'error':
-        print('An error occurs.\n'
-              'Error message: {}'.format(resp.message))
+        msg = color_mod.color_code("An error occurs.\n", 'error')
+        print('{}'
+              'Error message: {}'.format(msg, resp.message))
 
     return resp
 

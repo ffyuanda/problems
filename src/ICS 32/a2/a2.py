@@ -6,7 +6,6 @@ Student info:
 Name: Shaoxuan Yuan
 ID: 89832399
 """
-
 from pathlib import Path
 import Profile
 import ds_client as client
@@ -198,7 +197,6 @@ def command_L(commands):
 
 def create_profile(path: str):
     """
-    TODO: Update the function to be able to add, delete and edit each term
     :param path:
     :return:
     """
@@ -235,8 +233,7 @@ def upload_option(profile: Profile):
     server = profile.dsuserver
     username = profile.username
     password = profile.password
-    message = profile.get_posts()[0].get_entry()
-    # TODO send a list of posts up
+    message = profile.get_posts()
     bio = profile.bio
 
     if option == 'Y':
@@ -246,7 +243,6 @@ def upload_option(profile: Profile):
         option = input()
         client.send(option, server, PORT, username, password,
                     message, bio)
-        print("Upload done.")
 
     elif option == 'N':
         print("Done.")
@@ -256,15 +252,28 @@ def upload_option(profile: Profile):
         upload_option(profile)
 
 
-def modify_profile(profile: Profile, path):
-
-    while True:
-        print("""Which part you want to modify?\n
+def modify_profile():
+    """
+    Load up the profile DSU file for modification.
+    :return: None
+    """
+    path = input('Input the DSU file\'s path which you want to modify.\n'
+                 'For example: C:\\Users\\ThinkPad\\Desktop\\test\\mark.dsu\n')
+    profile = Profile.Profile()
+    profile.load_profile(path)
+    prompt = """\nWhich part you want to modify?
     username (u)
     password (pwd)
     bio (b)
     posts (p)
-    save modification(s)""")
+    save modification(s)"""
+
+    print(path, "is ready for modification.\n")
+
+    # keep prompting the user to choose an option for modification
+    while True:
+        display_profile(profile)
+        print(prompt)
 
         option = input().lower()
         if option == "u":
@@ -280,14 +289,31 @@ def modify_profile(profile: Profile, path):
             profile.bio = mod
 
         elif option == "p":
+            # get users option
+            option = input("Add (a) or delete (d) a post?\n").lower()
 
+            if option == "a":
+                entry = input("Write your entry below:\n")
+                post = Profile.Post()
+                post.set_entry(entry)
+                profile.add_post(post)
+                print("Entry added.")
 
-            mod = input("Enter the new password: \n")
-            profile.password = mod
+            elif option == 'd':
+                entry = int(input("Which entry you want to delete?\n"))
+                profile.del_post(entry)
+                print("Entry deleted.")
+
+            else:
+                print("Please enter either a or d.")
 
         elif option == "s":
             profile.save_profile(path)
+            print("All saved.")
             break
+        else:
+            print("Please enter a valid option. Or "
+                  "input 's' to save (quit).")
 
 
 def command_C(commands):
@@ -307,7 +333,7 @@ def command_C(commands):
         path = p + name + extention
 
         if test_mode:
-            print(path)
+            print("[Test mode]COMMAND C's path:", path)
 
         if commands[2] == '-n':
             path = Path(path)
@@ -365,17 +391,37 @@ def command_R(commands):
                             print(output[i])
     # -l option to load
     elif len(commands) == 3 and commands[2] == '-l':
-        # TODO It should allow adding post or change bio to the loaded file
         profile = Profile.Profile()
         profile.load_profile(commands[1])
-        print(profile.dsuserver,
-              profile.password,
-              profile.username,
-              profile.bio,
-              profile.get_posts())
+        display_profile(profile)
         upload_option(profile)
     else:
         raise Exception('ERROR')
+
+
+def display_profile(profile):
+    """
+    Load the profile up and print out the data in the DSU file.
+    :param profile: current working profile object
+    :return: None
+    """
+    print("server: " + profile.dsuserver)
+    print("username: " + profile.username)
+    print("password: " + profile.password)
+    print("bio: " + profile.bio)
+    list_posts(profile)
+
+
+def list_posts(profile: Profile):
+    """
+    Print out the posts in a profile object.
+    :param profile: current working profile object
+    :return: None
+    """
+    print("Here are your posts:")
+    posts = profile.get_posts()
+    for i in range(len(posts)):
+        print("Entry {}:".format(str(i)), posts[i].get_entry())
 
 
 def input_analyzer(in_commands):
@@ -386,7 +432,7 @@ def input_analyzer(in_commands):
     :return: a list that contains the processed user input (commands)
     """
     out_commands = []
-    command_list = ['L', 'Q', 'C', 'D', 'R']
+    command_list = ['L', 'Q', 'C', 'D', 'R', 'M']
     option_list = ['-s', '-r', '-f', '-e', '-n', '-l']
     built_ins = command_list + option_list
     real_path = ''
@@ -401,7 +447,7 @@ def input_analyzer(in_commands):
     for i in range(length):
         # does not check first and last element
         if test_mode:
-            print(real_path)
+            print("[Test mode]real_path in input_analyzer:", real_path)
 
         if 0 < i < length-1:
 
@@ -484,16 +530,25 @@ def helper():
                 Example usage:
                 C c:\\users\\mark\\a1 -n mark
                 
-                
+    COMMAND: M - Modify a saved DSU file and the profile relates to it.
+                 After the command is typed in, the system will load up
+                 a DSU file to a Profile object to modify the data.
+                 It will prompt you how to modify and save the data.
+    
+                Example usage:
+                M (just put in 'M' and wait for the prompt)
+                                  
     COMMAND: D - Delete the file.
     
                 Example usage:
                 D c:\\users\\mark\\a1\\mark.dsu
     
-    COMMAND: R - Read the contents of a file.
+    COMMAND: R - Read the contents of a file and upload it to the server.
+                 
     
                 OPTIONs:
-                -l load the specified file from the path
+                -l load the specified file from the path, If you want to 
+                upload a file directly, use this.
                 
                 After the loading of DSU file and profile, the
                 program will ask you if you want to upload things
@@ -517,8 +572,7 @@ def main_func():
     # for test purpose
 
     if test_mode:
-        print(commands)
-
+        print("[Test mode]The command list after process:", commands)
     if commands[0] == 'L':
         command_L(commands)
     elif commands[0] == 'C':
@@ -531,17 +585,17 @@ def main_func():
         command_Q()
     elif commands[0] == 'H':
         helper()
+    elif commands[0] == 'M':
+        modify_profile()
     else:
         raise Exception("Incorrect COMMAND")
 
 
 if __name__ == '__main__':
-    # print("If you need any help, input 'H' for help.")
-    # while not quitted:
-    #     try:
-    #         main_func()
-    #     except Exception as e:
-    #         print(e)
-
-    profile = Profile.Profile('server', 'name', 'pwd')
-    modify_profile(profile, "C:\Users\ThinkPad\Desktop\test\mark.dsu")
+    print("Welcome to DSU file management system!")
+    print("If you need any help, input 'H' for help.")
+    while not quitted:
+        try:
+            main_func()
+        except Exception as e:
+            print(e)

@@ -4,6 +4,7 @@ class bcolors:
     https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal
     for color coded text.
     """
+
     def __init__(self):
         self.HEADER = '\033[95m'
         self.OKBLUE = '\033[94m'
