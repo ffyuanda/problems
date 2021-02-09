@@ -68,17 +68,20 @@ def send(send_type, server: str, port: int, username: str, password: str,
     if send_type in send_types:
         # join the server
         join(sock, username, password)
+        # if connected successfully, the token will be given a value
+        # otherwise it's an empty string.
+        if token != '':
 
-        if send_type == 'p':
-            post(sock, message)
-            print(done)
-        elif send_type == 'b':
-            _bio(sock, bio)
-            print(done)
-        elif send_type == 'pb':
-            post(sock, message)
-            _bio(sock, bio)
-            print(done)
+            if send_type == 'p':
+                post(sock, message)
+                print(done)
+            elif send_type == 'b':
+                _bio(sock, bio)
+                print(done)
+            elif send_type == 'pb':
+                post(sock, message)
+                _bio(sock, bio)
+                print(done)
     else:
         msg = color_mod.color_code("Please provide a valid send type.\n"
               "Upload failed.", 'error')

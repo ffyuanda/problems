@@ -8,11 +8,13 @@ ID: 89832399
 """
 from pathlib import Path
 import Profile
+import color
 import ds_client as client
 quitted = False
 test_mode = False
 PORT = 2021
 HOST = "168.235.86.101"
+color_mod = color.bcolors()
 # common interface: all_items, dirs, files = command_L_get_items(path)
 
 
@@ -262,13 +264,15 @@ def modify_profile():
     profile = Profile.Profile()
     profile.load_profile(path)
     prompt = """\nWhich part you want to modify?
+    server (se)
     username (u)
     password (pwd)
     bio (b)
     posts (p)
     save modification(s)"""
 
-    print(path, "is ready for modification.\n")
+    msg = color_mod.color_code("is ready for modification.\n", 'ok')
+    print(color_mod.color_code(path, 'ok'), msg)
 
     # keep prompting the user to choose an option for modification
     while True:
@@ -279,6 +283,10 @@ def modify_profile():
         if option == "u":
             mod = input("Enter the new username: \n")
             profile.username = mod
+
+        elif option == "se":
+            mod = input("Enter the new server address: \n")
+            profile.dsuserver = mod
 
         elif option == "pwd":
             mod = input("Enter the new password: \n")
@@ -297,23 +305,28 @@ def modify_profile():
                 post = Profile.Post()
                 post.set_entry(entry)
                 profile.add_post(post)
-                print("Entry added.")
+                msg = color_mod.color_code("Entry added.", 'ok')
+                print(msg)
 
             elif option == 'd':
                 entry = int(input("Which entry you want to delete?\n"))
                 profile.del_post(entry)
-                print("Entry deleted.")
+                msg = color_mod.color_code("Entry deleted.", 'ok')
+                print(msg)
 
             else:
-                print("Please enter either a or d.")
+                msg = color_mod.color_code("Please enter either a or d.", 'error')
+                print(msg)
 
         elif option == "s":
             profile.save_profile(path)
-            print("All saved.")
+            msg = color_mod.color_code("All saved.", 'ok')
+            print(msg)
             break
         else:
-            print("Please enter a valid option. Or "
-                  "input 's' to save (quit).")
+            msg = color_mod.color_code("Please enter a valid option. Or "
+                  "input 's' to save (quit).", 'error')
+            print(msg)
 
 
 def command_C(commands):
@@ -598,4 +611,4 @@ if __name__ == '__main__':
         try:
             main_func()
         except Exception as e:
-            print(e)
+            print(color_mod.color_code(e, 'error'))

@@ -24,7 +24,7 @@ class bcolors:
         :return: a color-coded string
 
         Example usage:
-        color_mod = bcolors()
+        color_mod = color.bcolors()
         print(color_mod.color_code("sad", 'ok'))
         """
         if ctype == 'ok':
