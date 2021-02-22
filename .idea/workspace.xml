@@ -5,29 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98785467-6f8f-4963-a449-5c3d8be14401" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/API_Interface.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/ExtraCreditAPI.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/LastFM.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/city.list.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a3/Profile.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a3/a3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a3/color.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a3/ds_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a3/ds_protocol.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a3/examples/client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a3/examples/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ICS31.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ICS31.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/SMP example/symptom_monitoring.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a2/SMP example/symptom_monitoring.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/SMP example/symptom_monitoring_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a2/SMP example/symptom_monitoring_server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/SMP example/symptom_monitoring_ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a2/SMP example/symptom_monitoring_ui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/a0.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a0/a0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/a0_sanitycheck.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a0/a0_sanitycheck.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/a1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a1/a1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/a1_validitychecker_v-0.1.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a1/a1_validitychecker_v-0.1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tester.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/API_Interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/API_Interface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/LastFM.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/LastFM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -269,26 +250,26 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1609297125999" />
-    <state width="1259" height="98" key="GridCell.Tab.0.bottom" timestamp="1613971298794">
+    <state width="1259" height="135" key="GridCell.Tab.0.bottom" timestamp="1613973993542">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391796" />
-    <state width="1259" height="98" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1613971298794" />
-    <state width="1259" height="98" key="GridCell.Tab.0.center" timestamp="1613971298794">
+    <state width="1259" height="135" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1613973993542" />
+    <state width="1259" height="135" key="GridCell.Tab.0.center" timestamp="1613973993541">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="98" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1613971298794" />
-    <state width="1259" height="98" key="GridCell.Tab.0.left" timestamp="1613971298794">
+    <state width="1259" height="135" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1613973993541" />
+    <state width="1259" height="135" key="GridCell.Tab.0.left" timestamp="1613973993541">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="98" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1613971298794" />
-    <state width="1259" height="98" key="GridCell.Tab.0.right" timestamp="1613971298794">
+    <state width="1259" height="135" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1613973993541" />
+    <state width="1259" height="135" key="GridCell.Tab.0.right" timestamp="1613973993541">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="98" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1613971298794" />
+    <state width="1259" height="135" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1613973993541" />
     <state width="1259" height="219" key="GridCell.Tab.1.bottom" timestamp="1608224329087">
       <screen x="0" y="0" width="1280" height="720" />
     </state>

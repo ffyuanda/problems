@@ -9,16 +9,20 @@ import API_Interface
 class LastFM(API_Interface.API):
 
     def __init__(self, album: str, apikey: str, limit: int = 30, page: int = 1):
+        super().__init__()
         self.album = album
-        self.set_apikey(apikey)
         self.limit = limit
         self.page = page
+
+        self.set_apikey(apikey)
         self.root_url = "http://ws.audioscrobbler.com/2.0/"
         self.url = "?method=album.search&" \
                    "album={}&api_key={}&limit={}&page={}&format=json".format(
                     self.album, self.apikey, self.limit, self.page)
         self.url = self.root_url + self.url
-        super(LastFM, self).__init__(self.apikey, self.url)
+        self.set_url(self.url)
+        self.set_response()
+
         self.artist = self.response['results']['albummatches']['album'][0]['artist']
         self.album_name = self.response['results']['albummatches']['album'][0]['name']
         self.album_url = self.response['results']['albummatches']['album'][0]['url']
