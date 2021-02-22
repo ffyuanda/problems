@@ -84,5 +84,5 @@ def send(send_type, server: str, port: int, username: str, password: str,
                 print(done)
     else:
         msg = color_mod.color_code("Please provide a valid send type.\n"
-              "Upload failed.", 'error')
+                                   "Upload failed.", 'error')
         print(msg)

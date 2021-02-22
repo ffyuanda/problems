@@ -9,6 +9,9 @@
       <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/API_Interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/API_Interface.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/LastFM.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/LastFM.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/a3.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/a3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/ds_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/ds_client.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +56,7 @@
       <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS32" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.OpenWeather_test">
+  <component name="RunManager" selected="Python.a3">
     <configuration name="API_Interface" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -180,7 +183,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="tester" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="a3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -188,11 +191,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a3" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/tester.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a3/a3.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -205,17 +208,17 @@
       <item itemvalue="Python.Even Digits" />
       <item itemvalue="Python.OpenWeather" />
       <item itemvalue="Python.OpenWeather_test" />
-      <item itemvalue="Python.tester" />
       <item itemvalue="Python.API_Interface" />
       <item itemvalue="Python.LastFM" />
+      <item itemvalue="Python.a3" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.a3" />
         <item itemvalue="Python.OpenWeather_test" />
         <item itemvalue="Python.LastFM" />
         <item itemvalue="Python.OpenWeather" />
         <item itemvalue="Python.API_Interface" />
-        <item itemvalue="Python.tester" />
       </list>
     </recent_temporary>
   </component>
@@ -250,42 +253,42 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1609297125999" />
-    <state width="1259" height="135" key="GridCell.Tab.0.bottom" timestamp="1613973993542">
+    <state width="1259" height="261" key="GridCell.Tab.0.bottom" timestamp="1613987325808">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391796" />
-    <state width="1259" height="135" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1613973993542" />
-    <state width="1259" height="135" key="GridCell.Tab.0.center" timestamp="1613973993541">
+    <state width="1259" height="261" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1613987325808" />
+    <state width="1259" height="261" key="GridCell.Tab.0.center" timestamp="1613987325808">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="135" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1613973993541" />
-    <state width="1259" height="135" key="GridCell.Tab.0.left" timestamp="1613973993541">
+    <state width="1259" height="261" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1613987325808" />
+    <state width="1259" height="261" key="GridCell.Tab.0.left" timestamp="1613987325808">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="135" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1613973993541" />
-    <state width="1259" height="135" key="GridCell.Tab.0.right" timestamp="1613973993541">
+    <state width="1259" height="261" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1613987325808" />
+    <state width="1259" height="261" key="GridCell.Tab.0.right" timestamp="1613987325808">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="135" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1613973993541" />
-    <state width="1259" height="219" key="GridCell.Tab.1.bottom" timestamp="1608224329087">
+    <state width="1259" height="261" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1613987325808" />
+    <state width="1259" height="262" key="GridCell.Tab.1.bottom" timestamp="1613986489142">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1259" height="219" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1608224329087" />
-    <state width="1259" height="219" key="GridCell.Tab.1.center" timestamp="1608224329087">
+    <state width="1259" height="262" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1613986489142" />
+    <state width="1259" height="262" key="GridCell.Tab.1.center" timestamp="1613986489142">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1259" height="219" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1608224329087" />
-    <state width="1259" height="219" key="GridCell.Tab.1.left" timestamp="1608224329087">
+    <state width="1259" height="262" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1613986489142" />
+    <state width="1259" height="262" key="GridCell.Tab.1.left" timestamp="1613986489142">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1259" height="219" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1608224329087" />
-    <state width="1259" height="219" key="GridCell.Tab.1.right" timestamp="1608224329087">
+    <state width="1259" height="262" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1613986489142" />
+    <state width="1259" height="262" key="GridCell.Tab.1.right" timestamp="1613986489142">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1259" height="219" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1608224329087" />
+    <state width="1259" height="262" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1613986489142" />
     <state x="142" y="5" key="SettingsEditor" timestamp="1612700692109">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -314,6 +317,21 @@
           <url>file://$PROJECT_DIR$/src/Bike Tour.py</url>
           <line>8</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/ICS 32/a3/a3.py</url>
+          <line>226</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/ICS 32/a3/a3.py</url>
+          <line>225</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/ICS 32/a3/a3.py</url>
+          <line>227</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

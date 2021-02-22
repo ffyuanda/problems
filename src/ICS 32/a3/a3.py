@@ -10,6 +10,8 @@ from pathlib import Path
 import Profile
 import color
 import ds_client as client
+import OpenWeather
+import LastFM
 
 quitted = False
 test_mode = False
@@ -220,9 +222,13 @@ def create_profile(path: str):
     profile = Profile.Profile(dsuserver, username, password)
     profile.bio = bio
     profile.add_post(post)
+
+    profile = posts_transclude(profile)
+    display_profile(profile)
     profile.save_profile(path)
     print('DSU file storing...')
     print("Local file stored at: " + str(path))
+
     # ask if the user wants to upload
     upload_option(profile)
 
@@ -255,6 +261,28 @@ def upload_option(profile: Profile):
     else:
         print('please enter either y or n\n')
         upload_option(profile)
+
+
+def posts_transclude(profile: Profile):
+    """
+    Transclude every single post in the posts list of a profile object.
+    Use it before saving the DSU file in order to change the posts list
+    of the profile object before uploading or saving to local.
+    :param profile: current working Profile object
+    :return: modified Profile object
+    """
+    posts = profile._posts
+    print('Transcluding...')
+    for i in range(len(posts)):
+        if '@weather' in posts[i]['entry']:
+            a = OpenWeather.OpenWeather('92697', 'US')
+            posts[i].set_entry(a.transclude(posts[i].get_entry()))
+        if '@lastfm' in posts[i]['entry']:
+            a = LastFM.LastFM('United States')
+            posts[i].set_entry(a.transclude(posts[i].get_entry()))
+    msg = color_mod.color_code('Transcluded!', 'ok')
+    print(msg)
+    return profile
 
 
 def modify_profile():
@@ -322,8 +350,10 @@ def modify_profile():
                 print(msg)
 
         elif option == "s":
+            profile = posts_transclude(profile)
             profile.save_profile(path)
             msg = color_mod.color_code("All saved.", 'ok')
+            display_profile(profile)
             print(msg)
             break
         else:
@@ -510,7 +540,12 @@ def input_analyzer(in_commands):
 
 def helper():
     print("""Usage format: [COMMAND] [INPUT] [[-]OPTION] [INPUT]
-
+    
+    Some tips:
+    If you want to CREATE a file, go to COMMAND: C
+    If you want to MODIFY a file, go to COMMAND: M
+    If you want to UPLOAD a file, go to COMMAND: R
+    
     COMMAND: L - List the contents of the user specified directory.
 
                 OPTIONs:
@@ -573,7 +608,25 @@ def helper():
                 Example usage:
                 R c:\\users\\mark\\a1\\mark.dsu
                 R c:\\users\\mark\\a1\\mark.dsu -l
+                
+    API Supports:
+    
+                When you are writing posts, you have some API add-ins support
+                available for better writing!
+                
+                OpenWeather API:
+                You can simply add '@weather' in your post at anywhere, and the
+                '@weather' script will translate to the current weather in Irvine.
+                Supports for your current location will be added later.
+                               
+                LastFM API:
+                You can simply add '@lastfm' in your post at anywhere, and the
+                '@lastfm' script will translate to the United Stats' top hit 
+                song on LastFM in current time period.
+                Supports for other countries will be added later.
               """)
+
+
     pass
 
 
@@ -609,6 +662,8 @@ def main_func():
 
 if __name__ == '__main__':
     print("Welcome to DSU file management system!")
+    print("It helps you to create posts, modify bios, upload DSU files")
+    print("to the server and chat with people there!\n")
     print("If you need any help, input 'H' for help.")
     while not quitted:
         try:

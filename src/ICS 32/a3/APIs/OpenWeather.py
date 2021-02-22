@@ -2,10 +2,11 @@ import API_Interface
 
 
 class OpenWeather(API_Interface.API):
-    def __init__(self, zipcode, ccode, apikey):
+    def __init__(self, zipcode, ccode):
         super().__init__()
         self.zipcode = zipcode
         self.ccode = ccode
+        apikey = "ed6bc62b2f33de9c3042039ce8b14d62"
         self.set_apikey(apikey)
         self.set_url(f"https://api.openweathermap.org/data/2.5/weather?"
                      f"zip={self.zipcode},{self.ccode}&appid={self.apikey}")
