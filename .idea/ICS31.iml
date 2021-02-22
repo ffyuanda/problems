@@ -9,7 +9,12 @@
       <sourceFolder url="file://$MODULE_DIR$/src/tests" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/ICS 32" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/ICS 32/a2" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/ICS 32/SMP example" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ICS 32/a2/SMP example" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ICS 32/a0" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ICS 32/a1" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ICS 32/a3" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ICS 32/a3/APIs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/ICS 32/a3/examples" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.6" jdkType="Python SDK" />
