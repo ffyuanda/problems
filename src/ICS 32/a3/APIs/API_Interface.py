@@ -54,6 +54,13 @@ class API:
         """
         self.response = self._download_url(self.url)
 
+    def get_response(self) -> dict:
+        """
+        Get response.
+        :return: response JSON dict
+        """
+        return self.response
+
     def set_url(self, url: str) -> None:
         """
         Sets the url required to make requests to a web API.
@@ -61,13 +68,26 @@ class API:
         """
         self.url = url
 
+    def get_url(self) -> str:
+        """
+        Get url.
+        :return: the url string
+        """
+        return self.url
+
     def set_apikey(self, apikey: str) -> None:
         """
         Sets the apikey required to make requests to a web API.
         :param apikey: The apikey supplied by the API service
         """
-
         self.apikey = apikey
+
+    def get_apikey(self) -> str:
+        """
+        Get apikey.
+        :return: the apikey string.
+        """
+        return self.apikey
 
     def transclude(self, message: str) -> None:
         """

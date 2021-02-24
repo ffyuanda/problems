@@ -142,3 +142,16 @@ class bcolors:
         elif ctype == 'error':
             output = "{}{}{}".format(self.FAIL, string, self.ENDC)
             return output
+
+# error handling tests
+# if raise from None, then the outer error would not be displayed
+# if raise from e, then the outer error would be the direct cause to this error
+# if simply raise, then this error would be another exception
+# during handling the above outer error.
+# try:
+#     x = 1 / 0
+# except ZeroDivisionError as e:
+#     try:
+#         x = 'i' + 1
+#     except TypeError:
+#         raise TypeError('We cannot add str and int!') from None

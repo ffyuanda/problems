@@ -5,13 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98785467-6f8f-4963-a449-5c3d8be14401" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/APIs/API_Interface.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/APIs/API_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/APIs/ExtraCreditAPI.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/APIs/LastFM.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/APIs/OpenWeather.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/APIs/city.list.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/Profile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/a4.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/color.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/ds_client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/ds_protocol.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/examples/client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/examples/server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/helper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ICS31.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ICS31.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/API_Interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/API_Interface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/ExtraCreditAPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/ExtraCreditAPI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/LastFM.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/LastFM.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/API_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/a3.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/a3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/ds_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/ds_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tester.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool box.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool box.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,8 +56,8 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/ICS 32/a3/APIs" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/ICS 32/a4" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -49,15 +68,15 @@
       <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a0" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a4" />
       <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a3\APIs" />
       <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a3" />
       <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a2" />
       <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\SMP example" />
-      <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS32" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.a3">
-    <configuration name="API_Interface" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.a4">
+    <configuration name="API_test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -69,7 +88,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a3/APIs/API_Interface.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a3/APIs/API_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -120,69 +139,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="LastFM" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ICS31" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a3/APIs" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a3/APIs/LastFM.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="OpenWeather" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ICS31" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a3/APIs" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="OpenWeather_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ICS31" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a3/APIs" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather_test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="a3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -204,21 +160,84 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="a4" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ICS31" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a4" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a4/a4.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="helper" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ICS31" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a4" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a4/helper.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tester" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ICS31" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/tester.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.Even Digits" />
-      <item itemvalue="Python.OpenWeather" />
-      <item itemvalue="Python.OpenWeather_test" />
-      <item itemvalue="Python.API_Interface" />
-      <item itemvalue="Python.LastFM" />
       <item itemvalue="Python.a3" />
+      <item itemvalue="Python.API_test (1)" />
+      <item itemvalue="Python.tester" />
+      <item itemvalue="Python.helper" />
+      <item itemvalue="Python.a4" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.a4" />
+        <item itemvalue="Python.helper" />
         <item itemvalue="Python.a3" />
-        <item itemvalue="Python.OpenWeather_test" />
-        <item itemvalue="Python.LastFM" />
-        <item itemvalue="Python.OpenWeather" />
-        <item itemvalue="Python.API_Interface" />
+        <item itemvalue="Python.tester" />
+        <item itemvalue="Python.API_test (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -237,10 +256,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="96" y="15" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1612576254482">
+    <state x="96" y="15" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1614059347313">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="96" y="15" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.720@0.0.1280.720" timestamp="1612576254482" />
+    <state x="96" y="15" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.720@0.0.1280.720" timestamp="1614059347313" />
     <state x="407" y="162" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606900438002">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -253,26 +272,26 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1609297125999" />
-    <state width="1259" height="261" key="GridCell.Tab.0.bottom" timestamp="1613987325808">
+    <state width="1259" height="125" key="GridCell.Tab.0.bottom" timestamp="1614169442876">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391796" />
-    <state width="1259" height="261" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1613987325808" />
-    <state width="1259" height="261" key="GridCell.Tab.0.center" timestamp="1613987325808">
+    <state width="1259" height="125" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1614169442876" />
+    <state width="1259" height="125" key="GridCell.Tab.0.center" timestamp="1614169442875">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="261" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1613987325808" />
-    <state width="1259" height="261" key="GridCell.Tab.0.left" timestamp="1613987325808">
+    <state width="1259" height="125" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1614169442875" />
+    <state width="1259" height="125" key="GridCell.Tab.0.left" timestamp="1614169442875">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="261" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1613987325808" />
-    <state width="1259" height="261" key="GridCell.Tab.0.right" timestamp="1613987325808">
+    <state width="1259" height="125" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1614169442875" />
+    <state width="1259" height="125" key="GridCell.Tab.0.right" timestamp="1614169442875">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="261" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1613987325808" />
+    <state width="1259" height="125" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1614169442875" />
     <state width="1259" height="262" key="GridCell.Tab.1.bottom" timestamp="1613986489142">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -289,26 +308,27 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="262" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1613986489142" />
-    <state x="142" y="5" key="SettingsEditor" timestamp="1612700692109">
+    <state x="142" y="5" key="SettingsEditor" timestamp="1614059400505">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="142" y="5" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1612700692109" />
+    <state x="142" y="5" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1614059400505" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1607352636980">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1280.720@0.0.1280.720" timestamp="1607352636980" />
-    <state x="471" y="140" width="1910" height="971" key="dock-window-1" timestamp="1612682185728">
+    <state x="269" y="307" width="531" height="327" maximized="true" key="dock-window-1" timestamp="1614156686247">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="471" y="140" width="1910" height="971" key="dock-window-1/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612682185728" />
+    <state x="269" y="307" width="531" height="327" maximized="true" key="dock-window-1/0.0.1280.720@0.0.1280.720" timestamp="1614156686247" />
     <state x="347" y="93" width="587" height="534" key="find.popup" timestamp="1611213169413">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="347" y="93" width="587" height="534" key="find.popup/0.0.1280.720@0.0.1280.720" timestamp="1611213169413" />
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1612790096806">
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1614059350455">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1612790096806" />
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1614059350455" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -317,21 +337,6 @@
           <url>file://$PROJECT_DIR$/src/Bike Tour.py</url>
           <line>8</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/ICS 32/a3/a3.py</url>
-          <line>226</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/ICS 32/a3/a3.py</url>
-          <line>225</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/ICS 32/a3/a3.py</url>
-          <line>227</line>
-          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

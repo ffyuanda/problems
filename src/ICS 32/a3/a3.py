@@ -12,6 +12,7 @@ import color
 import ds_client as client
 import OpenWeather
 import LastFM
+import ExtraCreditAPI
 
 quitted = False
 test_mode = False
@@ -280,6 +281,10 @@ def posts_transclude(profile: Profile):
         if '@lastfm' in posts[i]['entry']:
             a = LastFM.LastFM('United States')
             posts[i].set_entry(a.transclude(posts[i].get_entry()))
+        if '@extracredit' in posts[i]['entry']:
+            a = ExtraCreditAPI.Joke()
+            posts[i].set_entry(a.transclude(posts[i].get_entry()))
+
     msg = color_mod.color_code('Transcluded!', 'ok')
     print(msg)
     return profile
@@ -369,8 +374,11 @@ def command_C(commands):
     :param commands: the input command
     :return: None
     """
+    # class command_error(Exception):
+
     if len(commands) < 4:
-        print("ERROR")
+        # raise
+        print('There needs to be at least 3 inputs for COMMAND C')
     else:
 
         p = commands[1] + '\\'
@@ -382,11 +390,15 @@ def command_C(commands):
             print("[Test mode]COMMAND C's path:", path)
 
         if commands[2] == '-n':
-            path = Path(path)
-            # create the dsu file
-            path.touch()
-            # for Profile creation (after the dsu file is created)
-            create_profile(str(path))
+            try:
+                path = Path(path)
+                # create the dsu file
+                path.touch()
+                # for Profile creation (after the dsu file is created)
+                create_profile(str(path))
+            except FileNotFoundError:
+                print('This is a invalid directory')
+
 
 
 def command_D(commands):
@@ -396,12 +408,12 @@ def command_D(commands):
     :return: None
     """
     if len(commands) < 2:
-        print('ERROR')
+        print('There needs to be at least one input for COMMAND D')
     else:
         path = Path(commands[1])
 
         if not str(path).endswith('.dsu'):
-            print('ERROR')
+            print('It needs to be a DSU file with .dsu suffix')
         else:
             try:
                 path.unlink()
@@ -417,12 +429,12 @@ def command_R(commands):
     :return: None
     """
     if len(commands) < 2:
-        print('ERROR')
+        print('There needs to be at least one input for COMMAND R')
     elif len(commands) == 2:
         path = Path(commands[1])
 
         if not str(path).endswith('.dsu'):
-            print('ERROR')
+            print('It needs to be a DSU file with .dsu suffix')
         else:
             with open(str(path), 'r') as f:
                 if path.stat().st_size == 0:
@@ -442,7 +454,7 @@ def command_R(commands):
         display_profile(profile)
         upload_option(profile)
     else:
-        raise Exception('ERROR')
+        print("The format for COMMAND R seems not right")
 
 
 def display_profile(profile):
@@ -612,7 +624,9 @@ def helper():
     API Supports:
     
                 When you are writing posts, you have some API add-ins support
-                available for better writing!
+                available for better writing! All the keywords will be transcluded
+                before the DSU file is saved. You will see "Transcluding..." when
+                the file is being transcluded.
                 
                 OpenWeather API:
                 You can simply add '@weather' in your post at anywhere, and the
@@ -624,10 +638,16 @@ def helper():
                 '@lastfm' script will translate to the United Stats' top hit 
                 song on LastFM in current time period.
                 Supports for other countries will be added later.
+                
+                Joke API:
+                You can simply add '@extracredit' in your post at anywhere, and the
+                '@extracredit' script will translate to a random joke.
+                
+                !CAUTION!: this api may not be accessible in some regions since
+                the IP address of the api's server is blocked in some area, if
+                you encounter a trancluding problem or connection issue, please
+                connect to UCI's VPN when you are using this feature. 
               """)
-
-
-    pass
 
 
 def main_func():

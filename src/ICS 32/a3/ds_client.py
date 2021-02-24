@@ -33,8 +33,8 @@ def post(sock: socket, message):
         # the server's message reception time interval must be long enough
         # and I set 1 for convenience, or it will print an error cause I'm
         # sending message to it too frequently.
+        response(sock)
         time.sleep(1)
-    response(sock)
 
 
 def _bio(sock: socket, bio):

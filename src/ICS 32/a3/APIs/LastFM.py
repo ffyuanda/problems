@@ -1,13 +1,14 @@
 import API_Interface
-# /2.0/?method=geo.gettoptracks&country=spain&api_key=YOUR_API_KEY&format=json
-# API intro: https://www.last.fm/api/show/geo.getTopTracks
-# API root url: http://ws.audioscrobbler.com/2.0/
-# Search example url (JSON): http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=spain&api_key=YOUR_API_KEY&format=json
 
 
 class LastFM(API_Interface.API):
     """
     It gives the top hit track of music in a specific country.
+
+    API website: https://www.last.fm/api/show/geo.getTopTracks
+    API root url: http://ws.audioscrobbler.com/2.0/
+    API sample url (JSON): http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=spain&
+    api_key=YOUR_API_KEY&format=json
     """
 
     def __init__(self, country: str):
@@ -25,6 +26,9 @@ class LastFM(API_Interface.API):
         self.set_url(self.url)
         self.set_response()
 
+        # attributes
+        self.tophit = self.response['tracks']['track'][0]['name']
+
     def transclude(self, message: str) -> str:
         if '@lastfm' in message:
-            return message.replace('@lastfm', self.response['tracks']['track'][0]['name'])
+            return message.replace('@lastfm', self.tophit)
