@@ -86,3 +86,7 @@ def send(send_type, server: str, port: int, username: str, password: str,
         msg = color_mod.color_code("Please provide a valid send type.\n"
               "Upload failed.", 'error')
         print(msg)
+
+
+if __name__ == '__main__':
+    send('pb', "168.235.86.101", 2021, 'ffyuanda', 'ffyuanda123', [1, 2], '123')

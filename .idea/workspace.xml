@@ -5,32 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98785467-6f8f-4963-a449-5c3d8be14401" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/APIs/API_Interface.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/APIs/API_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/APIs/ExtraCreditAPI.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/APIs/LastFM.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/APIs/OpenWeather.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/APIs/city.list.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/Profile.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/a4.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/color.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/ds_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/ds_protocol.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/examples/client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/examples/server.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ICS31.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ICS31.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/NaClDSEncoder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/NaClDSEncoder_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/NaClProfile.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/API_Interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/API_Interface.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/ExtraCreditAPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/ExtraCreditAPI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/LastFM.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/LastFM.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/APIs/OpenWeather_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/APIs/API_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/a3.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/a3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/a3/ds_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a3/ds_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a2/ds_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a2/ds_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a4/a4.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a4/a4.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tester.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tool box.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool box.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,13 +41,6 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a2" />
-      <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a3\APIs" />
-      <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a3\examples" />
-      <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a1" />
-      <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a0" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a4" />
       <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a3\APIs" />
@@ -74,29 +48,15 @@
       <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a2" />
       <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\SMP example" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a2" />
+      <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a3\APIs" />
+      <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a3\examples" />
+      <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a1" />
+      <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a0" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.a4">
-    <configuration name="API_test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ICS31" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a3/APIs" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a3/APIs/API_test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.NaClDSEncoder_test">
     <configuration name="Even Digits" type="PythonConfigurationType" factoryName="Python">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -139,7 +99,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="a3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="NaClDSEncoder_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -147,11 +107,32 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a4" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a3/a3.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a4/NaClDSEncoder_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="a2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ICS31" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a2" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a2/a2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -181,63 +162,56 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="helper" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="ds_client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a2" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a2/ds_client.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in NaClDSEncoder_test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="ICS31" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a4" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a4/helper.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="tester" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ICS31" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/tester.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/src/ICS 32/a4/NaClDSEncoder_test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Python.Even Digits" />
-      <item itemvalue="Python.a3" />
-      <item itemvalue="Python.API_test (1)" />
-      <item itemvalue="Python.tester" />
-      <item itemvalue="Python.helper" />
       <item itemvalue="Python.a4" />
+      <item itemvalue="Python.a2" />
+      <item itemvalue="Python.ds_client" />
+      <item itemvalue="Python tests.Unittests in NaClDSEncoder_test.py" />
+      <item itemvalue="Python.NaClDSEncoder_test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.NaClDSEncoder_test" />
+        <item itemvalue="Python tests.Unittests in NaClDSEncoder_test.py" />
+        <item itemvalue="Python.a2" />
+        <item itemvalue="Python.ds_client" />
         <item itemvalue="Python.a4" />
-        <item itemvalue="Python.helper" />
-        <item itemvalue="Python.a3" />
-        <item itemvalue="Python.tester" />
-        <item itemvalue="Python.API_test (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -272,26 +246,26 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1609297125999" />
-    <state width="1259" height="125" key="GridCell.Tab.0.bottom" timestamp="1614169442876">
+    <state width="1259" height="172" key="GridCell.Tab.0.bottom" timestamp="1614517637761">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391796" />
-    <state width="1259" height="125" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1614169442876" />
-    <state width="1259" height="125" key="GridCell.Tab.0.center" timestamp="1614169442875">
+    <state width="1259" height="172" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1614517637761" />
+    <state width="1259" height="172" key="GridCell.Tab.0.center" timestamp="1614517637761">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="125" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1614169442875" />
-    <state width="1259" height="125" key="GridCell.Tab.0.left" timestamp="1614169442875">
+    <state width="1259" height="172" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1614517637761" />
+    <state width="1259" height="172" key="GridCell.Tab.0.left" timestamp="1614517637760">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="125" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1614169442875" />
-    <state width="1259" height="125" key="GridCell.Tab.0.right" timestamp="1614169442875">
+    <state width="1259" height="172" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1614517637760" />
+    <state width="1259" height="172" key="GridCell.Tab.0.right" timestamp="1614517637761">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="125" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1614169442875" />
+    <state width="1259" height="172" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1614517637761" />
     <state width="1259" height="262" key="GridCell.Tab.1.bottom" timestamp="1613986489142">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -308,10 +282,10 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="262" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1613986489142" />
-    <state x="142" y="5" key="SettingsEditor" timestamp="1614059400505">
+    <state x="142" y="5" key="SettingsEditor" timestamp="1614513934524">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="142" y="5" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1614059400505" />
+    <state x="142" y="5" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1614513934524" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1607352636980">
       <screen x="0" y="0" width="1280" height="720" />
     </state>

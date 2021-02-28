@@ -38,6 +38,7 @@ import ds_client as client
 import OpenWeather
 import LastFM
 import ExtraCreditAPI
+import nacl
 
 quitted = False
 test_mode = False
@@ -562,11 +563,11 @@ def input_analyzer(in_commands):
 
 
 def helper():
-    print("This color represents an input prompt or normal system information.")
+    print("\nThis color represents an input prompt or normal system information.")
     print_ok("This color represents successful or approved operations.")
     print_warning("This color represents user's illegal inputs or unexpected operations.")
     print_error("This color represents systematic error or test mode message "
-                "that should be handled by developers.")
+                "that should be handled by developers.\n")
 
     print("""Usage format: [COMMAND] [INPUT] [[-]OPTION] [INPUT]
     
