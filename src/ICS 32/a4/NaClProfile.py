@@ -6,7 +6,7 @@ import copy
 from nacl.public import PrivateKey, PublicKey, Box, EncryptedMessage
 from Profile import Post, Profile
 from pathlib import Path
-
+# TODO make sure the local file is encrypted?
 
 """
 DsuFileError is a custom exception handler that you should catch in your own code. It
@@ -28,7 +28,6 @@ class DsuProfileError(Exception):
 class NaClProfile(Profile):
     def __init__(self):
         """
-        TODO: Complete the initializer method. Your initializer should create the follow three
         public data attributes:
 
         public_key:str
@@ -117,13 +116,11 @@ class NaClProfile(Profile):
 
     def load_profile(self, path: str) -> None:
         """
-        TODO: Override the load_profile method to add support for storing a keypair.
-
         Since the DS Server is now making use of encryption keys rather than username/password attributes, you will
         need to add support for storing a keypair in a dsu file. The best way to do this is to override the
         load_profile module and add any new attributes you wish to support.
 
-        NOTE: The Profile class implementation of load_profile contains everything you need to complete this TODO. Just add
+        NOTE: The Profile class implementation of load_profile contains everything you need to complete this ODO. Just add
         support for your new attributes.
         """
         p = Path(path)
@@ -146,7 +143,7 @@ class NaClProfile(Profile):
         else:
             raise DsuFileError()
 
-    def encrypt_entry(self, entry: str, public_key: str) -> bytes:
+    def encrypt_entry(self, entry: str, public_key: str) -> str:
         """
         Used to encrypt messages using a 3rd party public key, such as the one that
         the DS server provides.

@@ -33,6 +33,7 @@ from pathlib import Path
 from helper import print_ok
 from helper import print_warning
 from helper import print_error
+from NaClProfile import NaClProfile
 import Profile
 import ds_client as client
 import OpenWeather

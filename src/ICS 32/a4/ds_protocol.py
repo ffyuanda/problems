@@ -138,24 +138,24 @@ def response(sock: socket) -> DataTuple:
     if resp.type == 'ok':
 
         if resp.message.startswith('Welcome back'):
-            print_ok("Successfully logged in.\n")
-            print_ok('Server says: {}'.format(resp.message))
+            print_ok("Successfully logged in.")
+            print_ok('Server says: {}\n'.format(resp.message))
 
         elif resp.message.startswith('Welcome to'):
-            print_ok("Successfully registered in.\n")
-            print_ok('Server says: {}'.format(resp.message))
+            print_ok("Successfully registered in.")
+            print_ok('Server says: {}\n'.format(resp.message))
 
         elif 'Bio' in resp.message:
-            print_ok("Bio successfully updated.\n")
-            print_ok('Server says: {}'.format(resp.message))
+            print_ok("Bio successfully updated.")
+            print_ok('Server says: {}\n'.format(resp.message))
 
         elif 'Post' in resp.message:
-            print_ok("Post successfully sent.\n")
-            print_ok('Server says: {}'.format(resp.message))
+            print_ok("Post successfully sent.")
+            print_ok('Server says: {}\n'.format(resp.message))
 
     elif resp.type == 'error':
-        print_error("An error occurs.\n")
-        print_error('Error message: {}'.format(resp.message))
+        print_error("An error occurs.")
+        print_error('Error message: {}\n'.format(resp.message))
 
     return resp
 

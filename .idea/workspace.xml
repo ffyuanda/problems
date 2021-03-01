@@ -7,7 +7,9 @@
     <list default="true" id="98785467-6f8f-4963-a449-5c3d8be14401" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ICS 32/a4/NaClProfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a4/NaClProfile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ICS 32/a4/NaClProfile_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a4/NaClProfile_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a4/a4.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a4/a4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a4/ds_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a4/ds_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a4/ds_protocol.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a4/ds_protocol.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +54,7 @@
       <recent name="C:\Users\ThinkPad\Desktop\problems\src\ICS 32\a0" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.NaClProfile_test">
+  <component name="RunManager" selected="Python.a4">
     <configuration name="Even Digits" type="PythonConfigurationType" factoryName="Python">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -137,7 +139,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="a2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="a4" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -145,11 +147,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a2" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a4" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a2/a2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a4/a4.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -158,7 +160,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ds_client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="ds_client (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -166,11 +168,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a2" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a4" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a2/ds_client.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a4/ds_client.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -195,19 +197,19 @@
     </configuration>
     <list>
       <item itemvalue="Python.Even Digits" />
-      <item itemvalue="Python.a2" />
-      <item itemvalue="Python.ds_client" />
       <item itemvalue="Python.NaClDSEncoder_test" />
       <item itemvalue="Python tests.Unittests in NaClDSEncoder_test.py" />
       <item itemvalue="Python.NaClProfile_test" />
+      <item itemvalue="Python.ds_client (1)" />
+      <item itemvalue="Python.a4" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.a4" />
+        <item itemvalue="Python.ds_client (1)" />
         <item itemvalue="Python.NaClProfile_test" />
         <item itemvalue="Python.NaClDSEncoder_test" />
         <item itemvalue="Python tests.Unittests in NaClDSEncoder_test.py" />
-        <item itemvalue="Python.a2" />
-        <item itemvalue="Python.ds_client" />
       </list>
     </recent_temporary>
   </component>
@@ -242,26 +244,26 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1609297125999" />
-    <state width="1259" height="232" key="GridCell.Tab.0.bottom" timestamp="1614598344339">
+    <state width="754" height="226" key="GridCell.Tab.0.bottom" timestamp="1614618509433">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391796" />
-    <state width="1259" height="232" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1614598344339" />
-    <state width="1259" height="232" key="GridCell.Tab.0.center" timestamp="1614598344339">
+    <state width="754" height="226" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1614618509433" />
+    <state width="754" height="226" key="GridCell.Tab.0.center" timestamp="1614618509433">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="232" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1614598344339" />
-    <state width="1259" height="232" key="GridCell.Tab.0.left" timestamp="1614598344339">
+    <state width="754" height="226" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1614618509433" />
+    <state width="754" height="226" key="GridCell.Tab.0.left" timestamp="1614618509433">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="232" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1614598344339" />
-    <state width="1259" height="232" key="GridCell.Tab.0.right" timestamp="1614598344339">
+    <state width="754" height="226" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1614618509433" />
+    <state width="754" height="226" key="GridCell.Tab.0.right" timestamp="1614618509433">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="232" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1614598344339" />
+    <state width="754" height="226" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1614618509433" />
     <state width="1259" height="352" key="GridCell.Tab.1.bottom" timestamp="1614593665141">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -286,13 +288,13 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1280.720@0.0.1280.720" timestamp="1614595657222" />
-    <state x="9" y="-10" width="689" height="519" key="dock-window-1" timestamp="1614585432349">
+    <state x="770" y="0" width="517" height="727" key="dock-window-1" timestamp="1614618877407">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="9" y="-10" width="689" height="519" key="dock-window-1/0.0.1280.720/-1024.0.1024.768@0.0.1280.720" timestamp="1614570987599" />
     <state x="9" y="-10" width="689" height="519" key="dock-window-1/0.0.1280.720/-1024.165.1024.768@0.0.1280.720" timestamp="1614577667446" />
     <state x="1647" y="-31" width="1291" height="731" maximized="true" key="dock-window-1/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1614570668332" />
-    <state x="9" y="-10" width="689" height="519" key="dock-window-1/0.0.1280.720@0.0.1280.720" timestamp="1614585432349" />
+    <state x="770" y="0" width="517" height="727" key="dock-window-1/0.0.1280.720@0.0.1280.720" timestamp="1614618877407" />
     <state x="347" y="93" width="587" height="534" key="find.popup" timestamp="1611213169413">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -309,16 +311,6 @@
           <url>file://$PROJECT_DIR$/src/Bike Tour.py</url>
           <line>8</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/ICS 32/a4/NaClProfile_test.py</url>
-          <line>28</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/ICS 32/a4/NaClProfile_test.py</url>
-          <line>32</line>
-          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
