@@ -1,7 +1,28 @@
 import nacl.utils
-from nacl.public import PrivateKey, PublicKey, Box, EncryptedMessage
 import NaClDSEncoder
+import os
+import json
+import copy
+from nacl.public import PrivateKey, PublicKey, Box, EncryptedMessage
 from Profile import Post, Profile
+from pathlib import Path
+
+
+"""
+DsuFileError is a custom exception handler that you should catch in your own code. It
+is raised when attempting to load or save Profile objects to file the system.
+
+"""
+class DsuFileError(Exception):
+    pass
+
+"""
+DsuProfileError is a custom exception handler that you should catch in your own code. It
+is raised when attempting to deserialize a dsu file to a Profile object.
+
+"""
+class DsuProfileError(Exception):
+    pass
 
 
 class NaClProfile(Profile):
@@ -42,7 +63,6 @@ class NaClProfile(Profile):
         self.keypair = nacl_encoder.keypair
         return self.keypair
 
-
     def import_keypair(self, keypair: str):
         """
         Imports an existing keypair. Useful when keeping encryption keys in a location other than the
@@ -57,12 +77,10 @@ class NaClProfile(Profile):
         split = keypair.split('=', 1)
         self.public_key = split[0] + '='
         self.private_key = split[1]
-        self.keypair = self.public_key + self.private_key
+        self.keypair = keypair
 
     def add_post(self, post: Post) -> None:
         """
-        TODO: Override the add_post method to encrypt post entries.
-
         Before a post is added to the profile, it should be encrypted. Remember to take advantage of the
         code that is already written in the parent class.
 
@@ -72,16 +90,11 @@ class NaClProfile(Profile):
         """
         entry = post.get_entry()
         encrypted_entry = self.nacl_profile_encrypt(entry)
-        # encrypted_entry.decode("utf-8")
         post.set_entry(encrypted_entry)
-        # print('post_entry: ', post.get_entry())
-        # self._posts.append(post)
         super().add_post(post)
 
     def get_posts(self) -> list:
         """
-        TODO: Override the get_posts method to decrypt post entries.
-
         Since posts will be encrypted when the add_post method is used, you will need to ensure they are
         decrypted before returning them to the calling code.
 
@@ -91,13 +104,16 @@ class NaClProfile(Profile):
         super().get_posts()
         """
         posts = super().get_posts()
+        out_posts = copy.deepcopy(posts)
 
-        for post in posts:
+        for post in out_posts:
             entry = post.get_entry()
+            # entry = entry.encode()
+            # print(type(entry))
             entry = self.nacl_profile_decrypt(entry)
             post.set_entry(entry)
 
-        return posts
+        return out_posts
 
     def load_profile(self, path: str) -> None:
         """
@@ -110,7 +126,25 @@ class NaClProfile(Profile):
         NOTE: The Profile class implementation of load_profile contains everything you need to complete this TODO. Just add
         support for your new attributes.
         """
-        pass
+        p = Path(path)
+
+        if os.path.exists(p) and p.suffix == '.dsu':
+            try:
+                f = open(p, 'r')
+                obj = json.load(f)
+                self.username = obj['username']
+                self.password = obj['password']
+                self.dsuserver = obj['dsuserver']
+                self.bio = obj['bio']
+                self.keypair = obj['keypair']
+                for post_obj in obj['_posts']:
+                    post = Post(post_obj['entry'], post_obj['timestamp'])
+                    self._posts.append(post)
+                f.close()
+            except Exception as ex:
+                raise DsuProfileError(ex)
+        else:
+            raise DsuFileError()
 
     def encrypt_entry(self, entry: str, public_key: str) -> bytes:
         """
@@ -124,27 +158,31 @@ class NaClProfile(Profile):
         """
         return self.nacl_profile_encrypt(entry, public_key)
 
-    def nacl_profile_encrypt(self, msg: str, public_key: str = 'empty') -> EncryptedMessage:
+    def nacl_profile_encrypt(self, msg: str, public_key: str = 'empty') -> str:
         """
         It reads in a plaintext (str) and encrypt it into an EncryptedMessage.
         :param msg: plaintext string
         :param public_key: by default to be self.public_key if not provided
-        :return: an EncryptedMessage object
+        :return: a str after decoding an EncryptedMessage object
         """
         if public_key == 'empty':
             public_key = self.public_key
-
-        msg = str.encode(msg)
 
         encoder = NaClDSEncoder.NaClDSEncoder()
         public_key = encoder.encode_public_key(public_key)
         private_key = encoder.encode_private_key(self.private_key)
 
         the_box = Box(private_key, public_key)
-        encrypted = the_box.encrypt(msg)
+        # convert the msg input into the byte version of itself
+        # since the box.encrypt() method needs a byte object as parameter
+        bmsg = msg.encode(encoding='UTF-8')
+        bencrypted = the_box.encrypt(bmsg, encoder=nacl.encoding.Base64Encoder)
+        # convert the bencrypted object (EncryptedMessage) back to str for JSON
+        # serialization
+        encrypted = bencrypted.decode(encoding='UTF-8')
         return encrypted
 
-    def nacl_profile_decrypt(self, encrypted: EncryptedMessage, public_key: str = 'empty') -> str:
+    def nacl_profile_decrypt(self, encrypted: str, public_key: str = 'empty') -> str:
         """
         It reads in an EncryptedMessage object and decrypt it to a plaintext (str).
         :param encrypted: an EncryptedMessage object
@@ -159,5 +197,11 @@ class NaClProfile(Profile):
         private_key = encoder.encode_private_key(self.private_key)
 
         the_box = Box(private_key, public_key)
-        decrypted = the_box.decrypt(encrypted)
-        return decrypted.decode("utf-8")
+        # convert the encrypted input into the byte version of itself
+        # since the box.decrypt() method needs a byte object as parameter
+        bencrypted = encrypted.encode(encoding='UTF-8')
+
+        bdecrypted = the_box.decrypt(bencrypted, encoder=nacl.encoding.Base64Encoder)
+        # needs to be decoded to convert from byte to str
+        decrypted = bdecrypted.decode(encoding='UTF-8')
+        return decrypted

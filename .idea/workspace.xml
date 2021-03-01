@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98785467-6f8f-4963-a449-5c3d8be14401" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ICS 32/a4/NaClProfile_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ICS 32/a4/NaClProfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a4/NaClProfile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a4/NaClProfile_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a4/NaClProfile_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,50 +242,50 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1609297125999" />
-    <state width="1259" height="237" key="GridCell.Tab.0.bottom" timestamp="1614589766271">
+    <state width="1259" height="232" key="GridCell.Tab.0.bottom" timestamp="1614598344339">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391796" />
-    <state width="1259" height="237" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1614589766271" />
-    <state width="1259" height="237" key="GridCell.Tab.0.center" timestamp="1614589766271">
+    <state width="1259" height="232" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1614598344339" />
+    <state width="1259" height="232" key="GridCell.Tab.0.center" timestamp="1614598344339">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="237" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1614589766271" />
-    <state width="1259" height="237" key="GridCell.Tab.0.left" timestamp="1614589766271">
+    <state width="1259" height="232" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1614598344339" />
+    <state width="1259" height="232" key="GridCell.Tab.0.left" timestamp="1614598344339">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="237" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1614589766271" />
-    <state width="1259" height="237" key="GridCell.Tab.0.right" timestamp="1614589766271">
+    <state width="1259" height="232" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1614598344339" />
+    <state width="1259" height="232" key="GridCell.Tab.0.right" timestamp="1614598344339">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="137" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="237" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1614589766271" />
-    <state width="1259" height="276" key="GridCell.Tab.1.bottom" timestamp="1614589240850">
+    <state width="1259" height="232" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1614598344339" />
+    <state width="1259" height="352" key="GridCell.Tab.1.bottom" timestamp="1614593665141">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1259" height="276" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1614589240850" />
-    <state width="1259" height="276" key="GridCell.Tab.1.center" timestamp="1614589240850">
+    <state width="1259" height="352" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1614593665141" />
+    <state width="1259" height="352" key="GridCell.Tab.1.center" timestamp="1614593665141">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1259" height="276" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1614589240850" />
-    <state width="1259" height="276" key="GridCell.Tab.1.left" timestamp="1614589240850">
+    <state width="1259" height="352" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1614593665141" />
+    <state width="1259" height="352" key="GridCell.Tab.1.left" timestamp="1614593665141">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1259" height="276" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1614589240850" />
-    <state width="1259" height="276" key="GridCell.Tab.1.right" timestamp="1614589240850">
+    <state width="1259" height="352" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1614593665141" />
+    <state width="1259" height="352" key="GridCell.Tab.1.right" timestamp="1614593665141">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1259" height="276" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1614589240850" />
+    <state width="1259" height="352" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1614593665141" />
     <state x="142" y="5" key="SettingsEditor" timestamp="1614513934524">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="142" y="5" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1614513934524" />
-    <state width="498" height="446" key="SwitcherDM" timestamp="1607352636980">
+    <state width="498" height="446" key="SwitcherDM" timestamp="1614595657222">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="498" height="446" key="SwitcherDM/0.0.1280.720@0.0.1280.720" timestamp="1607352636980" />
+    <state width="498" height="446" key="SwitcherDM/0.0.1280.720@0.0.1280.720" timestamp="1614595657222" />
     <state x="9" y="-10" width="689" height="519" key="dock-window-1" timestamp="1614585432349">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -312,8 +312,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/ICS 32/a4/NaClProfile_test.py</url>
-          <line>15</line>
-          <option name="timeStamp" value="2" />
+          <line>28</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/ICS 32/a4/NaClProfile_test.py</url>
+          <line>32</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
