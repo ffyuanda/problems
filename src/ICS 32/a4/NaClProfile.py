@@ -6,7 +6,6 @@ import copy
 from nacl.public import PrivateKey, PublicKey, Box, EncryptedMessage
 from Profile import Post, Profile
 from pathlib import Path
-# TODO make sure the local file is encrypted?
 
 """
 DsuFileError is a custom exception handler that you should catch in your own code. It
@@ -93,11 +92,13 @@ class NaClProfile(Profile):
         Since posts will be encrypted when the add_post method is used, you will need to ensure they are
         decrypted before returning them to the calling code.
 
-        :return: Post
+        :return: list of posts
 
         NOTE: To call the method you are overriding as it exists in the parent class you can use the built-in super keyword:
         super().get_posts()
         """
+        # use deepcopy to avoid changing the actual encrypted message in the post
+        # in this case accidentally decrypting them
         posts = super().get_posts()
         out_posts = copy.deepcopy(posts)
 
@@ -127,7 +128,7 @@ class NaClProfile(Profile):
                 self.password = obj['password']
                 self.dsuserver = obj['dsuserver']
                 self.bio = obj['bio']
-                self.keypair = obj['keypair']
+                self.import_keypair(obj['keypair'])
                 for post_obj in obj['_posts']:
                     post = Post(post_obj['entry'], post_obj['timestamp'])
                     self._posts.append(post)

@@ -34,6 +34,7 @@ from helper import print_ok
 from helper import print_warning
 from helper import print_error
 from NaClProfile import NaClProfile
+from NaClProfile import DsuFileError, DsuProfileError
 import Profile
 import ds_client as client
 import OpenWeather
@@ -297,29 +298,32 @@ def posts_transclude(profile: NaClProfile):
     :param profile: current working Profile object
     :return: modified Profile object
     """
+    # posts here is not the actual _posts private list from the NaClProfile object
+    # they are the decrypted copy of the _posts
     posts = profile.get_posts()
     print('Transcluding...')
     for i in range(len(posts)):
         if '@weather' in posts[i]['entry']:
             a = OpenWeather.OpenWeather('92697', 'US')
             entry = a.transclude(posts[i].get_entry())
-
-            print('entry: ', entry)
-
-            entry = profile.encrypt_entry(entry)
-            print('entry encrypt: ', profile.nacl_profile_decrypt(entry))
-            profile._posts[i].set_entry(entry)
-            # posts[i].set_entry(entry)
+            # entry = profile.encrypt_entry(entry)
+            posts[i].set_entry(entry)
         if '@lastfm' in posts[i]['entry']:
             a = LastFM.LastFM('United States')
             entry = a.transclude(posts[i].get_entry())
-            entry = profile.encrypt_entry(entry)
+            # entry = profile.encrypt_entry(entry)
             posts[i].set_entry(entry)
         if '@extracredit' in posts[i]['entry']:
             a = ExtraCreditAPI.Joke()
             entry = a.transclude(posts[i].get_entry())
-            entry = profile.encrypt_entry(entry)
+            # entry = profile.encrypt_entry(entry)
             posts[i].set_entry(entry)
+
+    # empty the actual _posts private list from the NaClProfile object
+    profile._posts = []
+    # move each post in the posts temporary holder back to the actual _posts
+    for post in posts:
+        profile.add_post(post)
 
     print_ok('Transcluded!')
     return profile
@@ -333,67 +337,71 @@ def modify_profile():
     path = input('Input the DSU file\'s path which you want to modify.\n'
                  'For example: C:\\Users\\ThinkPad\\Desktop\\test\\mark.dsu\n')
     profile = NaClProfile()
-    profile.load_profile(path)
-    prompt = """\nWhich part you want to modify?
-    server (se)
-    username (u)
-    password (pwd)
-    bio (b)
-    posts (p)
-    save modification(s)"""
+    try:
+        profile.load_profile(path)
+    except DsuFileError:
+        print_warning('This might not be a valid path.')
+    else:
+        prompt = """\nWhich part you want to modify?
+        server (se)
+        username (u)
+        password (pwd)
+        bio (b)
+        posts (p)
+        save modification(s)"""
 
-    print_ok(path + " is ready for modification.\n")
+        print_ok(path + " is ready for modification.\n")
 
-    # keep prompting the user to choose an option for modification
-    while True:
-        display_profile(profile)
-        print(prompt)
-
-        option = input().lower()
-        if option == "u":
-            mod = input("Enter the new username: \n")
-            profile.username = mod
-
-        elif option == "se":
-            mod = input("Enter the new server address: \n")
-            profile.dsuserver = mod
-
-        elif option == "pwd":
-            mod = input("Enter the new password: \n")
-            profile.password = mod
-
-        elif option == "b":
-            mod = input("Enter the new bio: \n")
-            profile.bio = mod
-
-        elif option == "p":
-            # get users option
-            option = input("Add (a) or delete (d) a post?\n").lower()
-
-            if option == "a":
-                entry = input("Write your entry below:\n")
-                post = Profile.Post()
-                post.set_entry(entry)
-                profile.add_post(post)
-                print_ok("Entry added.")
-
-            elif option == 'd':
-                entry = int(input("Which entry you want to delete?\n"))
-                profile.del_post(entry)
-                print_ok('Entry deleted.')
-
-            else:
-                print_warning("Please enter either a or d.")
-
-        elif option == "s":
-            profile = posts_transclude(profile)
-            profile.save_profile(path)
+        # keep prompting the user to choose an option for modification
+        while True:
             display_profile(profile)
-            print_ok("All saved.")
-            break
-        else:
-            print_warning("Please enter a valid option. Or "
-                        "input 's' to save (quit).")
+            print(prompt)
+
+            option = input().lower()
+            if option == "u":
+                mod = input("Enter the new username: \n")
+                profile.username = mod
+
+            elif option == "se":
+                mod = input("Enter the new server address: \n")
+                profile.dsuserver = mod
+
+            elif option == "pwd":
+                mod = input("Enter the new password: \n")
+                profile.password = mod
+
+            elif option == "b":
+                mod = input("Enter the new bio: \n")
+                profile.bio = profile.nacl_profile_encrypt(mod)
+
+            elif option == "p":
+                # get users option
+                option = input("Add (a) or delete (d) a post?\n").lower()
+
+                if option == "a":
+                    entry = input("Write your entry below:\n")
+                    post = Profile.Post()
+                    post.set_entry(entry)
+                    profile.add_post(post)
+                    print_ok("Entry added.")
+
+                elif option == 'd':
+                    entry = int(input("Which entry you want to delete?\n"))
+                    profile.del_post(entry)
+                    print_ok('Entry deleted.')
+
+                else:
+                    print_warning("Please enter either a or d.")
+
+            elif option == "s":
+                profile = posts_transclude(profile)
+                profile.save_profile(path)
+                display_profile(profile)
+                print_ok("All saved.")
+                break
+            else:
+                print_warning("Please enter a valid option. Or "
+                            "input 's' to save (quit).")
 
 
 def command_C(commands):
@@ -404,8 +412,8 @@ def command_C(commands):
     :return: None
     """
 
-    if len(commands) < 4:
-        print_warning('There needs to be at least 3 inputs for COMMAND C')
+    if len(commands) != 4:
+        print_warning('There needs to be exactly 3 inputs for COMMAND C')
     else:
 
         p = commands[1] + '\\'
@@ -427,7 +435,6 @@ def command_C(commands):
                 print_warning('This is a invalid directory')
         else:
             print_warning("This option is invalid for COMMAND C")
-
 
 
 def command_D(commands):
@@ -465,17 +472,20 @@ def command_R(commands):
         if not str(path).endswith('.dsu'):
             print_warning('It needs to be a DSU file with .dsu suffix')
         else:
-            with open(str(path), 'r') as f:
-                if path.stat().st_size == 0:
-                    print_warning('EMPTY')
-                else:
-                    output = f.readlines()
-                    for i in range(len(output)):
-                        if i == len(output) - 1:
-                            # should not print a newline at the end
-                            print(output[i], end='')
-                        else:
-                            print(output[i])
+            try:
+                with open(str(path), 'r') as f:
+                    if path.stat().st_size == 0:
+                        print_warning('EMPTY')
+                    else:
+                        output = f.readlines()
+                        for i in range(len(output)):
+                            if i == len(output) - 1:
+                                # should not print a newline at the end
+                                print(output[i], end='')
+                            else:
+                                print(output[i])
+            except FileNotFoundError:
+                print_warning('This file or directory does not exist: \'{}\''.format(str(path)))
     # -l option to load
     elif len(commands) == 3 and commands[2] == '-l':
         profile = NaClProfile()

@@ -45,7 +45,6 @@ def post(sock: socket, message, nprofile):
 
 
 def _bio(sock: socket, bio, nprofile):
-    # TODO decrypt the bio before send to the server
     timestamp = ''
     # encryption and send back my public key to the server
     bio = nprofile.encrypt_entry(bio, token)
@@ -71,31 +70,35 @@ def send(np: NaClProfile, send_type, server: str, port: int, username: str, pass
     '''
     global token
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect((str(server), port))
-    done = "Upload done."
-
-    send_types = ['p', 'b', 'pb']
-    # make sure the send type is a valid one
-    if send_type in send_types:
-        # join the server
-        join(sock, username, password, np.public_key)
-        # if connected successfully, the token will be given a value
-        # otherwise it's an empty string.
-        if token != '':
-
-            if send_type == 'p':
-                post(sock, message, np)
-                print_ok(done)
-            elif send_type == 'b':
-                _bio(sock, bio, np)
-                print_ok(done)
-            elif send_type == 'pb':
-                post(sock, message, np)
-                _bio(sock, bio, np)
-                print_ok(done)
+    try:
+        sock.connect((str(server), port))
+    except socket.gaierror:
+        print_warning('The address or port seems incorrect')
     else:
-        print_error("Please provide a valid send type.\n"
-                    "Upload failed.")
+        done = "Upload done."
+
+        send_types = ['p', 'b', 'pb']
+        # make sure the send type is a valid one
+        if send_type in send_types:
+            # join the server
+            join(sock, username, password, np.public_key)
+            # if connected successfully, the token will be given a value
+            # otherwise it's an empty string.
+            if token != '':
+
+                if send_type == 'p':
+                    post(sock, message, np)
+                    print_ok(done)
+                elif send_type == 'b':
+                    _bio(sock, bio, np)
+                    print_ok(done)
+                elif send_type == 'pb':
+                    post(sock, message, np)
+                    _bio(sock, bio, np)
+                    print_ok(done)
+        else:
+            print_error("Please provide a valid send type.\n"
+                        "Upload failed.")
 
 if __name__ == '__main__':
     np = NaClProfile.NaClProfile()
