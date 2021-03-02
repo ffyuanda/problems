@@ -45,6 +45,7 @@ def post(sock: socket, message, nprofile):
 
 
 def _bio(sock: socket, bio, nprofile):
+    # TODO decrypt the bio before send to the server
     timestamp = ''
     # encryption and send back my public key to the server
     bio = nprofile.encrypt_entry(bio, token)
@@ -55,11 +56,12 @@ def _bio(sock: socket, bio, nprofile):
     response(sock)
 
 
-def send(send_type, server: str, port: int, username: str, password: str,
+def send(np: NaClProfile, send_type, server: str, port: int, username: str, password: str,
          message: list, bio: str = None):
     '''
     The send function joins a ds server and sends a message, bio, or both
-    :param send_type the sending type of this send (post / bio / post and bio)
+    :param np: it is the NaClProfile object passed in from the main program
+    :param send_type: the sending type of this send (post / bio / post and bio)
     :param server: The ip address for the ICS 32 DS server.
     :param port: The port where the ICS 32 DS server is accepting connections.
     :param username: The user name to be assigned to the message.
@@ -76,8 +78,6 @@ def send(send_type, server: str, port: int, username: str, password: str,
     # make sure the send type is a valid one
     if send_type in send_types:
         # join the server
-        np = NaClProfile.NaClProfile()
-        np.generate_keypair()
         join(sock, username, password, np.public_key)
         # if connected successfully, the token will be given a value
         # otherwise it's an empty string.

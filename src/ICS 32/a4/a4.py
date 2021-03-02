@@ -240,8 +240,11 @@ def create_profile(path: str):
     bio = input('bio (optional, skip by pressing enter): ')
 
     # create the profile and pass data in
-    profile = Profile.Profile(dsuserver, username, password)
+    profile = NaClProfile(dsuserver, username, password)
+    profile.generate_keypair()
     profile.bio = bio
+    # encrypt the bio
+    profile.bio = profile.encrypt_entry(profile.bio)
     profile.add_post(post)
 
     profile = posts_transclude(profile)
@@ -254,7 +257,7 @@ def create_profile(path: str):
     upload_option(profile)
 
 
-def upload_option(profile: Profile):
+def upload_option(profile: NaClProfile):
     """
     The interface to upload profile to server,
     working with ds_client module's send().
@@ -267,13 +270,15 @@ def upload_option(profile: Profile):
     password = profile.password
     message = profile.get_posts()
     bio = profile.bio
+    # decrypt the bio from the local DSU file / current profile
+    bio = profile.nacl_profile_decrypt(bio)
 
     if option == 'Y':
         print("Send post (p)")
         print("Update bio (b)")
         print("Send post and update bio (pb)")
         option = input()
-        client.send(option, server, PORT, username, password,
+        client.send(profile, option, server, PORT, username, password,
                     message, bio)
 
     elif option == 'N':
@@ -284,7 +289,7 @@ def upload_option(profile: Profile):
         upload_option(profile)
 
 
-def posts_transclude(profile: Profile):
+def posts_transclude(profile: NaClProfile):
     """
     Transclude every single post in the posts list of a profile object.
     Use it before saving the DSU file in order to change the posts list
@@ -292,18 +297,29 @@ def posts_transclude(profile: Profile):
     :param profile: current working Profile object
     :return: modified Profile object
     """
-    posts = profile._posts
+    posts = profile.get_posts()
     print('Transcluding...')
     for i in range(len(posts)):
         if '@weather' in posts[i]['entry']:
             a = OpenWeather.OpenWeather('92697', 'US')
-            posts[i].set_entry(a.transclude(posts[i].get_entry()))
+            entry = a.transclude(posts[i].get_entry())
+
+            print('entry: ', entry)
+
+            entry = profile.encrypt_entry(entry)
+            print('entry encrypt: ', profile.nacl_profile_decrypt(entry))
+            profile._posts[i].set_entry(entry)
+            # posts[i].set_entry(entry)
         if '@lastfm' in posts[i]['entry']:
             a = LastFM.LastFM('United States')
-            posts[i].set_entry(a.transclude(posts[i].get_entry()))
+            entry = a.transclude(posts[i].get_entry())
+            entry = profile.encrypt_entry(entry)
+            posts[i].set_entry(entry)
         if '@extracredit' in posts[i]['entry']:
             a = ExtraCreditAPI.Joke()
-            posts[i].set_entry(a.transclude(posts[i].get_entry()))
+            entry = a.transclude(posts[i].get_entry())
+            entry = profile.encrypt_entry(entry)
+            posts[i].set_entry(entry)
 
     print_ok('Transcluded!')
     return profile
@@ -316,7 +332,7 @@ def modify_profile():
     """
     path = input('Input the DSU file\'s path which you want to modify.\n'
                  'For example: C:\\Users\\ThinkPad\\Desktop\\test\\mark.dsu\n')
-    profile = Profile.Profile()
+    profile = NaClProfile()
     profile.load_profile(path)
     prompt = """\nWhich part you want to modify?
     server (se)
@@ -462,7 +478,7 @@ def command_R(commands):
                             print(output[i])
     # -l option to load
     elif len(commands) == 3 and commands[2] == '-l':
-        profile = Profile.Profile()
+        profile = NaClProfile()
         profile.load_profile(commands[1])
         display_profile(profile)
         upload_option(profile)
@@ -470,7 +486,7 @@ def command_R(commands):
         print_warning("The format for COMMAND R seems not right")
 
 
-def display_profile(profile):
+def display_profile(profile: NaClProfile):
     """
     Load the profile up and print out the data in the DSU file.
     :param profile: current working profile object
@@ -479,11 +495,12 @@ def display_profile(profile):
     print("server: " + profile.dsuserver)
     print("username: " + profile.username)
     print("password: " + profile.password)
-    print("bio: " + profile.bio)
+    # decrypt the bio for human read
+    print("bio: " + profile.nacl_profile_decrypt(profile.bio))
     list_posts(profile)
 
 
-def list_posts(profile: Profile):
+def list_posts(profile: NaClProfile):
     """
     Print out the posts in a profile object.
     :param profile: current working profile object

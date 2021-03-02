@@ -26,7 +26,7 @@ class DsuProfileError(Exception):
 
 
 class NaClProfile(Profile):
-    def __init__(self):
+    def __init__(self, dsuserver=None, username=None, password=None):
         """
         public data attributes:
 
@@ -37,7 +37,7 @@ class NaClProfile(Profile):
         Whether you include them in your parameter list is up to you. Your decision will frame
         how you expect your class to be used though, so think it through.
         """
-        super().__init__()
+        super().__init__(dsuserver, username, password)
         self.public_key = ''
         self.private_key = ''
         self.keypair = ''
@@ -51,10 +51,6 @@ class NaClProfile(Profile):
 
         :return: str
         """
-        # sk = PrivateKey.generate()
-        # self.public_key = sk.public_key
-        # self.private_key = sk
-
         nacl_encoder = NaClDSEncoder.NaClDSEncoder()
         nacl_encoder.generate()
         self.public_key = nacl_encoder.public_key
@@ -107,8 +103,6 @@ class NaClProfile(Profile):
 
         for post in out_posts:
             entry = post.get_entry()
-            # entry = entry.encode()
-            # print(type(entry))
             entry = self.nacl_profile_decrypt(entry)
             post.set_entry(entry)
 
@@ -143,7 +137,7 @@ class NaClProfile(Profile):
         else:
             raise DsuFileError()
 
-    def encrypt_entry(self, entry: str, public_key: str) -> str:
+    def encrypt_entry(self, entry: str, public_key: str = 'empty') -> str:
         """
         Used to encrypt messages using a 3rd party public key, such as the one that
         the DS server provides.
@@ -151,8 +145,10 @@ class NaClProfile(Profile):
         NOTE: A good design approach might be to create private encrypt and decrypt methods that your add_post,
         get_posts and this method can call.
 
-        :return: bytes
+        :return: str
         """
+        if public_key == 'empty':
+            public_key = self.public_key
         return self.nacl_profile_encrypt(entry, public_key)
 
     def nacl_profile_encrypt(self, msg: str, public_key: str = 'empty') -> str:
@@ -182,7 +178,7 @@ class NaClProfile(Profile):
     def nacl_profile_decrypt(self, encrypted: str, public_key: str = 'empty') -> str:
         """
         It reads in an EncryptedMessage object and decrypt it to a plaintext (str).
-        :param encrypted: an EncryptedMessage object
+        :param encrypted: a str after the encode-decode EncryptedMessage object
         :param public_key: by default to be self.public_key if not provided
         :return: plaintext string
         """
