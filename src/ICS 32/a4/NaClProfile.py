@@ -64,9 +64,6 @@ class NaClProfile(Profile):
 
         This method should use the keypair parameter to populate the public data attributes created by
         the initializer.
-
-        NOTE: you can determine how to split a keypair by comparing the associated data attributes generated
-        by the NaClDSEncoder
         """
         split = keypair.split('=', 1)
         self.public_key = split[0] + '='
@@ -77,10 +74,6 @@ class NaClProfile(Profile):
         """
         Before a post is added to the profile, it should be encrypted. Remember to take advantage of the
         code that is already written in the parent class.
-
-        NOTE: To call the method you are overriding as it exists in the parent class, you can use the built-in super keyword:
-
-        super().add_post(...)
         """
         entry = post.get_entry()
         encrypted_entry = self.nacl_profile_encrypt(entry)
@@ -93,9 +86,6 @@ class NaClProfile(Profile):
         decrypted before returning them to the calling code.
 
         :return: list of posts
-
-        NOTE: To call the method you are overriding as it exists in the parent class you can use the built-in super keyword:
-        super().get_posts()
         """
         # use deepcopy to avoid changing the actual encrypted message in the post
         # in this case accidentally decrypting them
@@ -114,9 +104,6 @@ class NaClProfile(Profile):
         Since the DS Server is now making use of encryption keys rather than username/password attributes, you will
         need to add support for storing a keypair in a dsu file. The best way to do this is to override the
         load_profile module and add any new attributes you wish to support.
-
-        NOTE: The Profile class implementation of load_profile contains everything you need to complete this ODO. Just add
-        support for your new attributes.
         """
         p = Path(path)
 
@@ -143,10 +130,7 @@ class NaClProfile(Profile):
         Used to encrypt messages using a 3rd party public key, such as the one that
         the DS server provides.
 
-        NOTE: A good design approach might be to create private encrypt and decrypt methods that your add_post,
-        get_posts and this method can call.
-
-        :return: str
+        :return: a str after encode-decode an EncryptedMessage object
         """
         if public_key == 'empty':
             public_key = self.public_key
@@ -154,10 +138,11 @@ class NaClProfile(Profile):
 
     def nacl_profile_encrypt(self, msg: str, public_key: str = 'empty') -> str:
         """
-        It reads in a plaintext (str) and encrypt it into an EncryptedMessage.
+        It reads in a plaintext (str) and encrypt it into a str after
+        encode-decode an EncryptedMessage object.
         :param msg: plaintext string
         :param public_key: by default to be self.public_key if not provided
-        :return: a str after decoding an EncryptedMessage object
+        :return: a str after encode-decode an EncryptedMessage object
         """
         if public_key == 'empty':
             public_key = self.public_key
@@ -178,8 +163,9 @@ class NaClProfile(Profile):
 
     def nacl_profile_decrypt(self, encrypted: str, public_key: str = 'empty') -> str:
         """
-        It reads in an EncryptedMessage object and decrypt it to a plaintext (str).
-        :param encrypted: a str after the encode-decode EncryptedMessage object
+        It reads in a str after encode-decode an EncryptedMessage object
+        and decrypt it to a plaintext (str).
+        :param encrypted: a str after the encode-decode an EncryptedMessage object
         :param public_key: by default to be self.public_key if not provided
         :return: plaintext string
         """

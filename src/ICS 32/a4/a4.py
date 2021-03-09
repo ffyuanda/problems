@@ -1,5 +1,5 @@
 """
-Homework a3 for I&C SCI 32: PROG SOFTWARE LIBR
+Homework a4 for I&C SCI 32: PROG SOFTWARE LIBR
 at University of California, Irvine
 
 Student info:
