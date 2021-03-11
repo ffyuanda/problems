@@ -25,10 +25,7 @@ class Body(tk.Frame):
     is selected.
     """
     def node_select(self, event):
-        length = len(self._posts)
-        index = int(self.posts_tree.selection()[0]) #selections are not 0-based, so subtract one.
-        print('selection num:', int(self.posts_tree.selection()[0]))
-        print('index:', index)
+        index = int(self.posts_tree.selection()[0])
         entry = self._posts[index].entry
         self.set_text_entry(entry)
     
@@ -203,7 +200,8 @@ class MainApp(tk.Frame):
     Creates a new DSU file when the 'New' menu item is clicked.
     """
     def new_profile(self):
-        filename = tk.filedialog.asksaveasfile(filetypes=[('Distributed Social Profile', '*.dsu')])
+        filename = tk.filedialog.asksaveasfile(filetypes=[('Distributed Social Profile', '*.dsu')],
+                                               defaultextension=[('Distributed Social Profile', '.dsu')])
         try:
             self._profile_filename = filename.name
         except AttributeError as e:
@@ -286,12 +284,13 @@ class MainApp(tk.Frame):
     def _draw(self):
         # Build a menu and add it to the root frame.
         menu_bar = tk.Menu(self.root)
-        self.root['menu'] = menu_bar
         menu_file = tk.Menu(menu_bar)
-        menu_bar.add_cascade(menu=menu_file, label='File')
+
         menu_file.add_command(label='New', command=self.new_profile)
         menu_file.add_command(label='Open...', command=self.open_profile)
         menu_file.add_command(label='Close', command=self.close)
+        menu_bar.add_cascade(menu=menu_file, label='File')
+        self.root.config(menu=menu_bar)
         # NOTE: Additional menu items can be added by following the conventions here.
         # The only top level menu item is a 'cascading menu', that presents a small menu of
         # command items when clicked. But there are others. A single button or checkbox, for example,

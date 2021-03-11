@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="98785467-6f8f-4963-a449-5c3d8be14401" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a5/DistributedSocialGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a5/DistributedSocialGUI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a5/NaClProfile_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a5/NaClProfile_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tester.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +54,27 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.DistributedSocialGUI">
+    <configuration name="DistributedSocialGUI (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ICS31" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Downloads" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Downloads/DistributedSocialGUI.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="DistributedSocialGUI" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -156,7 +180,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="NaClProfile_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="tester" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -164,32 +188,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a4" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a4/NaClProfile_test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="a4" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ICS31" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a4" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a4/a4.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/tester.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -200,19 +203,19 @@
     </configuration>
     <list>
       <item itemvalue="Python.Even Digits" />
-      <item itemvalue="Python.NaClProfile_test" />
-      <item itemvalue="Python.a4" />
       <item itemvalue="Python.DistributedSocialGUI" />
-      <item itemvalue="Python.NaClProfile_test (1)" />
       <item itemvalue="Python.NaClProfile" />
+      <item itemvalue="Python.NaClProfile_test (1)" />
+      <item itemvalue="Python.DistributedSocialGUI (1)" />
+      <item itemvalue="Python.tester" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.DistributedSocialGUI" />
+        <item itemvalue="Python.tester" />
+        <item itemvalue="Python.DistributedSocialGUI (1)" />
         <item itemvalue="Python.NaClProfile" />
         <item itemvalue="Python.NaClProfile_test (1)" />
-        <item itemvalue="Python.a4" />
-        <item itemvalue="Python.NaClProfile_test" />
       </list>
     </recent_temporary>
   </component>
@@ -248,37 +251,37 @@
     </state>
     <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615274735499" />
     <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1609297125999" />
-    <state width="1259" height="203" key="GridCell.Tab.0.bottom" timestamp="1615279665228">
-      <screen x="0" y="0" width="1280" height="720" />
+    <state width="1259" height="10" key="GridCell.Tab.0.bottom" timestamp="1615434741853">
+      <screen x="1920" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="35" key="GridCell.Tab.0.bottom/0.0.1280.720/-1920.0.1280.720@0.0.1280.720" timestamp="1614670515981" />
     <state width="1259" height="137" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391796" />
-    <state width="1259" height="203" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615279665228" />
-    <state width="1259" height="127" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615268340487" />
+    <state width="1259" height="71" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615428721176" />
+    <state width="1259" height="10" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615434741853" />
     <state width="1259" height="172" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1614619033559" />
-    <state width="1259" height="203" key="GridCell.Tab.0.center" timestamp="1615279665228">
-      <screen x="0" y="0" width="1280" height="720" />
+    <state width="1259" height="10" key="GridCell.Tab.0.center" timestamp="1615434741853">
+      <screen x="1920" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="35" key="GridCell.Tab.0.center/0.0.1280.720/-1920.0.1280.720@0.0.1280.720" timestamp="1614670515981" />
     <state width="1259" height="137" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="203" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615279665228" />
-    <state width="1259" height="127" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615268340487" />
+    <state width="1259" height="71" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615428721176" />
+    <state width="1259" height="10" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615434741853" />
     <state width="1259" height="172" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1614619033559" />
-    <state width="1259" height="203" key="GridCell.Tab.0.left" timestamp="1615279665228">
-      <screen x="0" y="0" width="1280" height="720" />
+    <state width="1259" height="10" key="GridCell.Tab.0.left" timestamp="1615434741852">
+      <screen x="1920" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="35" key="GridCell.Tab.0.left/0.0.1280.720/-1920.0.1280.720@0.0.1280.720" timestamp="1614670515981" />
     <state width="1259" height="137" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="203" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615279665228" />
-    <state width="1259" height="127" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615268340487" />
+    <state width="1259" height="71" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615428721176" />
+    <state width="1259" height="10" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615434741852" />
     <state width="1259" height="172" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1614619033559" />
-    <state width="1259" height="203" key="GridCell.Tab.0.right" timestamp="1615279665228">
-      <screen x="0" y="0" width="1280" height="720" />
+    <state width="1259" height="10" key="GridCell.Tab.0.right" timestamp="1615434741853">
+      <screen x="1920" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="35" key="GridCell.Tab.0.right/0.0.1280.720/-1920.0.1280.720@0.0.1280.720" timestamp="1614670515981" />
     <state width="1259" height="137" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
-    <state width="1259" height="203" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615279665228" />
-    <state width="1259" height="127" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615268340487" />
+    <state width="1259" height="71" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615428721176" />
+    <state width="1259" height="10" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615434741853" />
     <state width="1259" height="172" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1614619033559" />
     <state width="1259" height="260" key="GridCell.Tab.1.bottom" timestamp="1615276995438">
       <screen x="0" y="0" width="1280" height="720" />
@@ -312,13 +315,13 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1280.720@0.0.1280.720" timestamp="1614595657222" />
-    <state x="2044" y="-19" width="562" height="641" maximized="true" key="dock-window-1" timestamp="1615280971367">
+    <state x="2044" y="-19" width="562" height="641" maximized="true" key="dock-window-1" timestamp="1615428602503">
       <screen x="1920" y="0" width="1280" height="720" />
     </state>
     <state x="9" y="-10" width="689" height="519" key="dock-window-1/0.0.1280.720/-1024.0.1024.768@0.0.1280.720" timestamp="1614570987599" />
     <state x="9" y="-10" width="689" height="519" key="dock-window-1/0.0.1280.720/-1024.165.1024.768@0.0.1280.720" timestamp="1614577667446" />
     <state x="1647" y="-31" width="1291" height="731" maximized="true" key="dock-window-1/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1614570668332" />
-    <state x="2044" y="-19" width="562" height="641" maximized="true" key="dock-window-1/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615280971367" />
+    <state x="2044" y="-19" width="562" height="641" maximized="true" key="dock-window-1/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615428602503" />
     <state x="-67" y="235" width="995" height="635" maximized="true" key="dock-window-1/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615268039769" />
     <state x="2093" y="-20" width="995" height="635" key="dock-window-1/0.0.1280.720@0.0.1280.720" timestamp="1615199520099" />
     <state x="2263" y="158" width="1101" height="346" key="dock-window-2" timestamp="1615275348102">
