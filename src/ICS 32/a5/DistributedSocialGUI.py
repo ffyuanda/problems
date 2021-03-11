@@ -312,23 +312,34 @@ class MainApp(tk.Frame):
 
     def display_keys(self):
         window = tk.Toplevel()
-        window.geometry('400x300')
+        window.geometry('520x200')
         window.wm_minsize()
 
-        keypair = tk.Entry(window)
-        keypair.insert(0, self._current_profile.keypair)
-        keypair.pack(fill='x', pady=10)
+        keypair_label = tk.Label(window, text="Keypair:")
+        keypair_label.place(x=40, y=40)
 
-        public_key = tk.Entry(window)
+        keypair = tk.Text(window, width=52, height=2)
+        keypair.insert('1.0', self._current_profile.public_key + '\n' +
+                          self._current_profile.private_key)
+        keypair.place(x=95, y=40)
+
+        public_key_label = tk.Label(window, text="Public key:")
+        public_key_label.place(x=40, y=80)
+
+        public_key = tk.Entry(window, width=52)
         public_key.insert(0, self._current_profile.public_key)
-        public_key.pack(fill='x', pady=10)
+        public_key.place(x=110, y=80)
 
-        private_key = tk.Entry(window)
+        private_key_label = tk.Label(window, text="Private key:")
+        private_key_label.place(x=40, y=112)
+
+        private_key = tk.Entry(window, width=52)
         private_key.insert(0, self._current_profile.private_key)
-        private_key.pack(fill='x', pady=10)
+        private_key.place(x=110, y=112)
 
-        label = tk.Label(window, text="Hello World!")
-        label.pack(fill='x', padx=50, pady=5)
+        save_button = tk.Button(window, text='save to the profile')
+        save_button.pack(side=tk.BOTTOM)
+
 
     """
     Call only once, upon initialization to add widgets to root frame
