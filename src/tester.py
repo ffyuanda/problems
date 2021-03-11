@@ -1,25 +1,31 @@
-from tkinter import *
+import tkinter as tk
+from tkinter.messagebox import showinfo
 
+# --- functions ---
 
-def donothing():
-    x = 0
+def popup_window():
+    window = tk.Toplevel()
 
+    label = tk.Label(window, text="Hello World!")
+    label.pack(fill='x', padx=50, pady=5)
 
-root = Tk()
+    button_close = tk.Button(window, text="Close", command=window.destroy)
+    button_close.pack(fill='x')
 
-menubar = Menu(root)
-filemenu = Menu(master=menubar, tearoff=0)
-filemenu.add_command(label="New", command=donothing)
-filemenu.add_command(label="Open", command=donothing)
-filemenu.add_command(label="Save", command=donothing)
-filemenu.add_separator()
-filemenu.add_command(label="Exit", command=root.quit)
-menubar.add_cascade(label="File", menu=filemenu)
+def popup_showinfo():
+    showinfo("ShowInfo", "Hello World!")
 
-helpmenu = Menu(menubar, tearoff=0)
-helpmenu.add_command(label="Help Index", command=donothing)
-helpmenu.add_command(label="About...", command=donothing)
-menubar.add_cascade(label="Help", menu=helpmenu)
+# --- main ---
 
-root.config(menu=menubar)
+root = tk.Tk()
+
+button_bonus = tk.Button(root, text="Window", command=popup_window)
+button_bonus.pack(fill='x')
+
+button_showinfo = tk.Button(root, text="ShowInfo", command=popup_showinfo)
+button_showinfo.pack(fill='x')
+
+button_close = tk.Button(root, text="Close", command=root.destroy)
+button_close.pack(fill='x')
+
 root.mainloop()

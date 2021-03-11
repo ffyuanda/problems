@@ -311,8 +311,25 @@ class MainApp(tk.Frame):
             self.footer.set_status("Offline")
 
     def display_keys(self):
+        window = tk.Toplevel()
+        window.geometry('400x300')
+        window.wm_minsize()
 
-        pass
+        keypair = tk.Entry(window)
+        keypair.insert(0, self._current_profile.keypair)
+        keypair.pack(fill='x', pady=10)
+
+        public_key = tk.Entry(window)
+        public_key.insert(0, self._current_profile.public_key)
+        public_key.pack(fill='x', pady=10)
+
+        private_key = tk.Entry(window)
+        private_key.insert(0, self._current_profile.private_key)
+        private_key.pack(fill='x', pady=10)
+
+        label = tk.Label(window, text="Hello World!")
+        label.pack(fill='x', padx=50, pady=5)
+
     """
     Call only once, upon initialization to add widgets to root frame
     """
@@ -326,8 +343,9 @@ class MainApp(tk.Frame):
         menu_file.add_command(label='Close', command=self.close)
         menu_bar.add_cascade(menu=menu_file, label='File')
 
+        # Settings widget
         menu_settings = tk.Menu(menu_bar)
-        menu_settings.add_command(label='Current keys')
+        menu_settings.add_command(label='Current keys', command=self.display_keys)
         menu_bar.add_cascade(menu=menu_settings, label='Settings')
 
         self.root.config(menu=menu_bar)
