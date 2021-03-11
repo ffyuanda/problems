@@ -55,14 +55,24 @@ class Post(dict):
     entry property that stores the post message.
 
     """
-    def __init__(self, entry:str = None, timestamp:float = 0):
+    def __init__(self, entry:str = None, timestamp:float = 0, title: str = None):
         self._timestamp = timestamp
         self.set_entry(entry)
+        self._title = title
 
         # Subclass dict to expose Post properties for serialization
         # Don't worry about this!
-        dict.__init__(self, entry=self._entry, timestamp=self._timestamp)
-    
+        dict.__init__(self, entry=self._entry, timestamp=self._timestamp, title=self._title)
+
+    def set_title(self, title):
+        if type(title) is not str:
+            raise TypeError('the type of title must be str')
+        self._title = title
+        dict.__setitem__(self, 'title', title)
+
+    def get_title(self):
+        return self._title
+
     def set_entry(self, entry):
         self._entry = entry 
         dict.__setitem__(self, 'entry', entry)

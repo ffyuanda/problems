@@ -96,6 +96,11 @@ class NaClProfile(Profile):
         entry = post.get_entry()
         encrypted_entry = self.nacl_profile_encrypt(entry)
         post.set_entry(encrypted_entry)
+
+        title = post.get_title()
+        encrypted_title = self.nacl_profile_encrypt(title)
+        post.set_title(encrypted_title)
+
         super().add_post(post)
         return post
 
@@ -113,8 +118,15 @@ class NaClProfile(Profile):
 
         for post in out_posts:
             entry = post.get_entry()
+            title = post.get_title()
+            # print('entry', entry)
+            # print('title', title)
+
             entry = self.nacl_profile_decrypt(entry)
+            title = self.nacl_profile_decrypt(title)
+
             post.set_entry(entry)
+            post.set_title(title)
 
         return out_posts
 
@@ -136,9 +148,12 @@ class NaClProfile(Profile):
                 self.bio = obj['bio']
                 self.import_keypair(obj['keypair'])
                 for post_obj in obj['_posts']:
-                    post = Post(post_obj['entry'], post_obj['timestamp'])
+                    post = Post(post_obj['entry'], post_obj['timestamp'], post_obj['title'])
                     self._posts.append(post)
                 f.close()
+            except json.decoder.JSONDecodeError as ex:
+                if str(ex) == 'Expecting value: line 1 column 1 (char 0)':
+                    raise DsuFileError('the dsu file is empty') from ex
             except Exception as ex:
                 raise DsuProfileError(ex)
         else:

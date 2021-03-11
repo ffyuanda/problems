@@ -148,6 +148,7 @@ class bcolors:
 # if raise from e, then the outer error would be the direct cause to this error
 # if simply raise, then this error would be another exception
 # during handling the above outer error.
+
 # try:
 #     x = 1 / 0
 # except ZeroDivisionError as e:

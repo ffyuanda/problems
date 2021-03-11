@@ -32,8 +32,22 @@ class Body(tk.Frame):
     """
     Returns the text that is currently displayed in the entry_editor widget.
     """
-    def get_text_entry(self) -> str:
-        return self.entry_editor.get('1.0', 'end').rstrip()
+    def get_text_entry(self) -> list:
+        """
+        Returns the title and text that is currently displayed in the entry_editor widget.
+        :return: a list, the first slot is the title of the post (the first line)
+        the second slot is the entry text
+        """
+        entry = self.entry_editor.get('1.0', 'end').rstrip()
+        entry = entry.split('\n', 1)
+        # when the entry_editor widget is empty
+        if len(entry) == 0:
+            entry.append('')
+            entry.append('')
+        # when there is only a title
+        elif len(entry) == 1:
+            entry.append('')
+        return entry
 
     """
     Sets the text to be displayed in the entry_editor widget.
@@ -81,13 +95,14 @@ class Body(tk.Frame):
     Inserts a post entry into the posts_tree widget.
     """
     def _insert_post_tree(self, id, post: Post):
-        entry = post.get_entry()
+        # entry = post.get_entry()
+        title = post.get_title()
         # Since we don't have a title, we will use the first 24 characters of a
         # post entry as the identifier in the post_tree widget.
-        if len(entry) > 25:
-            entry = entry[:24] + "..."
+        if len(title) > 25:
+            entry = title[:24] + "..."
         
-        self.posts_tree.insert('', id, id, text=entry)
+        self.posts_tree.insert('', id, id, text=title)
     
     """
     Call only once upon initialization to add widgets to the frame
@@ -182,6 +197,12 @@ A subclass of tk.Frame that is responsible for drawing all of the widgets
 in the main portion of the root frame. Also manages all method calls for
 the NaClProfile class.
 """
+
+
+class FileNameError(Exception):
+    pass
+
+
 class MainApp(tk.Frame):
     def __init__(self, root):
         tk.Frame.__init__(self, root)
@@ -206,15 +227,17 @@ class MainApp(tk.Frame):
             self._profile_filename = filename.name
         except AttributeError as e:
             if str(e) == "'NoneType' object has no attribute 'name'":
-                print('filename is empty')
-                raise
-        self._current_profile = NaClProfile()
-        self._current_profile.generate_keypair()
-        self._current_profile.username = 'ffyuanda'
-        self._current_profile.password = 'ffyuanda123'
-        self._current_profile.dsuserver = "168.235.86.101"
-        self._current_profile.add_bio('')
-        self.body.reset_ui()
+                pass
+                # raise FileNameError('Filename is empty') from e
+        else:
+            self._current_profile = NaClProfile()
+            self._current_profile.generate_keypair()
+            self._current_profile.username = 'ffyuanda'
+            self._current_profile.password = 'ffyuanda123'
+            self._current_profile.dsuserver = "168.235.86.101"
+            self._current_profile.add_bio('')
+            self._current_profile.save_profile(self._profile_filename)
+            self.body.reset_ui()
     
     """
     Opens an existing DSU file when the 'Open' menu item is clicked and loads the profile
@@ -222,10 +245,16 @@ class MainApp(tk.Frame):
     """
     def open_profile(self):
         filename = tk.filedialog.askopenfile(filetypes=[('Distributed Social Profile', '*.dsu')])
-        self._profile_filename = filename.name
-        self._current_profile = NaClProfile()
-        self._current_profile.load_profile(self._profile_filename)
-        self.body.set_posts(self._current_profile.get_posts())
+        try:
+            self._profile_filename = filename.name
+        except AttributeError as e:
+            if str(e) == "'NoneType' object has no attribute 'name'":
+                pass
+                # raise FileNameError('Filename is empty') from e
+        else:
+            self._current_profile = NaClProfile()
+            self._current_profile.load_profile(self._profile_filename)
+            self.body.set_posts(self._current_profile.get_posts())
     
     """
     Closes the program when the 'Close' menu item is clicked.
@@ -248,19 +277,22 @@ class MainApp(tk.Frame):
     Saves the text currently in the entry_editor widget to the active DSU file.
     """
     def save_profile(self):
-
-        entry = self.body.get_text_entry()
+        title = self.body.get_text_entry()[0]
+        entry = self.body.get_text_entry()[1]
         if self._profile_filename is None:
             self.new_profile()
-        if entry != '':
+
+        if title != '':
             from a5 import posts_transclude
-            post = Post(entry)
+            post = Post()
+            post.set_entry(entry)
+            post.set_title(title)
             self._current_profile.add_post(post)
             self._current_profile = posts_transclude(self._current_profile)
             self._current_profile.save_profile(self._profile_filename)
             self.body.set_posts(self._current_profile.get_posts())
             self.body.set_text_entry("")
-        else:
+        elif title == '':
             self.body.set_text_entry("")
             print('empty')
 
@@ -277,7 +309,10 @@ class MainApp(tk.Frame):
             self.footer.set_status("Online")
         else:
             self.footer.set_status("Offline")
-    
+
+    def display_keys(self):
+
+        pass
     """
     Call only once, upon initialization to add widgets to root frame
     """
@@ -290,6 +325,11 @@ class MainApp(tk.Frame):
         menu_file.add_command(label='Open...', command=self.open_profile)
         menu_file.add_command(label='Close', command=self.close)
         menu_bar.add_cascade(menu=menu_file, label='File')
+
+        menu_settings = tk.Menu(menu_bar)
+        menu_settings.add_command(label='Current keys')
+        menu_bar.add_cascade(menu=menu_settings, label='Settings')
+
         self.root.config(menu=menu_bar)
         # NOTE: Additional menu items can be added by following the conventions here.
         # The only top level menu item is a 'cascading menu', that presents a small menu of
@@ -302,6 +342,7 @@ class MainApp(tk.Frame):
 
         self.footer = Footer(self.root, save_callback=self.save_profile, online_callback=self.online_changed)
         self.footer.pack(fill=tk.BOTH, side=tk.BOTTOM)
+
 
 if __name__ == "__main__":
     # All Tkinter programs start with a root window. We will name ours 'main'.
