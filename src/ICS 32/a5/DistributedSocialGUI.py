@@ -31,7 +31,7 @@ class Body(tk.Frame):
     Update the entry_editor with the full post entry when the corresponding node in the posts_tree
     is selected.
     """
-    def node_select(self):
+    def node_select(self, event):
         index = int(self.posts_tree.selection()[0])
         entry = self._posts[index].entry
         self.set_text_entry(entry)
@@ -107,7 +107,7 @@ class Body(tk.Frame):
         # Since we don't have a title, we will use the first 24 characters of a
         # post entry as the identifier in the post_tree widget.
         if len(title) > 25:
-            entry = title[:24] + "..."
+            title = title[:24] + "..."
         
         self.posts_tree.insert('', id, id, text=title)
     
@@ -330,12 +330,13 @@ class MainApp(tk.Frame):
         from a5 import posts_transclude
         title = self.body.get_text_entry()[0]
         entry = self.body.get_text_entry()[1]
-        if title != '':
-            self._index = self.body.curr_index()
-            self._current_profile.edit_post(self._index, title, entry)
-        elif title == '':
-            self.body.set_text_entry("")
-            print('empty')
+        # if title != '':
+        self._index = self.body.curr_index()
+        # print(self._index)
+        self._current_profile.edit_post(self._index, title, entry)
+        # elif title == '':
+        # self.body.set_text_entry("")
+        # print('empty')
         self._current_profile = posts_transclude(self._current_profile)
         self._current_profile.save_profile(self._profile_filename)
         self.body.set_posts(self._current_profile.get_posts())

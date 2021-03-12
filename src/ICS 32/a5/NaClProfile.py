@@ -42,6 +42,15 @@ class NaClProfile(Profile):
         self.keypair = ''
 
     def edit_post(self, index: int, title: str, entry: str):
+        """
+        Sets a specific post in the self_posts list, change its title and entry.
+        :param index: the index of the post we want to access in self_posts list
+        :param title: str BEFORE encryption
+        :param entry: str BEFORE encryption
+        :return:
+        """
+        title = self.nacl_profile_encrypt(title)
+        entry = self.nacl_profile_encrypt(entry)
         self._posts[index].set_title(title)
         self._posts[index].set_entry(entry)
 
