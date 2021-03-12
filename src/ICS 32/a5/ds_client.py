@@ -25,7 +25,7 @@ def join(sock: socket, username, password, public_key):
 def post(sock: socket, message, nprofile):
     send = sock.makefile('w')
     for single_post in message:
-        entry = single_post.get_entry()
+        entry = single_post.get_title() + '\n' + single_post.get_entry()
         # encryption
         entry = nprofile.encrypt_entry(entry, token)
 

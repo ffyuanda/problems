@@ -332,15 +332,18 @@ class MainApp(tk.Frame):
         from a5 import posts_transclude
         title = self.body.get_text_entry()[0]
         entry = self.body.get_text_entry()[1]
-        self._index = self.body.curr_index()
-        self._current_profile.edit_post(self._index, title, entry)
-        self._current_profile = posts_transclude(self._current_profile)
-        self._current_profile.save_profile(self._profile_filename)
-        self.body.set_posts(self._current_profile.get_posts())
-        # self.body.set_text_entry("")
-
-        if self._is_online:
-            self.publish(self._current_profile)
+        try:
+            self._index = self.body.curr_index()
+        except Body.BodyError:
+            msg = 'Nothing is selected to be saved!'
+            self.pop_up_msg(msg)
+        else:
+            self._current_profile.edit_post(self._index, title, entry)
+            self._current_profile = posts_transclude(self._current_profile)
+            self._current_profile.save_profile(self._profile_filename)
+            self.body.set_posts(self._current_profile.get_posts())
+            if self._is_online:
+                self.publish(self._current_profile)
 
     """
     A callback function for responding to changes to the online chk_button.
@@ -386,6 +389,18 @@ class MainApp(tk.Frame):
         save_button = tk.Button(window, text='save to the profile', command=save_keys)
         save_button.pack(side=tk.BOTTOM)
 
+    def pop_up_msg(self, msg: str, size: str = None):
+        import tkinter.font as tkFont
+        font_style = tkFont.Font(size=20)
+
+        window = tk.Toplevel()
+        if size is None:
+            window.geometry('500x60')
+        else:
+            window.geometry(size)
+        window.resizable(0, 0)
+        msg_label = tk.Label(window, text=msg, font=font_style)
+        msg_label.pack(fill=tk.BOTH)
 
     """
     Call only once, upon initialization to add widgets to root frame
