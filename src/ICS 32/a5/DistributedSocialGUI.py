@@ -307,11 +307,16 @@ class MainApp(tk.Frame):
         title = self.body.get_text_entry()[0]
         entry = self.body.get_text_entry()[1]
         if title != '':
-            self._index = self.body.curr_index()
-            self._current_profile.edit_post(self._index, title, entry)
+            post = Post()
+            post.set_entry(entry)
+            post.set_title(title)
+            self._current_profile.add_post(post)
         elif title == '':
             self.body.set_text_entry("")
             print('empty')
+
+        if self._profile_filename is None:
+            self.new_profile()
         self._current_profile = posts_transclude(self._current_profile)
         self._current_profile.save_profile(self._profile_filename)
         self.body.set_posts(self._current_profile.get_posts())
@@ -325,35 +330,12 @@ class MainApp(tk.Frame):
         from a5 import posts_transclude
         title = self.body.get_text_entry()[0]
         entry = self.body.get_text_entry()[1]
-
-
-        def add_and_save():
-            """
-            Representing the 'Add Post' widget.
-            :return:
-            """
-            if title != '':
-                post = Post()
-                post.set_entry(entry)
-                post.set_title(title)
-                self._current_profile.add_post(post)
-            elif title == '':
-                self.body.set_text_entry("")
-                print('empty')
-
-        def edit_and_save():
-            """
-            Representing the 'Save Post' widget.
-            :return:
-            """
-
-
-        if self._profile_filename is None:
-            self.new_profile()
-        if mode == 1:
-            add_and_save()
-        elif mode == 0:
-            edit_and_save()
+        if title != '':
+            self._index = self.body.curr_index()
+            self._current_profile.edit_post(self._index, title, entry)
+        elif title == '':
+            self.body.set_text_entry("")
+            print('empty')
         self._current_profile = posts_transclude(self._current_profile)
         self._current_profile.save_profile(self._profile_filename)
         self.body.set_posts(self._current_profile.get_posts())
