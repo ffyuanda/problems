@@ -303,8 +303,19 @@ class MainApp(tk.Frame):
         Adds the text currently in the entry_editor widget to the active DSU file.
         :return:
         """
+        from a5 import posts_transclude
         title = self.body.get_text_entry()[0]
         entry = self.body.get_text_entry()[1]
+        if title != '':
+            self._index = self.body.curr_index()
+            self._current_profile.edit_post(self._index, title, entry)
+        elif title == '':
+            self.body.set_text_entry("")
+            print('empty')
+        self._current_profile = posts_transclude(self._current_profile)
+        self._current_profile.save_profile(self._profile_filename)
+        self.body.set_posts(self._current_profile.get_posts())
+        self.body.set_text_entry("")
 
     def save_profile(self) -> None:
         """
@@ -314,6 +325,7 @@ class MainApp(tk.Frame):
         from a5 import posts_transclude
         title = self.body.get_text_entry()[0]
         entry = self.body.get_text_entry()[1]
+
 
         def add_and_save():
             """
@@ -334,12 +346,7 @@ class MainApp(tk.Frame):
             Representing the 'Save Post' widget.
             :return:
             """
-            if title != '':
-                self._index = self.body.curr_index()
-                self._current_profile.edit_post(self._index, title, entry)
-            elif title == '':
-                self.body.set_text_entry("")
-                print('empty')
+
 
         if self._profile_filename is None:
             self.new_profile()
