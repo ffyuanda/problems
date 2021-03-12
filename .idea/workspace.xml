@@ -22,9 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98785467-6f8f-4963-a449-5c3d8be14401" name="Default Changelist" comment="basic title support added, using the first line of entry widget as title">
+    <list default="true" id="98785467-6f8f-4963-a449-5c3d8be14401" name="Default Changelist" comment="basic styling for keys displaying finished">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a4/NaClProfile_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a4/NaClProfile_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ICS 32/a5/DistributedSocialGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a5/DistributedSocialGUI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a5/NaClProfile_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a5/NaClProfile_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ICS 32/a5/Profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ICS 32/a5/Profile.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,27 +162,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="NaClProfile" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ICS31" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a5" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a5/NaClProfile.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="NaClProfile_test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ICS31" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -193,6 +175,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a5/NaClProfile_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="NaClProfile_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ICS31" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/ICS 32/a4" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ICS 32/a4/NaClProfile_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -225,18 +228,18 @@
     <list>
       <item itemvalue="Python.Even Digits" />
       <item itemvalue="Python.DistributedSocialGUI" />
-      <item itemvalue="Python.NaClProfile" />
       <item itemvalue="Python.NaClProfile_test (1)" />
       <item itemvalue="Python.DistributedSocialGUI (1)" />
       <item itemvalue="Python.tester" />
+      <item itemvalue="Python.NaClProfile_test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.DistributedSocialGUI" />
+        <item itemvalue="Python.NaClProfile_test" />
         <item itemvalue="Python.tester" />
         <item itemvalue="Python.DistributedSocialGUI (1)" />
-        <item itemvalue="Python.NaClProfile" />
         <item itemvalue="Python.NaClProfile_test (1)" />
+        <item itemvalue="Python.DistributedSocialGUI" />
       </list>
     </recent_temporary>
   </component>
@@ -259,7 +262,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615455172555</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="basic styling for keys displaying finished">
+      <created>1615470926356</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1615470926356</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -276,7 +286,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="basic title support added, using the first line of entry widget as title" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic title support added, using the first line of entry widget as title" />
+    <MESSAGE value="basic styling for keys displaying finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="basic styling for keys displaying finished" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2300" y="184" key="#Notifications" timestamp="1615435915068">
@@ -295,46 +306,50 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="371" y="107" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720@0.0.1280.720" timestamp="1612539007622" />
-    <state x="2190" y="0" width="959" height="720" key="CommitChangelistDialog2" timestamp="1615455415073">
+    <state x="2190" y="0" width="959" height="720" key="CommitChangelistDialog2" timestamp="1615470986583">
       <screen x="1920" y="0" width="1280" height="720" />
     </state>
-    <state x="2190" y="0" width="959" height="720" key="CommitChangelistDialog2/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615455415073" />
+    <state x="2190" y="0" width="959" height="720" key="CommitChangelistDialog2/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615470986583" />
+    <state x="2013" y="93" width="1095" height="535" key="DiffContextDialog" timestamp="1615472489573">
+      <screen x="1920" y="0" width="1280" height="720" />
+    </state>
+    <state x="2013" y="93" width="1095" height="535" key="DiffContextDialog/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615472489573" />
     <state x="421" y="115" key="FileChooserDialogImpl" timestamp="1615274735499">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615274735499" />
     <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1609297125999" />
-    <state width="1259" height="4" key="GridCell.Tab.0.bottom" timestamp="1615470834393">
+    <state width="1259" height="2" key="GridCell.Tab.0.bottom" timestamp="1615509462438">
       <screen x="1920" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="35" key="GridCell.Tab.0.bottom/0.0.1280.720/-1920.0.1280.720@0.0.1280.720" timestamp="1614670515981" />
     <state width="1259" height="137" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391796" />
     <state width="1259" height="71" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615428721176" />
-    <state width="1259" height="4" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615470834393" />
+    <state width="1259" height="2" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615509462438" />
     <state width="1259" height="172" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1614619033559" />
-    <state width="1259" height="4" key="GridCell.Tab.0.center" timestamp="1615470834393">
+    <state width="1259" height="2" key="GridCell.Tab.0.center" timestamp="1615509462438">
       <screen x="1920" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="35" key="GridCell.Tab.0.center/0.0.1280.720/-1920.0.1280.720@0.0.1280.720" timestamp="1614670515981" />
     <state width="1259" height="137" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
     <state width="1259" height="71" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615428721176" />
-    <state width="1259" height="4" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615470834393" />
+    <state width="1259" height="2" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615509462438" />
     <state width="1259" height="172" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1614619033559" />
-    <state width="1259" height="4" key="GridCell.Tab.0.left" timestamp="1615470834393">
+    <state width="1259" height="2" key="GridCell.Tab.0.left" timestamp="1615509462438">
       <screen x="1920" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="35" key="GridCell.Tab.0.left/0.0.1280.720/-1920.0.1280.720@0.0.1280.720" timestamp="1614670515981" />
     <state width="1259" height="137" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
     <state width="1259" height="71" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615428721176" />
-    <state width="1259" height="4" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615470834393" />
+    <state width="1259" height="2" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615509462438" />
     <state width="1259" height="172" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1614619033559" />
-    <state width="1259" height="4" key="GridCell.Tab.0.right" timestamp="1615470834393">
+    <state width="1259" height="2" key="GridCell.Tab.0.right" timestamp="1615509462438">
       <screen x="1920" y="0" width="1280" height="720" />
     </state>
     <state width="1259" height="35" key="GridCell.Tab.0.right/0.0.1280.720/-1920.0.1280.720@0.0.1280.720" timestamp="1614670515981" />
     <state width="1259" height="137" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1024.768@0.0.1280.720" timestamp="1612690391795" />
     <state width="1259" height="71" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615428721176" />
-    <state width="1259" height="4" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615470834393" />
+    <state width="1259" height="2" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615509462438" />
     <state width="1259" height="172" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1614619033559" />
     <state width="1259" height="62" key="GridCell.Tab.1.bottom" timestamp="1615454280421">
       <screen x="1920" y="0" width="1280" height="720" />
@@ -403,10 +418,10 @@
       <screen x="1920" y="0" width="1280" height="720" />
     </state>
     <state x="2333" y="133" width="1273" height="574" key="dock-window-5/0.0.1280.720/1920.0.1280.720@0.0.1280.720" timestamp="1615278864521" />
-    <state x="-91" y="-27" width="1273" height="570" maximized="true" key="dock-window-6" timestamp="1615469851104">
+    <state x="-147" y="134" width="1273" height="570" key="dock-window-6" timestamp="1615515156661">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="-91" y="-27" width="1273" height="570" maximized="true" key="dock-window-6/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615469851104" />
+    <state x="-147" y="134" width="1273" height="570" key="dock-window-6/0.0.1280.720/1920.0.1280.720@1920.0.1280.720" timestamp="1615515156661" />
     <state x="2457" y="45" width="654" height="728" key="dock-window-7" timestamp="1615466348218">
       <screen x="1920" y="0" width="1280" height="720" />
     </state>

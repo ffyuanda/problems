@@ -273,6 +273,10 @@ class MainApp(tk.Frame):
         bio = np.get_bio()
         ds_client.send(np, send_type, server, port, username, password, posts,
                        bio)
+
+    def add_post_process(self):
+
+        pass
     """
     Saves the text currently in the entry_editor widget to the active DSU file.
     """
@@ -311,33 +315,44 @@ class MainApp(tk.Frame):
             self.footer.set_status("Offline")
 
     def display_keys(self):
+
+        def save_keys():
+            public_key_text = public_key.get()
+            private_key_text = private_key.get()
+            if public_key_text != '' and private_key_text != '':
+                if self._profile_filename is not None:
+                    self._current_profile.public_key = public_key_text
+                    self._current_profile.private_key = private_key_text
+                    self._current_profile.keypair = public_key_text + private_key_text
+                    self._current_profile.save_profile(self._profile_filename)
+
         window = tk.Toplevel()
-        window.geometry('520x200')
-        window.wm_minsize()
+        window.geometry('500x120')
+        window.resizable(0, 0)
 
-        keypair_label = tk.Label(window, text="Keypair:")
-        keypair_label.place(x=40, y=40)
-
-        keypair = tk.Text(window, width=52, height=2)
-        keypair.insert('1.0', self._current_profile.public_key + '\n' +
-                          self._current_profile.private_key)
-        keypair.place(x=95, y=40)
+        # keypair_label = tk.Label(window, text="Keypair:")
+        # keypair_label.place(x=40, y=40)
+        #
+        # keypair = tk.Text(window, width=52, height=2)
+        # keypair.insert('1.0', self._current_profile.public_key + '\n' +
+        #                self._current_profile.private_key)
+        # keypair.place(x=95, y=40)
 
         public_key_label = tk.Label(window, text="Public key:")
-        public_key_label.place(x=40, y=80)
+        public_key_label.place(x=40, y=25)
 
         public_key = tk.Entry(window, width=52)
         public_key.insert(0, self._current_profile.public_key)
-        public_key.place(x=110, y=80)
+        public_key.place(x=110, y=25)
 
         private_key_label = tk.Label(window, text="Private key:")
-        private_key_label.place(x=40, y=112)
+        private_key_label.place(x=40, y=57)
 
         private_key = tk.Entry(window, width=52)
         private_key.insert(0, self._current_profile.private_key)
-        private_key.place(x=110, y=112)
+        private_key.place(x=110, y=57)
 
-        save_button = tk.Button(window, text='save to the profile')
+        save_button = tk.Button(window, text='save to the profile', command=save_keys)
         save_button.pack(side=tk.BOTTOM)
 
 

@@ -13,6 +13,8 @@ ee = np.encrypt_entry("Encrypted Message for DS Server", ds_pubkey)
 print(ee)
 # print(np.nacl_profile_decrypt(ee, ds_pubkey))
 
+np.private_key = "jIqYIh2EDibk84rTp0yJcghTPxMWjtrt5NW4yPZk3Cw="
+
 # Add a post to the profile and check that it is decrypted.
 np.add_post(Post("Hello Salted World!"))
 p_list = np.get_posts()

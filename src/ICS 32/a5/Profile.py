@@ -172,7 +172,11 @@ class Profile:
 
     """
     def save_profile(self, path: str) -> None:
-        p = Path(path)
+        try:
+            p = Path(path)
+        except TypeError as e:
+            if str(e) == 'expected str, bytes or os.PathLike object, not NoneType':
+                raise DsuFileError('Path is empty (None)') from e
 
         if os.path.exists(p) and p.suffix == '.dsu':
             try:
