@@ -8,6 +8,10 @@ A subclass of tk.Frame that is responsible for drawing all of the widgets
 in the body portion of the root frame.
 """
 class Body(tk.Frame):
+
+    class BodyError(Exception):
+        pass
+
     def __init__(self, root, select_callback=None):
         tk.Frame.__init__(self, root)
         self.root = root
@@ -25,7 +29,11 @@ class Body(tk.Frame):
         Return the current selected index of post in the post tree view.
         :return: the index
         """
-        index = int(self.posts_tree.selection()[0])
+        try:
+            index = int(self.posts_tree.selection()[0])
+        except IndexError as e:
+            if str(e) == 'tuple index out of range':
+                raise self.BodyError('There is nothing in the posts_tree widget') from e
         return index
     """
     Update the entry_editor with the full post entry when the corresponding node in the posts_tree
@@ -33,12 +41,10 @@ class Body(tk.Frame):
     """
     def node_select(self, event):
         index = int(self.posts_tree.selection()[0])
-        entry = self._posts[index].entry
-        self.set_text_entry(entry)
-    
-    """
-    Returns the text that is currently displayed in the entry_editor widget.
-    """
+        entry = self._posts[index].get_entry()
+        title = self._posts[index].get_title()
+        self.set_text_entry(title + '\n' + entry)
+
     def get_text_entry(self) -> list:
         """
         Returns the title and text that is currently displayed in the entry_editor widget.
@@ -189,6 +195,7 @@ class Footer(tk.Frame):
         :return: None
         """
         if self._save_callback is not None:
+
             self._save_callback()
 
     """
@@ -304,19 +311,14 @@ class MainApp(tk.Frame):
         :return:
         """
         from a5 import posts_transclude
-        title = self.body.get_text_entry()[0]
-        entry = self.body.get_text_entry()[1]
-        if title != '':
-            post = Post()
-            post.set_entry(entry)
-            post.set_title(title)
-            self._current_profile.add_post(post)
-        elif title == '':
-            self.body.set_text_entry("")
-            print('empty')
-
         if self._profile_filename is None:
             self.new_profile()
+        post = Post()
+        title = 'TYPE TITLE HERE'
+        entry = 'TYPE ENTRY HERE'
+        post.set_entry(entry)
+        post.set_title(title)
+        self._current_profile.add_post(post)
         self._current_profile = posts_transclude(self._current_profile)
         self._current_profile.save_profile(self._profile_filename)
         self.body.set_posts(self._current_profile.get_posts())
@@ -330,17 +332,12 @@ class MainApp(tk.Frame):
         from a5 import posts_transclude
         title = self.body.get_text_entry()[0]
         entry = self.body.get_text_entry()[1]
-        # if title != '':
         self._index = self.body.curr_index()
-        # print(self._index)
         self._current_profile.edit_post(self._index, title, entry)
-        # elif title == '':
-        # self.body.set_text_entry("")
-        # print('empty')
         self._current_profile = posts_transclude(self._current_profile)
         self._current_profile.save_profile(self._profile_filename)
         self.body.set_posts(self._current_profile.get_posts())
-        self.body.set_text_entry("")
+        # self.body.set_text_entry("")
 
         if self._is_online:
             self.publish(self._current_profile)
