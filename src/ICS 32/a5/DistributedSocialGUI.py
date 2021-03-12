@@ -19,12 +19,19 @@ class Body(tk.Frame):
         # After all initialization is complete, call the _draw method to pack the widgets
         # into the Body instance 
         self._draw()
-    
+
+    def curr_index(self) -> int:
+        """
+        Return the current selected index of post in the post tree view.
+        :return: the index
+        """
+        index = int(self.posts_tree.selection()[0])
+        return index
     """
     Update the entry_editor with the full post entry when the corresponding node in the posts_tree
     is selected.
     """
-    def node_select(self, event):
+    def node_select(self):
         index = int(self.posts_tree.selection()[0])
         entry = self._posts[index].entry
         self.set_text_entry(entry)
@@ -131,43 +138,56 @@ class Body(tk.Frame):
         self.entry_editor['yscrollcommand'] = entry_editor_scrollbar.set
         entry_editor_scrollbar.pack(fill=tk.Y, side=tk.LEFT, expand=False, padx=0, pady=0)
 
-"""
-A subclass of tk.Frame that is responsible for drawing all of the widgets
-in the footer portion of the root frame.
-"""
+
 class Footer(tk.Frame):
-    def __init__(self, root, save_callback=None, online_callback=None):
+    """
+    A subclass of tk.Frame that is responsible for drawing all of the widgets
+    in the footer portion of the root frame.
+    """
+    def __init__(self, root, save_callback=None, online_callback=None, add_post_callback=None):
         tk.Frame.__init__(self, root)
         self.root = root
         self._save_callback = save_callback
         self._online_callback = online_callback
+        self._add_post_callback = add_post_callback
         # IntVar is a variable class that provides access to special variables
         # for Tkinter widgets. is_online is used to hold the state of the chk_button widget.
         # The value assigned to is_online when the chk_button widget is changed by the user
         # can be retrieved using the get() function:
-        # chk_value = self.is_online.get()
+
         self.is_online = tk.IntVar()
+        # self.save_mode = None
+
         # After all initialization is complete, call the _draw method to pack the widgets
         # into the Footer instance 
         self._draw()
-    
-    """
-    Calls the callback function specified in the online_callback class attribute, if
-    available, when the chk_button widget has been clicked.
-    """
-    def online_click(self):
 
+    def online_click(self) -> None:
+        """
+        Calls the callback function specified in the online_callback class attribute, if
+        available, when the chk_button widget has been clicked.
+        :return: None
+        """
         if self._online_callback is not None:
             # chk_value = 1 when online mode is on, 0 when it is off
             chk_value = self.is_online.get()
-            # self._online_callback refers to online_changed(self, value: bool) in MainApp
             self._online_callback(chk_value)
 
-    """
-    Calls the callback function specified in the save_callback class attribute, if
-    available, when the save_button has been clicked.
-    """
-    def save_click(self):
+    def add_post_click(self) -> None:
+        """
+        Calls the callback function specified in the add_post_callback class attribute, if
+        available, when the add_post_button widget has been clicked.
+        :return: None
+        """
+        if self._add_post_callback is not None:
+            self._add_post_callback()
+
+    def save_click(self) -> None:
+        """
+        Calls the callback function specified in the save_callback class attribute, if
+        available, when the save_button has been clicked.
+        :return: None
+        """
         if self._save_callback is not None:
             self._save_callback()
 
@@ -185,6 +205,10 @@ class Footer(tk.Frame):
         save_button.configure(command=self.save_click)
         save_button.pack(fill=tk.BOTH, side=tk.RIGHT, padx=5, pady=5)
 
+        add_post_button = tk.Button(master=self, text='Add Post', width=20)
+        add_post_button.configure(command=self.add_post_click)
+        add_post_button.pack(fill=tk.BOTH, side=tk.RIGHT, padx=5, pady=5)
+
         self.chk_button = tk.Checkbutton(master=self, text="Online", variable=self.is_online)
         self.chk_button.configure(command=self.online_click) 
         self.chk_button.pack(fill=tk.BOTH, side=tk.RIGHT)
@@ -192,18 +216,17 @@ class Footer(tk.Frame):
         self.footer_label = tk.Label(master=self, text="Ready.")
         self.footer_label.pack(fill=tk.BOTH, side=tk.LEFT, padx=5)
 
-"""
-A subclass of tk.Frame that is responsible for drawing all of the widgets
-in the main portion of the root frame. Also manages all method calls for
-the NaClProfile class.
-"""
-
 
 class FileNameError(Exception):
     pass
 
 
 class MainApp(tk.Frame):
+    """
+    A subclass of tk.Frame that is responsible for drawing all of the widgets
+    in the main portion of the root frame. Also manages all method calls for
+    the NaClProfile class.
+    """
     def __init__(self, root):
         tk.Frame.__init__(self, root)
         self.root = root
@@ -216,11 +239,12 @@ class MainApp(tk.Frame):
         self._draw()
         self._is_online = False
         self._profile_filename = None
+        self._index = 0
 
-    """
-    Creates a new DSU file when the 'New' menu item is clicked.
-    """
     def new_profile(self):
+        """
+        Creates a new DSU file when the 'New' menu item is clicked.
+        """
         filename = tk.filedialog.asksaveasfile(filetypes=[('Distributed Social Profile', '*.dsu')],
                                                defaultextension=[('Distributed Social Profile', '.dsu')])
         try:
@@ -275,30 +299,58 @@ class MainApp(tk.Frame):
                        bio)
 
     def add_post_process(self):
-
-        pass
-    """
-    Saves the text currently in the entry_editor widget to the active DSU file.
-    """
-    def save_profile(self):
+        """
+        Adds the text currently in the entry_editor widget to the active DSU file.
+        :return:
+        """
         title = self.body.get_text_entry()[0]
         entry = self.body.get_text_entry()[1]
+
+    def save_profile(self) -> None:
+        """
+        Saves the text currently in the entry_editor widget to the active DSU file.
+        :return: None
+        """
+        from a5 import posts_transclude
+        title = self.body.get_text_entry()[0]
+        entry = self.body.get_text_entry()[1]
+
+        def add_and_save():
+            """
+            Representing the 'Add Post' widget.
+            :return:
+            """
+            if title != '':
+                post = Post()
+                post.set_entry(entry)
+                post.set_title(title)
+                self._current_profile.add_post(post)
+            elif title == '':
+                self.body.set_text_entry("")
+                print('empty')
+
+        def edit_and_save():
+            """
+            Representing the 'Save Post' widget.
+            :return:
+            """
+            if title != '':
+                self._index = self.body.curr_index()
+                self._current_profile.edit_post(self._index, title, entry)
+            elif title == '':
+                self.body.set_text_entry("")
+                print('empty')
+
         if self._profile_filename is None:
             self.new_profile()
-
-        if title != '':
-            from a5 import posts_transclude
-            post = Post()
-            post.set_entry(entry)
-            post.set_title(title)
-            self._current_profile.add_post(post)
-            self._current_profile = posts_transclude(self._current_profile)
-            self._current_profile.save_profile(self._profile_filename)
-            self.body.set_posts(self._current_profile.get_posts())
-            self.body.set_text_entry("")
-        elif title == '':
-            self.body.set_text_entry("")
-            print('empty')
+        if mode == 1:
+            add_and_save()
+        elif mode == 0:
+            edit_and_save()
+        self._current_profile = posts_transclude(self._current_profile)
+        self._current_profile.save_profile(self._profile_filename)
+        self.body.set_posts(self._current_profile.get_posts())
+        self.body.set_text_entry("")
 
         if self._is_online:
             self.publish(self._current_profile)
@@ -329,14 +381,6 @@ class MainApp(tk.Frame):
         window = tk.Toplevel()
         window.geometry('500x120')
         window.resizable(0, 0)
-
-        # keypair_label = tk.Label(window, text="Keypair:")
-        # keypair_label.place(x=40, y=40)
-        #
-        # keypair = tk.Text(window, width=52, height=2)
-        # keypair.insert('1.0', self._current_profile.public_key + '\n' +
-        #                self._current_profile.private_key)
-        # keypair.place(x=95, y=40)
 
         public_key_label = tk.Label(window, text="Public key:")
         public_key_label.place(x=40, y=25)
@@ -384,7 +428,8 @@ class MainApp(tk.Frame):
         self.body = Body(self.root, self._current_profile)
         self.body.pack(fill=tk.BOTH, side=tk.TOP, expand=True)
 
-        self.footer = Footer(self.root, save_callback=self.save_profile, online_callback=self.online_changed)
+        self.footer = Footer(self.root, save_callback=self.save_profile, online_callback=self.online_changed,
+                             add_post_callback=self.add_post_process)
         self.footer.pack(fill=tk.BOTH, side=tk.BOTTOM)
 
 

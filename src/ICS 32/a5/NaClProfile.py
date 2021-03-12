@@ -41,6 +41,10 @@ class NaClProfile(Profile):
         self.private_key = ''
         self.keypair = ''
 
+    def edit_post(self, index: int, title: str, entry: str):
+        self._posts[index].set_title(title)
+        self._posts[index].set_entry(entry)
+
     def generate_keypair(self) -> str:
         """
         Generates a new public encryption key using NaClDSEncoder.
@@ -119,8 +123,6 @@ class NaClProfile(Profile):
         for post in out_posts:
             entry = post.get_entry()
             title = post.get_title()
-            # print('entry', entry)
-            # print('title', title)
 
             entry = self.nacl_profile_decrypt(entry)
             title = self.nacl_profile_decrypt(title)
