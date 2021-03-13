@@ -327,7 +327,6 @@ class MainApp(tk.Frame):
         from a5 import posts_transclude
         if self._profile_filename is None:
             self.pop_up_msg('Create/Open a DSU file first!', color='red')
-            # self.new_profile()
         else:
             post = Post()
             title = 'TYPE TITLE HERE'
