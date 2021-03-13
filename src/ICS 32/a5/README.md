@@ -29,4 +29,10 @@ I have 4 extra-credit features:
 4. Add support for deleting the post
 
     You first select a post, and click "Delete Post", and that's deleted!
-    
+
+5. Add a README.md display and edit support
+
+    Actually I'm writing this line using this bonus feature! You can click "Others" 
+    in the main interface, then click "Show README", then you will enter an edit-and-save 
+    mode to read and modify README.md. If you want to save it, just click "Save README". And
+    you will be all good!

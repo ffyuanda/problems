@@ -400,18 +400,29 @@ class MainApp(tk.Frame):
         else:
             self.footer.set_status("Offline", 'red', change_back=True)
 
-    def display_README(self):
+    def display_README(self) -> None:
+        """
+        Display the README.md file in a pop up window using readme Text widget.
+        :return: None
+        """
 
-        def save_README():
-            pass
+        def save_README() -> None:
+            """
+            Save the text in readme Text widget to README.md file.
+            :return: None
+            """
+            README_text = readme.get('1.0', 'end').strip()
+            with open("README.md", 'w') as README_file:
+                README_file.write(README_text)
+
         window = tk.Toplevel()
-        window.geometry('500x500')
+        window.geometry('800x500')
         window.resizable(0, 0)
 
-        README_file = open("README.md", 'r')
-        README_text = ''
-        for line in README_file:
-            README_text += line
+        with open("README.md", 'r') as README_file:
+            README_text = ''
+            for line in README_file:
+                README_text += line
 
         readme = tk.Text(master=window)
         readme.pack(fill=tk.BOTH, expand=True)
