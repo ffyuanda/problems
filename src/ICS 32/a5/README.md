@@ -1,6 +1,6 @@
 Welcome to my a5 assignment, just run DistributedSocialGUI.py will be good.
 
-I have 4 extra-credit features:
+I have 5 extra-credit features:
 
 1. Add title support for posts
 

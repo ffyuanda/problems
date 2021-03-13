@@ -208,7 +208,7 @@ class Footer(tk.Frame):
 
             self._save_callback()
 
-    def set_status(self, message: str, color: str = None, change_back: bool = None) -> None:
+    def set_status(self, message: str, color: str = None, change_back: bool = None, time: int = None) -> None:
         """
         Updates the text that is displayed in the footer_label widget, with
         change_back support.
@@ -216,16 +216,20 @@ class Footer(tk.Frame):
         :param color: the color for message
         :param change_back: if you want the footer_label to change back to
         'Ready.' after fixed amount of time
+        :param time: the time specified for change_back
         :return: None
         """
+        self.update()
         label = self.footer_label
         if color is None:
             label.configure(text=message)
         else:
             label.configure(text=message, fg=color)
         if change_back is not None:
-            if change_back:
-                label.after(2000, lambda: label.configure(text='Ready.', fg='black'))
+            if change_back and (time is not None):
+                label.after(int(time), lambda: label.configure(text='Ready.', fg='black'))
+            elif change_back:
+                label.after(1500, lambda: label.configure(text='Ready.', fg='black'))
 
     def _draw(self) -> None:
         """
@@ -338,7 +342,8 @@ class MainApp(tk.Frame):
             self._index = self.body.curr_index()
         except Body.BodyError:
             msg = 'Nothing is selected to be deleted!'
-            self.pop_up_msg(msg, color='red')
+            self.footer.set_status(msg, color='red', change_back=True)
+
         else:
             self._current_profile.del_post(self._index)
             self._current_profile.save_profile(self._profile_filename)
@@ -352,7 +357,8 @@ class MainApp(tk.Frame):
         """
         from a5 import posts_transclude
         if self._profile_filename is None:
-            self.pop_up_msg('Create/Open a DSU file first!', color='red')
+            self.footer.set_status('Create/Open a DSU file first!',
+                                   color='red', change_back=True)
         else:
             post = Post()
             title = 'TYPE TITLE HERE'
@@ -378,7 +384,7 @@ class MainApp(tk.Frame):
             self._index = self.body.curr_index()
         except Body.BodyError:
             msg = 'Nothing is selected to be saved!'
-            self.pop_up_msg(msg, color='red')
+            self.footer.set_status(msg, color='red', change_back=True)
         else:
             self._current_profile.edit_post(self._index, title, entry)
             self._current_profile = posts_transclude(self._current_profile)
@@ -387,7 +393,8 @@ class MainApp(tk.Frame):
             self.footer.set_status('Saved!', 'green', change_back=True)
             if self._is_online:
                 self.publish(self._current_profile)
-                self.pop_up_msg('Uploaded!', color='green')
+
+                self.footer.set_status("Uploaded!", color='green', change_back=True)
 
     """
     A callback function for responding to changes to the online chk_button.
@@ -531,7 +538,7 @@ if __name__ == "__main__":
 
     # This is just an arbitrary starting point. You can change the value around to see how
     # the starting size of the window changes. I just thought this looked good for our UI.
-    main.geometry("720x480")
+    main.geometry("750x480")
 
     # adding this option removes some legacy behavior with menus that modern OSes don't support. 
     # If you're curious, feel free to comment out and see how the menu changes.
