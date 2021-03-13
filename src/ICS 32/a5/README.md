@@ -1,6 +1,6 @@
 Welcome to my a5 assignment, just run DistributedSocialGUI.py will be good.
 
-I have three extra-credit features:
+I have 4 extra-credit features:
 
 1. Add title support for posts
 
@@ -25,3 +25,8 @@ I have three extra-credit features:
     them as you wish, then click "save to the profile" to save them. But once you
     changed the keys, the profile won't be able to get properly encrypted or
     decrypted, so use this function wisely. 
+    
+4. Add support for deleting the post
+
+    You first select a post, and click "Delete Post", and that's deleted!
+    
