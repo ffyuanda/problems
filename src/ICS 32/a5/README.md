@@ -1,5 +1,11 @@
 Welcome to my a5 assignment, just run DistributedSocialGUI.py will be good.
 
+Basic info are hard-coded:
+port = 2021
+server = 168.235.86.101
+username = ffyuanda
+pwd = ffyuanda123
+
 I have 5 extra-credit features:
 
 1. Add title support for posts
@@ -36,3 +42,12 @@ I have 5 extra-credit features:
     in the main interface, then click "Show README", then you will enter an edit-and-save 
     mode to read and modify README.md. If you want to save it, just click "Save README". And
     you will be all good!
+
+6. Other small features
+ 
+    footer_label can display various messages from the
+    system and change back to "Ready." after displaying.
+    
+    colored buttons and messages
+    
+    to be continued...
