@@ -82,7 +82,6 @@ class Body(tk.Frame):
             post_id = i
             self._insert_post_tree(post_id, self._posts[i])
 
-
     """
     Inserts a single post to the post_tree widget.
     """
@@ -150,12 +149,14 @@ class Footer(tk.Frame):
     A subclass of tk.Frame that is responsible for drawing all of the widgets
     in the footer portion of the root frame.
     """
-    def __init__(self, root, save_callback=None, online_callback=None, add_post_callback=None) -> None:
+    def __init__(self, root, save_callback=None, online_callback=None, add_post_callback=None,
+                 del_post_callback=None) -> None:
         tk.Frame.__init__(self, root)
         self.root = root
         self._save_callback = save_callback
         self._online_callback = online_callback
         self._add_post_callback = add_post_callback
+        self._del_post_callback = del_post_callback
         # IntVar is a variable class that provides access to special variables
         # for Tkinter widgets. is_online is used to hold the state of the chk_button widget.
         # The value assigned to is_online when the chk_button widget is changed by the user
@@ -187,6 +188,15 @@ class Footer(tk.Frame):
         """
         if self._add_post_callback is not None:
             self._add_post_callback()
+
+    def del_post_click(self) -> None:
+        """
+        Calls the callback function specified in the del_post_callback class attribute, if
+        available, when the del_post_button widget has been clicked.
+        :return: None
+        """
+        if self._del_post_callback is not None:
+            self._del_post_callback()
 
     def save_click(self) -> None:
         """
@@ -231,7 +241,7 @@ class Footer(tk.Frame):
         add_post_button.pack(fill=tk.BOTH, side=tk.RIGHT, padx=5, pady=5)
 
         del_post_button = tk.Button(master=self, text='Delete Post', width=20, bg='red')
-        del_post_button.configure(command=self.add_post_click)
+        del_post_button.configure(command=self.del_post_click)
         del_post_button.pack(fill=tk.BOTH, side=tk.RIGHT, padx=5, pady=5)
 
         self.chk_button = tk.Checkbutton(master=self, text="Online", variable=self.is_online)
@@ -322,6 +332,18 @@ class MainApp(tk.Frame):
         bio = np.get_bio()
         ds_client.send(np, send_type, server, port, username, password, posts,
                        bio)
+
+    def del_post_process(self):
+        try:
+            self._index = self.body.curr_index()
+        except Body.BodyError:
+            msg = 'Nothing is selected to be deleted!'
+            self.pop_up_msg(msg, color='red')
+        else:
+            self._current_profile.del_post(self._index)
+            self._current_profile.save_profile(self._profile_filename)
+            self.body.set_posts(self._current_profile.get_posts())
+            self.footer.set_status('Deleted!', 'red', change_back=True)
 
     def add_post_process(self):
         """
@@ -460,7 +482,7 @@ class MainApp(tk.Frame):
         self.body.pack(fill=tk.BOTH, side=tk.TOP, expand=True)
 
         self.footer = Footer(self.root, save_callback=self.save_profile, online_callback=self.online_changed,
-                             add_post_callback=self.add_post_process)
+                             add_post_callback=self.add_post_process, del_post_callback=self.del_post_process)
         self.footer.pack(fill=tk.BOTH, side=tk.BOTTOM)
 
 

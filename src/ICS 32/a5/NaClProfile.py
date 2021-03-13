@@ -41,6 +41,14 @@ class NaClProfile(Profile):
         self.private_key = ''
         self.keypair = ''
 
+    def delete_post(self, index: int) -> None:
+        """
+        Delete a post from the self_posts list using a index.
+        :param index: the index of the post
+        :return: None
+        """
+        self._posts.pop(index)
+
     def edit_post(self, index: int, title: str, entry: str):
         """
         Sets a specific post in the self_posts list, change its title and entry.
