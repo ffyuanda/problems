@@ -5,7 +5,7 @@ I have 4 extra-credit features:
 1. Add title support for posts
 
     You can add a title to the post by writing in the first line in the entry
-    widget. The program will convert whatever on the first line in the entry to 
+    widget. The program will convert whatever on the first line in the entry to be
     the title and display it in the posts list.
     
 2. Add support for post editing
@@ -28,7 +28,7 @@ I have 4 extra-credit features:
     
 4. Add support for deleting the post
 
-    You first select a post, and click "Delete Post", and that's deleted!
+    You first select a post, then click "Delete Post", and that's deleted!
 
 5. Add a README.md display and edit support
 
