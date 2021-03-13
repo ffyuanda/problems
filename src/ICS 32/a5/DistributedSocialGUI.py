@@ -150,7 +150,7 @@ class Footer(tk.Frame):
     A subclass of tk.Frame that is responsible for drawing all of the widgets
     in the footer portion of the root frame.
     """
-    def __init__(self, root, save_callback=None, online_callback=None, add_post_callback=None):
+    def __init__(self, root, save_callback=None, online_callback=None, add_post_callback=None) -> None:
         tk.Frame.__init__(self, root)
         self.root = root
         self._save_callback = save_callback
@@ -198,19 +198,30 @@ class Footer(tk.Frame):
 
             self._save_callback()
 
-    """
-    Updates the text that is displayed in the footer_label widget
-    """
-    def set_status(self, message, color=None):
+    def set_status(self, message: str, color: str = None, change_back: bool = None) -> None:
+        """
+        Updates the text that is displayed in the footer_label widget, with
+        change_back support.
+        :param message: the message to display in footer_label
+        :param color: the color for message
+        :param change_back: if you want the footer_label to change back to
+        'Ready.' after fixed amount of time
+        :return: None
+        """
+        label = self.footer_label
         if color is None:
-            self.footer_label.configure(text=message)
+            label.configure(text=message)
         else:
-            self.footer_label.configure(text=message, fg=color)
-    
-    """
-    Call only once upon initialization to add widgets to the frame
-    """
-    def _draw(self):
+            label.configure(text=message, fg=color)
+        if change_back is not None:
+            if change_back:
+                label.after(2000, lambda: label.configure(text='Ready.', fg='black'))
+
+    def _draw(self) -> None:
+        """
+        Call only once upon initialization to add widgets to the frame
+        :return: None
+        """
         save_button = tk.Button(master=self, text="Save Post", width=20, bg='light green')
         save_button.configure(command=self.save_click)
         save_button.pack(fill=tk.BOTH, side=tk.RIGHT, padx=5, pady=5)
@@ -328,6 +339,7 @@ class MainApp(tk.Frame):
             self._current_profile.save_profile(self._profile_filename)
             self.body.set_posts(self._current_profile.get_posts())
             self.body.set_text_entry("")
+            self.footer.set_status('Post added!', 'green', change_back=True)
 
     def save_profile(self) -> None:
         """
@@ -347,6 +359,7 @@ class MainApp(tk.Frame):
             self._current_profile = posts_transclude(self._current_profile)
             self._current_profile.save_profile(self._profile_filename)
             self.body.set_posts(self._current_profile.get_posts())
+            self.footer.set_status('Saved!', 'green', change_back=True)
             if self._is_online:
                 self.publish(self._current_profile)
                 self.pop_up_msg('Uploaded!', color='green')
@@ -360,7 +373,7 @@ class MainApp(tk.Frame):
         if self._is_online == 1:
             self.footer.set_status("Online", 'green')
         else:
-            self.footer.set_status("Offline", 'red')
+            self.footer.set_status("Offline", 'red', change_back=True)
 
     def display_keys(self):
 
@@ -395,7 +408,14 @@ class MainApp(tk.Frame):
         save_button = tk.Button(window, text='save to the profile', command=save_keys)
         save_button.pack(side=tk.BOTTOM)
 
-    def pop_up_msg(self, msg: str, size: str = None, color=None):
+    def pop_up_msg(self, msg: str, size: str = None, color=None) -> None:
+        """
+        Pop up a message for user to read.
+        :param msg: the message
+        :param size: the size of the pop-up window
+        :param color: the color of the message
+        :return: None
+        """
         import tkinter.font as tkFont
         font_style = tkFont.Font(size=20)
 
