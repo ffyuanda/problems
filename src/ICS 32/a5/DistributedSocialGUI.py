@@ -315,17 +315,19 @@ class MainApp(tk.Frame):
         """
         from a5 import posts_transclude
         if self._profile_filename is None:
-            self.new_profile()
-        post = Post()
-        title = 'TYPE TITLE HERE'
-        entry = 'TYPE ENTRY HERE'
-        post.set_entry(entry)
-        post.set_title(title)
-        self._current_profile.add_post(post)
-        self._current_profile = posts_transclude(self._current_profile)
-        self._current_profile.save_profile(self._profile_filename)
-        self.body.set_posts(self._current_profile.get_posts())
-        self.body.set_text_entry("")
+            self.pop_up_msg('Create/Open a DSU file first!', color='red')
+            # self.new_profile()
+        else:
+            post = Post()
+            title = 'TYPE TITLE HERE'
+            entry = 'TYPE ENTRY HERE'
+            post.set_entry(entry)
+            post.set_title(title)
+            self._current_profile.add_post(post)
+            self._current_profile = posts_transclude(self._current_profile)
+            self._current_profile.save_profile(self._profile_filename)
+            self.body.set_posts(self._current_profile.get_posts())
+            self.body.set_text_entry("")
 
     def save_profile(self) -> None:
         """
@@ -339,7 +341,7 @@ class MainApp(tk.Frame):
             self._index = self.body.curr_index()
         except Body.BodyError:
             msg = 'Nothing is selected to be saved!'
-            self.pop_up_msg(msg)
+            self.pop_up_msg(msg, color='red')
         else:
             self._current_profile.edit_post(self._index, title, entry)
             self._current_profile = posts_transclude(self._current_profile)
@@ -347,7 +349,7 @@ class MainApp(tk.Frame):
             self.body.set_posts(self._current_profile.get_posts())
             if self._is_online:
                 self.publish(self._current_profile)
-                self.pop_up_msg('Uploaded!')
+                self.pop_up_msg('Uploaded!', color='green')
 
     """
     A callback function for responding to changes to the online chk_button.
@@ -393,7 +395,7 @@ class MainApp(tk.Frame):
         save_button = tk.Button(window, text='save to the profile', command=save_keys)
         save_button.pack(side=tk.BOTTOM)
 
-    def pop_up_msg(self, msg: str, size: str = None):
+    def pop_up_msg(self, msg: str, size: str = None, color=None):
         import tkinter.font as tkFont
         font_style = tkFont.Font(size=20)
 
@@ -403,7 +405,7 @@ class MainApp(tk.Frame):
         else:
             window.geometry(size)
         window.resizable(0, 0)
-        msg_label = tk.Label(window, text=msg, font=font_style)
+        msg_label = tk.Label(window, text=msg, font=font_style, fg=color)
         msg_label.pack(fill=tk.BOTH)
 
     """
