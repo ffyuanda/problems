@@ -201,18 +201,21 @@ class Footer(tk.Frame):
     """
     Updates the text that is displayed in the footer_label widget
     """
-    def set_status(self, message):
-        self.footer_label.configure(text=message)
+    def set_status(self, message, color=None):
+        if color is None:
+            self.footer_label.configure(text=message)
+        else:
+            self.footer_label.configure(text=message, fg=color)
     
     """
     Call only once upon initialization to add widgets to the frame
     """
     def _draw(self):
-        save_button = tk.Button(master=self, text="Save Post", width=20)
+        save_button = tk.Button(master=self, text="Save Post", width=20, bg='light green')
         save_button.configure(command=self.save_click)
         save_button.pack(fill=tk.BOTH, side=tk.RIGHT, padx=5, pady=5)
 
-        add_post_button = tk.Button(master=self, text='Add Post', width=20)
+        add_post_button = tk.Button(master=self, text='Add Post', width=20, bg='cyan')
         add_post_button.configure(command=self.add_post_click)
         add_post_button.pack(fill=tk.BOTH, side=tk.RIGHT, padx=5, pady=5)
 
@@ -344,6 +347,7 @@ class MainApp(tk.Frame):
             self.body.set_posts(self._current_profile.get_posts())
             if self._is_online:
                 self.publish(self._current_profile)
+                self.pop_up_msg('Uploaded!')
 
     """
     A callback function for responding to changes to the online chk_button.
@@ -352,9 +356,9 @@ class MainApp(tk.Frame):
 
         self._is_online = value
         if self._is_online == 1:
-            self.footer.set_status("Online")
+            self.footer.set_status("Online", 'green')
         else:
-            self.footer.set_status("Offline")
+            self.footer.set_status("Offline", 'red')
 
     def display_keys(self):
 
