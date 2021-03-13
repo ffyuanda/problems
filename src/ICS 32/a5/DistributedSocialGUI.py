@@ -400,6 +400,26 @@ class MainApp(tk.Frame):
         else:
             self.footer.set_status("Offline", 'red', change_back=True)
 
+    def display_README(self):
+
+        def save_README():
+            pass
+        window = tk.Toplevel()
+        window.geometry('500x500')
+        window.resizable(0, 0)
+
+        README_file = open("README.md", 'r')
+        README_text = ''
+        for line in README_file:
+            README_text += line
+
+        readme = tk.Text(master=window)
+        readme.pack(fill=tk.BOTH, expand=True)
+        readme.insert('0.0', README_text)
+
+        save_button = tk.Button(window, text='Save README', command=save_README)
+        save_button.pack(side=tk.BOTTOM)
+
     def display_keys(self):
 
         def save_keys():
@@ -470,6 +490,11 @@ class MainApp(tk.Frame):
         menu_settings = tk.Menu(menu_bar)
         menu_settings.add_command(label='Current keys', command=self.display_keys)
         menu_bar.add_cascade(menu=menu_settings, label='Settings')
+
+        # README widget
+        menu_README = tk.Menu(menu_bar)
+        menu_README.add_command(label='Show README', command=self.display_README)
+        menu_bar.add_cascade(menu=menu_README, label='Others')
 
         self.root.config(menu=menu_bar)
         # NOTE: Additional menu items can be added by following the conventions here.
