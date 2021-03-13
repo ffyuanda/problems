@@ -230,6 +230,10 @@ class Footer(tk.Frame):
         add_post_button.configure(command=self.add_post_click)
         add_post_button.pack(fill=tk.BOTH, side=tk.RIGHT, padx=5, pady=5)
 
+        del_post_button = tk.Button(master=self, text='Delete Post', width=20, bg='red')
+        del_post_button.configure(command=self.add_post_click)
+        del_post_button.pack(fill=tk.BOTH, side=tk.RIGHT, padx=5, pady=5)
+
         self.chk_button = tk.Checkbutton(master=self, text="Online", variable=self.is_online)
         self.chk_button.configure(command=self.online_click) 
         self.chk_button.pack(fill=tk.BOTH, side=tk.RIGHT)
