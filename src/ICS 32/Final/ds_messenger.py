@@ -20,3 +20,4 @@ class DirectMessenger:
     def retrieve_all(self) -> list:
         # returns a list of DirectMessage objects containing all messages
         pass
+
