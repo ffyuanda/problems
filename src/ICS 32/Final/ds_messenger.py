@@ -339,8 +339,10 @@ if __name__ == '__main__':
 
     sender_dsuserver = HOST
     sender_username = 'The_Group_Sender'
-    sender_password = 'The_Group_Sender_passworssd'
+    sender_password = 'The_Group_Sender_password'
     sender = DirectMessenger(sender_dsuserver, sender_username, sender_password)
+
+    print("Should print out True if successfully sent:")
     print(sender.send('something nice', 'The_Group_Receiver'))
 
     print()
@@ -357,4 +359,3 @@ if __name__ == '__main__':
 
     print("receiver's all messages:")
     print(receiver.retrieve_all())
-
