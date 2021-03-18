@@ -11,7 +11,9 @@ class Body(tk.Frame):
     """
     Manages widgets in the body of the main frame.
     """
-    def __init__(self, root, display):
+    import types
+
+    def __init__(self, root: tk.Frame, display: types.FunctionType):
         """
         :param root: the main window of the Tkinter program
         :param display: display_messages method in MainApp class

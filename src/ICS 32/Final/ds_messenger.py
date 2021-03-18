@@ -85,6 +85,12 @@ class DirectMessenger:
         self.dsuserver = dsuserver
         self.username = username
         self.password = password
+        if type(self.dsuserver) is not str:
+            raise DirectMessengerError('dsuserver is not of type str')
+        if type(self.username) is not str:
+            raise DirectMessengerError('username is not of type str')
+        if type(self.password) is not str:
+            raise DirectMessengerError('password is not of type str')
         # DMProtocol for usage
         self.protocol = DMProtocol()
         # Initialize the sock along with the DirectMessenger object
@@ -103,12 +109,16 @@ class DirectMessenger:
         :param recipient: the user's name
         :return: success, which indicates if the sending is successful
         """
+        if type(message) is not str:
+            raise DirectMessengerError('message is not of type str')
+        if type(recipient) is not str:
+            raise DirectMessengerError('recipient is not of type str')
         # join first to set self.token
         self.join(self.sock, self.username, self.password)
         success = self.send_dm(self.sock, message, recipient)
         return success
 
-    def join(self, sock: socket, username, password) -> None:
+    def join(self, sock: socket.socket, username: str, password: str) -> None:
         """
         Joins the server and feed the retrieved token back to self.token
         :param sock: currently working socket
@@ -116,11 +126,13 @@ class DirectMessenger:
         :param password: password of current user
         :return: None
         """
+        if type(sock) is not socket.socket:
+            raise DirectMessengerError('sock is not of type socket')
         join_msg = self.protocol.send_join_processor(username, password)
         self.protocol.sender(sock, join_msg)
         self.token = self.protocol.response(sock).token
 
-    def send_dm(self, sock: socket, message: str, recipient: str) -> bool:
+    def send_dm(self, sock: socket.socket, message: str, recipient: str) -> bool:
         """
         Wraps up message and recipient into a DirectMessage and send it
         :param sock: currently working socket
@@ -128,7 +140,8 @@ class DirectMessenger:
         :param recipient: the user's name
         :return: a bool indicates if the sending is successful
         """
-
+        if type(sock) is not socket.socket:
+            raise DirectMessengerError('sock is not of type socket')
         dm = DirectMessage()
         dm.set_message(message)
         dm.set_recipient(recipient)
@@ -183,13 +196,15 @@ class DMProtocol:
     def __init__(self):
         pass
 
-    def sender(self, sock: socket, msg: str) -> None:
+    def sender(self, sock: socket.socket, msg: str) -> None:
         """
         A wrapper method to simplify the sending process.
         :param sock: currently working socket
         :param msg: the message needs to be sent
         :return: None
         """
+        if type(sock) is not socket.socket:
+            raise DMProtocolError('sock is not of type socket')
         send = sock.makefile('w')
         send.write(msg + '\r\n')
         send.flush()
@@ -200,6 +215,8 @@ class DMProtocol:
         :param json_msg: the input JSON str
         :return: the DataTuple object contains json_msg's information
         """
+        if type(json_msg) is not str:
+            raise DMProtocolError('json_msg is not of type str')
         try:
             type_list = ['error', 'ok']
 
@@ -235,7 +252,7 @@ class DMProtocol:
         else:
             return DataTuple(type_, message, token)
 
-    def response(self, sock: socket) -> DataTuple:
+    def response(self, sock: socket.socket) -> DataTuple:
         """
         It listens the raw response from the server at sock and convert them
         to user friendly messages.
@@ -243,6 +260,8 @@ class DMProtocol:
         :return: a DataTuple that contains the info from the server
         response JSON
         """
+        if type(sock) is not socket.socket:
+            raise DMProtocolError('sock is not of type socket')
         recv = sock.makefile('r')
         resp = recv.readline()
         resp = self.extract_json(resp)
@@ -265,7 +284,7 @@ class DMProtocol:
             print('Error message: {}\n'.format(resp.message))
         return resp
 
-    def send_join_processor(self, username, password, token='') -> str:
+    def send_join_processor(self, username: str, password: str, token: str = '') -> str:
         """
         Process the inputs username password and token, and make them
         into a JSON string.
@@ -278,11 +297,18 @@ class DMProtocol:
         :param token: the token that you want to verify with the server
         :return: the formatted JSON string to server
         """
+        if type(username) is not str:
+            raise DMProtocolError('username is not of type str')
+        if type(password) is not str:
+            raise DMProtocolError('password is not of type str')
+        if type(token) is not str:
+            raise DMProtocolError('token is not of type str')
+
         output = '{{"join": {{"username": "{0}", "password": "{1}", "token": "{2}"}}}}'. \
             format(username, password, token)
         return output
 
-    def send_directmessage_processor(self, token, dm: DirectMessage) -> str:
+    def send_directmessage_processor(self, token: str, dm: DirectMessage) -> str:
         """
         Process the inputs token and dm, and make them
         into a JSON string.
@@ -294,6 +320,8 @@ class DMProtocol:
         :param dm: the DirectMessage object that needs to be sent
         :return: the formatted JSON string to server
         """
+        if type(dm) is not DirectMessage:
+            raise DMProtocolError('dm is not of type DirectMessage')
         entry = dm.get_message()
         recipient = dm.get_recipient()
 
@@ -306,7 +334,7 @@ class DMProtocol:
             format(token, entry, recipient, timestamp)
         return output
 
-    def request_unread_processor(self, token) -> str:
+    def request_unread_processor(self, token: str) -> str:
         """
         Process the inputs token, and make it into a JSON string.
 
@@ -319,7 +347,7 @@ class DMProtocol:
         output = '{{"token": "{0}", "directmessage": "new"}}'.format(token)
         return output
 
-    def request_all_processor(self, token) -> str:
+    def request_all_processor(self, token: str) -> str:
         """
         Process the inputs token, and make it into a JSON string.
 
