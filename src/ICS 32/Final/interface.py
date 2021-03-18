@@ -207,7 +207,6 @@ class MainApp(tk.Frame):
         self.draw_main()
         self.draw_user_window()
 
-
     def add_user(self) -> None:
         """
         Calls set_user method in Body class to add new users to treewidget.
@@ -324,6 +323,7 @@ class MainApp(tk.Frame):
         :return: None
         """
         self.user_info_window = tk.Toplevel()
+        self.user_info_window.attributes('-topmost', True)
         self.user_info_window.title('Create a User or Log In')
         self.user_info_window.geometry('420x95')
         self.user_info_window.option_add('*tearOff', False)
@@ -355,6 +355,8 @@ class MainApp(tk.Frame):
 
         create_frame = tk.Frame(master=self.user_info_window, width='240')
         create_frame.pack(fill=tk.BOTH, side=tk.RIGHT, expand=True)
+
+        # self.user_info_window.mainloop()
 
 
     def draw_main(self) -> None:
