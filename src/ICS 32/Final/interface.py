@@ -6,6 +6,7 @@ from tkinter import ttk, simpledialog, messagebox
 class MainAppError(Exception):
     pass
 
+
 class Body(tk.Frame):
     """
     Manages widgets in the body of the main frame.
@@ -22,7 +23,6 @@ class Body(tk.Frame):
         self.draw()
         self.list_users = []
 
-
     def reset_ui(self) -> None:
         """
         Resets users_tree treeview whenever new user logged in.
@@ -31,7 +31,6 @@ class Body(tk.Frame):
         self.set_text_frame_entry("")
         for item in self.users_tree.get_children():
             self.users_tree.delete(item)
-
 
     def display_text(self, msg:str) -> None:
         """
@@ -42,7 +41,6 @@ class Body(tk.Frame):
         self.msgs_box.insert('0.0', msg)
         self.msgs_box.config(state='disabled')
 
-
     def clear_display(self) -> None:
         """
         Clears all messages in msgs_box widget when other user selected.
@@ -50,7 +48,6 @@ class Body(tk.Frame):
         self.msgs_box.config(state='normal')
         self.msgs_box.delete('0.0', 'end')
         self.msgs_box.config(state='disabled')    
-        
 
     def node_select(self, event):
         """
@@ -61,18 +58,17 @@ class Body(tk.Frame):
         self.clear_display()
         self.display()
 
-
     def add_new_user(self, user) -> None:
         """
         Adds new users to users_tree treeview widget.
+        :param user: the username needs to be added
         """
         if user not in self.list_users:
             self.list_users.append(user)
             id = len(self.list_users)
             self.users_tree.insert('', id, id, text=user)
 
-
-    def set_users(self, users) -> None:
+    def set_users(self, users: list) -> None:
         """
         Displays all senders to users_tree treeview widget.
         :return: None
@@ -83,7 +79,6 @@ class Body(tk.Frame):
         for user in users:
             self.add_new_user(user['from'])
 
-
     def set_text_frame_entry(self, text:str) -> None:
         """
         Sets the text to be displayed in the text_editor widget.
@@ -92,14 +87,12 @@ class Body(tk.Frame):
         self.text_editor.delete('0.0', 'end')
         self.text_editor.insert('0.0', text)
 
-
     def get_text_frame_entry(self) -> str:
         """
         Returns the text that is currently displayed in the text_editor widget.
         :return: message user wants to send
         """
         return self.text_editor.get('1.0', 'end').rstrip()
-
 
     def draw(self) -> None:
         """
@@ -143,7 +136,6 @@ class Footer(tk.Frame):
         self.update = update
         self.draw()
 
-    
     def add_user_entry(self) -> None:
         """
         Opens a popup window when add_user_button clicked.
@@ -154,7 +146,6 @@ class Footer(tk.Frame):
         if self.new_user is not None:
             self.add_user()
 
-
     def send_post(self) -> None:
         """
         Calls send_msg method in MainApp class when user clicks the Send button.
@@ -162,14 +153,12 @@ class Footer(tk.Frame):
         """
         self.send_msg()
 
-
     def reload(self) -> None:
         """
         Updates messages to current time.
         :return: None
         """
         self.update()
-
 
     def draw(self) -> None:
         """
@@ -219,7 +208,6 @@ class MainApp(tk.Frame):
         except Exception:
             self.error_window('Not logged in.')       
 
-
     def send_msg(self) -> None:
         """
         Sends message to another user.
@@ -240,7 +228,6 @@ class MainApp(tk.Frame):
             self.error_window('Select a user.')
         except Exception:
             self.error_window('Not logged in.')
-
 
     def display_messages(self) -> None:
         """
@@ -263,7 +250,6 @@ class MainApp(tk.Frame):
         except AttributeError:
             self.error_window('Not logged in.')
 
-
     def close(self) -> None:
         """
         Closes the program when the 'Close' menu item is clicked.
@@ -271,7 +257,6 @@ class MainApp(tk.Frame):
         """
         self.root.destroy()
 
-    
     def connect(self) -> None:
         """
         Connects user's information to server.
@@ -291,7 +276,6 @@ class MainApp(tk.Frame):
         except Exception:
             self.error_window('Invalid username and/ or password.')
 
-
     def update(self) -> None:
         """
         Updates users_tree treewidget to show current messages.
@@ -307,7 +291,6 @@ class MainApp(tk.Frame):
         except AttributeError:
             self.error_window('Not logged in.')
 
-
     def error_window(self, error: str) -> None:
         """
         Displays error popup window when error occurs.
@@ -315,7 +298,6 @@ class MainApp(tk.Frame):
         :return: None
         """
         messagebox.showinfo(title='ERROR', message=error)
-
         
     def draw_user_window(self) -> None:
         """
@@ -356,9 +338,6 @@ class MainApp(tk.Frame):
         create_frame = tk.Frame(master=self.user_info_window, width='240')
         create_frame.pack(fill=tk.BOTH, side=tk.RIGHT, expand=True)
 
-        # self.user_info_window.mainloop()
-
-
     def draw_main(self) -> None:
         """
         Adds widgets to main frame.
@@ -386,4 +365,3 @@ if __name__ == '__main__':
     main_window.minsize(main_window.winfo_width(), main_window.winfo_height())
 
     main_window.mainloop()
-
