@@ -37,14 +37,25 @@ def by_party(db : {int:{str:int}}) -> [str]:
 
     pairs = [(party, p[1]) for party in list(set([x for item in db.items() for x in item[1].keys()])) \
              for single_dict in db.values() for p in single_dict.items() if p[0] == party]
-    return [x[0] for x in sorted([item for item in [(i[0], sum(i[1])) for i in \
+    return [x[0] for x in sorted(sorted([item for item in [(i[0], sum(i[1])) for i in \
            [(party, list(map(lambda y: y[1], filter(lambda x: x[0] == party, pairs)))) \
-           for party in list(set([x for item in db.items() for x in item[1].keys()]))]]],
-                                 key=lambda x: x[1], reverse=True)]
+           for party in set([x for item in db.items() for x in item[1].keys()])]]], key=lambda x: x[0]),
+                                 key=lambda x: (x[1]), reverse=True)]
 
 
 def registration_by_state(db : {int:{str:int}}, state_zips : {str:{int}}) -> {str:{str:int}}:
-    pass
+    output_dict = dict()
+    for item in state_zips.items():
+        state = item[0]
+        zips = item[1]
+        result_dict = defaultdict(int)
+        for a_zip in zips:
+            if a_zip in db:
+                for in_item in db[a_zip].items():
+                    result_dict[in_item[0]] += in_item[1]
+        if result_dict:
+            output_dict[state] = dict(result_dict)
+    return output_dict
 
 
 if __name__ == '__main__':
