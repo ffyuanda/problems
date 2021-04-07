@@ -34,23 +34,9 @@ def by_size(db : {int:{str:int}}) -> [int]:
 
 
 def by_party(db : {int:{str:int}}) -> [str]:
-    # result = list(set([x for item in db.items() for x in item[1].keys()]))
-    pairs = [(party, p[1]) for party in list(set([x for item in db.items() for x in item[1].keys()])) for single_dict in db.values() for p in single_dict.items() if p[0] == party]
 
-    # parties = ['d', 'l', 'r', 'i']
-    # some_list = [(party, list(map(lambda y: y[1], filter(lambda x: x[0] == party, pairs)))) for party in list(set([x for item in db.items() for x in item[1].keys()]))]
-    # some_list = [(i[0], sum(i[1])) for i in [(party, list(map(lambda y: y[1], filter(lambda x: x[0] == party, pairs)))) for party in list(set([x for item in db.items() for x in item[1].keys()]))]]
-
-    # some_dict = {pairs[p][0]: (pairs[p - 1][1] + pairs[p][1]) if pairs[p][0] == pairs[p - 1][0] else (pairs[p][1]) for p in range(1, len(pairs))}
-    # print(some_dict)
-    # print(some_list)
-    # print(pairs)
-    # for pair in pairs:
-    #     some_dict[pair[0]] += pair[1]
-    # result = [item for item in some_dict.items()]
-    # result = sorted([item for item in some_dict.items()], key=lambda x: x[1], reverse=True)
-    # result = [x[0] for x in sorted([item for item in some_dict.items()], key=lambda x: x[1], reverse=True)]
-
+    pairs = [(party, p[1]) for party in list(set([x for item in db.items() for x in item[1].keys()])) \
+             for single_dict in db.values() for p in single_dict.items() if p[0] == party]
     return [x[0] for x in sorted([item for item in [(i[0], sum(i[1])) for i in \
            [(party, list(map(lambda y: y[1], filter(lambda x: x[0] == party, pairs)))) \
            for party in list(set([x for item in db.items() for x in item[1].keys()]))]]],
