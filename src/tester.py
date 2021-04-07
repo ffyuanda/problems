@@ -1,7 +1,17 @@
-# posts = [{"entry": "liBkixUdm4sev351JKe243B236kbmlHYmLLcnHB0CFkgdQexTll0CAoDGKiuUh8=", "timestamp": 1615477007.7304316, "title": "weYw+eAXXl2MWqU9EFzEGJKWYmzp/XL5eUlhbSIvL+MFb/aQjfiQqcuYs8y8/bpgBw=="},
-#          {"entry": "rZaDwqKZ48j8nOQq3TBhxacCwKO+qZgqCQ8OL9fBUATpeT3lk6xAIw==", "timestamp": 1615479111.0422862, "title": "0br2qo6N2Q0sycwWb4jJyB1Q4mIYcVEQ1CHJH6pXgiGk2/zPELjZGDoPL0FEpp0="}]
-# print(posts[0])
-import types
-def something():
-    pass
-print(isinstance(something, types.FunctionType))
+# my_dict = {1:2, 3:4}
+# my_dict2 = {1:23, 3: 44}
+# my_list = my_dict2 + my_dict
+# print(my_list)
+# x = [1, 2, 3]
+# x[1] = x
+# print(x)
+from collections import defaultdict
+pairs = [('d', 15), ('d', 12), ('d', 10), ('d', 30), ('i', 15), ('i', 30), ('i', 15), ('r', 15), ('r', 8), ('r', 22), ('r', 30), ('r', 15), ('l', 20), ('l', 20), ('l', 15)]
+# some_dict = defaultdict(int)
+parties = ['d', 'l', 'r', 'i']
+some_list = [(party, list(map(lambda y: y[1], filter(lambda x: x[0] == party, pairs)))) for party in parties]
+some_list = [(i[0], sum(i[1])) for i in some_list]
+# some_list = list(map(lambda y: y[1], filter(lambda x: x[0] == 'd', pairs)))
+# some_list = [pairs[p][1] if pairs[p][0] == pairs[p - 1][0] else pairs[p][1] for p in range(0, len(pairs))]
+# some_dict = {pairs[p][0]: (pairs[p - 1][1] + pairs[p][1]) if pairs[p][0] == pairs[p - 1][0] else (pairs[p][1]) for p in range(1, len(pairs))}
+print(some_list)
