@@ -1,0 +1,43 @@
+# Setup
+c-->from importlib import reload
+c-->import stable
+c-->reload(stable)
+# Test read_match_preference
+c-->m0 = stable.read_match_preferences(open('men0.txt'))
+==-->m0-->{'m2': [None, ['w3', 'w1', 'w2']], 'm1': [None, ['w3', 'w2', 'w1']], 'm3': [None, ['w2', 'w1', 'w3']]}
+c-->m1 = stable.read_match_preferences(open('men1.txt'))
+==-->m1-->{'m3': [None, ['w4', 'w1', 'w2', 'w3', 'w5']], 'm5': [None, ['w1', 'w2', 'w3', 'w5', 'w4']], 'm4': [None, ['w2', 'w4', 'w5', 'w1', 'w3']], 'm1': [None, ['w4', 'w2', 'w1', 'w5', 'w3']], 'm2': [None, ['w3', 'w4', 'w2', 'w5', 'w1']]}
+c-->w2 = stable.read_match_preferences(open('women2.txt'))
+==-->w2-->{'june': [None, ['eli', 'hugh', 'gus', 'alan', 'ben', 'jim', 'chad', 'ira', 'fred', 'dave']], 'eva': [None, ['jim', 'hugh', 'fred', 'dave', 'alan', 'gus', 'chad', 'eli', 'ira', 'ben']], 'fran': [None, ['ben', 'alan', 'eli', 'ira', 'jim', 'dave', 'fred', 'gus', 'chad', 'hugh']], 'beth': [None, ['ben', 'alan', 'chad', 'fred', 'gus', 'dave', 'ira', 'eli', 'jim', 'hugh']], 'iris': [None, ['ira', 'chad', 'hugh', 'gus', 'fred', 'ben', 'alan', 'eli', 'jim', 'dave']], 'cara': [None, ['fred', 'ben', 'eli', 'gus', 'hugh', 'chad', 'ira', 'alan', 'dave', 'jim']], 'gina': [None, ['jim', 'gus', 'hugh', 'fred', 'ben', 'alan', 'chad', 'eli', 'dave', 'ira']], 'hana': [None, ['gus', 'jim', 'ben', 'alan', 'ira', 'dave', 'hugh', 'eli', 'chad', 'fred']], 'ada': [None, ['ben', 'fred', 'jim', 'gus', 'ira', 'alan', 'dave', 'eli', 'chad', 'hugh']], 'dawn': [None, ['fred', 'jim', 'chad', 'alan', 'ira', 'hugh', 'gus', 'dave', 'ben', 'eli']]}
+# Test dict_as_str
+c-->m0 = {'m2': [None, ['w3', 'w1', 'w2']], 'm1': [None, ['w3', 'w2', 'w1']], 'm3': [None, ['w2', 'w1', 'w3']]}
+e-->repr(stable.dict_as_str(m0))-->"  m1 -> [None, ['w3', 'w2', 'w1']]\n  m2 -> [None, ['w3', 'w1', 'w2']]\n  m3 -> [None, ['w2', 'w1', 'w3']]\n"
+c-->d = dict(X=1,Y=3,Z=2)
+e-->repr(stable.dict_as_str(d))-->'  X -> 1\n  Y -> 3\n  Z -> 2\n'
+e-->repr(stable.dict_as_str(d,key=None,reverse=True))-->'  Z -> 2\n  Y -> 3\n  X -> 1\n'
+e-->repr(stable.dict_as_str(d,key=lambda x : d[x]))-->'  X -> 1\n  Z -> 2\n  Y -> 3\n'
+e-->repr(stable.dict_as_str(d,key=lambda x : d[x],reverse=True))-->'  Y -> 3\n  Z -> 2\n  X -> 1\n'
+# Test who_prefer
+e-->stable.who_prefer(['w3', 'w1', 'w2'],'w1','w2')-->w1
+e-->stable.who_prefer(['w3', 'w1', 'w2'],'w1','w3')-->w3
+e-->stable.who_prefer(['w3', 'w1', 'w2'],'w2','w1')-->w1
+e-->stable.who_prefer(['w3', 'w1', 'w2'],'w2','w3')-->w3
+e-->stable.who_prefer(['w3', 'w1', 'w2'],'w3','w1')-->w3
+e-->stable.who_prefer(['w3', 'w1', 'w2'],'w3','w2')-->w3
+# Test extract_matches
+c-->m0 = {'m3': ['w1', ['w2', 'w1', 'w3']], 'm1': ['w2', ['w3', 'w2', 'w1']], 'm2': ['w3', ['w3', 'w1', 'w2']]}
+==-->stable.extract_matches(m0)-->{('m2', 'w3'), ('m3', 'w1'), ('m1', 'w2')}
+c-->m1 = {'m3': ['w4', ['w4', 'w1', 'w2', 'w3', 'w5']], 'm4': ['w2', ['w2', 'w4', 'w5', 'w1', 'w3']], 'm5': ['w1', ['w1', 'w2', 'w3', 'w5', 'w4']], 'm1': ['w5', ['w4', 'w2', 'w1', 'w5', 'w3']], 'm2': ['w3', ['w3', 'w4', 'w2', 'w5', 'w1']]}
+==-->stable.extract_matches(m1)-->{('m1', 'w5'), ('m2', 'w3'), ('m3', 'w4'), ('m5', 'w1'), ('m4', 'w2')}
+c-->m3 = {'chad': ['dawn', ['hana', 'eva', 'ada', 'dawn', 'beth', 'fran', 'iris', 'gina', 'cara', 'june']], 'alan': ['iris', ['ada', 'eva', 'cara', 'iris', 'june', 'dawn', 'fran', 'beth', 'hana', 'gina']], 'dave': ['fran', ['iris', 'fran', 'dawn', 'gina', 'hana', 'eva', 'june', 'beth', 'cara', 'ada']], 'jim': ['ada', ['ada', 'fran', 'june', 'gina', 'eva', 'beth', 'dawn', 'cara', 'iris', 'hana']], 'hugh': ['eva', ['ada', 'eva', 'hana', 'fran', 'iris', 'cara', 'june', 'beth', 'gina', 'dawn']], 'fred': ['beth', ['beth', 'ada', 'dawn', 'gina', 'eva', 'iris', 'cara', 'june', 'hana', 'fran']], 'gus': ['gina', ['gina', 'eva', 'iris', 'beth', 'cara', 'ada', 'dawn', 'hana', 'june', 'fran']], 'eli': ['june', ['june', 'dawn', 'beth', 'cara', 'fran', 'eva', 'ada', 'iris', 'hana', 'gina']], 'ben': ['cara', ['cara', 'hana', 'ada', 'dawn', 'eva', 'fran', 'beth', 'june', 'iris', 'gina']], 'ira': ['hana', ['hana', 'cara', 'dawn', 'gina', 'beth', 'ada', 'fran', 'iris', 'june', 'eva']]}
+==-->stable.extract_matches(m3)-->{('hugh', 'eva'), ('ira', 'hana'), ('chad', 'dawn'), ('fred', 'beth'), ('gus', 'gina'), ('eli', 'june'), ('alan', 'iris'), ('ben', 'cara'), ('jim', 'ada'), ('dave', 'fran')}
+# Test make_match
+c-->m0 = {'m1': [None, ['w3', 'w2', 'w1']], 'm2': [None, ['w3', 'w1', 'w2']], 'm3': [None, ['w2', 'w1', 'w3']]}
+c-->w0 = {'w1': [None, ['m1', 'm2', 'm3']], 'w2': [None, ['m2', 'm1', 'm3']], 'w3': [None, ['m3', 'm2', 'm1']]}
+==-->stable.make_match(m0,w0)-->{('m2', 'w3'), ('m3', 'w1'), ('m1', 'w2')}
+c-->m1 = {'m1': [None, ['w4', 'w2', 'w1', 'w5', 'w3']], 'm2': [None, ['w3', 'w4', 'w2', 'w5', 'w1']], 'm3': [None, ['w4', 'w1', 'w2', 'w3', 'w5']], 'm4': [None, ['w2', 'w4', 'w5', 'w1', 'w3']], 'm5': [None, ['w1', 'w2', 'w3', 'w5', 'w4']]}
+c-->w1 = {'w1': [None, ['m5', 'm1', 'm4', 'm3', 'm2']], 'w2': [None, ['m2', 'm3', 'm4', 'm1', 'm5']], 'w3': [None, ['m2', 'm3', 'm5', 'm4', 'm1']], 'w4': [None, ['m4', 'm3', 'm5', 'm1', 'm2']], 'w5': [None, ['m2', 'm1', 'm5', 'm3', 'm4']]}
+==-->stable.make_match(m1,w1)--> {('m4', 'w2'), ('m5', 'w1'), ('m2', 'w3'), ('m3', 'w4'), ('m1', 'w5')}
+c-->m3 = {'alan': [None, ['ada', 'eva', 'cara', 'iris', 'june', 'dawn', 'fran', 'beth', 'hana', 'gina']], 'ben': [None, ['cara', 'hana', 'ada', 'dawn', 'eva', 'fran', 'beth', 'june', 'iris', 'gina']], 'chad': [None, ['hana', 'eva', 'ada', 'dawn', 'beth', 'fran', 'iris', 'gina', 'cara', 'june']], 'dave': [None, ['iris', 'fran', 'dawn', 'gina', 'hana', 'eva', 'june', 'beth', 'cara', 'ada']], 'eli': [None, ['june', 'dawn', 'beth', 'cara', 'fran', 'eva', 'ada', 'iris', 'hana', 'gina']], 'fred': [None, ['beth', 'ada', 'dawn', 'gina', 'eva', 'iris', 'cara', 'june', 'hana', 'fran']], 'gus': [None, ['gina', 'eva', 'iris', 'beth', 'cara', 'ada', 'dawn', 'hana', 'june', 'fran']], 'hugh': [None, ['ada', 'eva', 'hana', 'fran', 'iris', 'cara', 'june', 'beth', 'gina', 'dawn']], 'ira': [None, ['hana', 'cara', 'dawn', 'gina', 'beth', 'ada', 'fran', 'iris', 'june', 'eva']], 'jim': [None, ['ada', 'fran', 'june', 'gina', 'eva', 'beth', 'dawn', 'cara', 'iris', 'hana']]} 
+c-->w3 = {'ada': [None, ['ben', 'fred', 'jim', 'gus', 'ira', 'alan', 'dave', 'eli', 'chad', 'hugh']], 'beth': [None, ['ben', 'alan', 'chad', 'fred', 'gus', 'dave', 'ira', 'eli', 'jim', 'hugh']], 'cara': [None, ['fred', 'ben', 'eli', 'gus', 'hugh', 'chad', 'ira', 'alan', 'dave', 'jim']], 'dawn': [None, ['fred', 'jim', 'chad', 'alan', 'ira', 'hugh', 'gus', 'dave', 'ben', 'eli']], 'eva': [None, ['jim', 'hugh', 'fred', 'dave', 'alan', 'gus', 'chad', 'eli', 'ira', 'ben']], 'fran': [None, ['ben', 'alan', 'eli', 'ira', 'jim', 'dave', 'fred', 'gus', 'chad', 'hugh']], 'gina': [None, ['jim', 'gus', 'hugh', 'fred', 'ben', 'alan', 'chad', 'eli', 'dave', 'ira']], 'hana': [None, ['gus', 'jim', 'ben', 'alan', 'ira', 'dave', 'hugh', 'eli', 'chad', 'fred']], 'iris': [None, ['ira', 'chad', 'hugh', 'gus', 'fred', 'ben', 'alan', 'eli', 'jim', 'dave']], 'june': [None, ['eli', 'hugh', 'gus', 'alan', 'ben', 'jim', 'chad', 'ira', 'fred', 'dave']]}
+==-->stable.make_match(m3,w3)--> {('jim', 'ada'), ('chad', 'dawn'), ('ben', 'cara'), ('fred', 'beth'), ('eli', 'june'), ('hugh', 'eva'), ('ira', 'hana'), ('alan', 'iris'), ('dave', 'fran'), ('gus', 'gina')}

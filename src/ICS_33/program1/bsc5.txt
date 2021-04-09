@@ -1,0 +1,36 @@
+# Setup
+c-->from imp import reload
+c-->import wordgenerator
+c-->reload(wordgenerator)
+c-->wg = wordgenerator # abbreviation
+# Test read_corpus
+c-->import goody
+c-->c1 = wg.read_corpus(2,wg.word_at_a_time(open('wginput1.txt')))
+==-->c1-->{('c', 'a'): ['a'], ('a', 'a'): ['b', 'd'], ('b', 'a'): ['d', 'a'], ('c', 'b'): ['a'], ('b', 'c'): ['b'], ('a', 'b'): ['c', 'a'], ('a', 'd'): ['c'], ('d', 'c'): ['b', 'a']}
+c-->c1 = wg.read_corpus(3,wg.word_at_a_time(open('wginput1.txt')))
+==-->c1-->{('d', 'c', 'a'): ['a'], ('a', 'b', 'a'): ['a'], ('a', 'a', 'b'): ['a'], ('a', 'b', 'c'): ['b'], ('c', 'a', 'a'): ['b'], ('d', 'c', 'b'): ['a'], ('b', 'a', 'd'): ['c'], ('a', 'd', 'c'): ['b', 'a'], ('b', 'a', 'a'): ['d'], ('c', 'b', 'a'): ['d'], ('b', 'c', 'b'): ['a']}
+c-->c1 = wg.read_corpus(3,wg.word_at_a_time(open('wghuck.txt')))
+==-->c1[('do', 'you', 'mean')]-->['i', 'to', 'bilgewater', 'before', 'by']
+==-->c1[('in', 'it', 'and')]-->['she', 'it', 'a', 'forget', 'at', 'he', 'we', 'i']
+==-->c1[('to', 'be', 'a')]-->['robber', 'govment', 'murderer', 'grand', 'circus', 'slave', 'stranger', 'duke', 'watchman', 'hero', 'couple', 'prisoner']
+c-->c1 = wg.read_corpus(4,wg.word_at_a_time(open('wghuck.txt')))
+==-->c1[('and', 'after', 'that', 'he')]-->['polished', 'laid']
+==-->c1[('in', 'the', 'daytime', 'and')]-->['robbed', 'about']
+==-->c1[('i', 'says', 'to', 'myself')]-->['if', 'i', "they'll", 'like', 'tom', 'there', "'it's", 'this', 'my', 'shall', 'when', 'at', 'we', "'they've", "here's", "s'pose", "spos'n", "there's"]
+c-->c1 = wg.read_corpus(2,wg.word_at_a_time(open('wghuck.txt')))
+==-->c1[('and', 'not')]-->['look', 'have', 'long', 'gaining', 'some', 'pass', 'tell', 'say', 'to', 'a', 'show', 'tied', 'saying', 'be', 'sell', 'borrow', 'write', 'get', 'let', 'leather-headed', 'ignorant', 'mean', 'through', 'worry', 'bother', 'blow', 'making', 'only', 'eating']
+# Test corpus_as_str
+c-->c1 = {('c', 'a'): ['a'], ('a', 'a'): ['b', 'd'], ('b', 'a'): ['d', 'a'], ('c', 'b'): ['a'], ('b', 'c'): ['b'], ('a', 'b'): ['c', 'a'], ('a', 'd'): ['c'], ('d', 'c'): ['b', 'a']}
+==-->wg.corpus_as_str(c1)-->"  ('a', 'a') can be followed by any of ['b', 'd']\n  ('a', 'b') can be followed by any of ['c', 'a']\n  ('a', 'd') can be followed by any of ['c']\n  ('b', 'a') can be followed by any of ['d', 'a']\n  ('b', 'c') can be followed by any of ['b']\n  ('c', 'a') can be followed by any of ['a']\n  ('c', 'b') can be followed by any of ['a']\n  ('d', 'c') can be followed by any of ['b', 'a']\nmin/max list lengths = 1/2\n"
+c-->c1 = {('d', 'c', 'a'): ['a'], ('a', 'b', 'a'): ['a'], ('a', 'a', 'b'): ['a'], ('a', 'b', 'c'): ['b'], ('c', 'a', 'a'): ['b'], ('d', 'c', 'b'): ['a'], ('b', 'a', 'd'): ['c'], ('a', 'd', 'c'): ['b', 'a'], ('b', 'a', 'a'): ['d'], ('c', 'b', 'a'): ['d'], ('b', 'c', 'b'): ['a']}
+==-->wg.corpus_as_str(c1)-->"  ('a', 'a', 'b') can be followed by any of ['a']\n  ('a', 'b', 'a') can be followed by any of ['a']\n  ('a', 'b', 'c') can be followed by any of ['b']\n  ('a', 'd', 'c') can be followed by any of ['b', 'a']\n  ('b', 'a', 'a') can be followed by any of ['d']\n  ('b', 'a', 'd') can be followed by any of ['c']\n  ('b', 'c', 'b') can be followed by any of ['a']\n  ('c', 'a', 'a') can be followed by any of ['b']\n  ('c', 'b', 'a') can be followed by any of ['d']\n  ('d', 'c', 'a') can be followed by any of ['a']\n  ('d', 'c', 'b') can be followed by any of ['a']\nmin/max list lengths = 1/2\n"
+# Test produce_text
+c-->def check(corpus,os,random): return all(random[i]==None or random[i] in corpus[tuple(random[i-os:i])] for i in range(os,len(random)))
+c-->c1 = {('c', 'a'): ['a'], ('a', 'a'): ['b', 'd'], ('b', 'a'): ['d', 'a'], ('c', 'b'): ['a'], ('b', 'c'): ['b'], ('a', 'b'): ['c', 'a'], ('a', 'd'): ['c'], ('d', 'c'): ['b', 'a']}
+c-->r = wg.produce_text(c1,['a','a'],20)
+e-->len(r)==22 and None not in r and check(c1,2,r)-->True
+c-->r = wg.produce_text(c1,['b','a'],20)
+e-->len(r)==22 and None not in r and check(c1,2,r)-->True
+c-->c2 = {('a', 'b'): ['c'], ('b', 'c'): ['d'], ('c', 'd'): ['d']}
+c-->r = wg.produce_text(c2,['a','b'],20)
+e-->r-->['a', 'b', 'c', 'd', 'd', None]
