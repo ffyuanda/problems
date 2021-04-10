@@ -47,26 +47,26 @@ def make_match(men : {str:[str,[str]]}, women : {str:[str,[str]]}, trace : bool 
             print("unmatched men = " + str(unmatched) + '\n')
 
         anyman = unmatched.pop()
-        the_woman = men_copy[anyman][1][0] # the first woman on the list
-        match = [p for p in list(extract_matches(men_copy)) if p[1] == the_woman] # get the match that contains the woman
+        the_woman = men_copy[anyman][prefs][0] # the first woman on the list
+        match_pair = [p for p in list(extract_matches(men_copy)) if p[1] == the_woman] # get the match that contains the woman
 
-        if len(match) == 0: # if the women is unmatched
-            men_copy[anyman][0] = the_woman # set the woman to the matched slot
-            men_copy[anyman][1].remove(the_woman) # remove the woman from the preference list
+        if len(match_pair) == 0: # if the women is unmatched
+            men_copy[anyman][match] = the_woman # set the woman to the matched slot
+            men_copy[anyman][prefs].remove(the_woman) # remove the woman from the preference list
             if trace:
                 print("{} proposes to {} (an unmatched woman); so she accepts the proposal\n".format(anyman, the_woman))
-        elif len(match) == 1: # if the women is matched
-            curr_match = match[0][0]
-            prefer = who_prefer(women[the_woman][1], curr_match, anyman)
+        elif len(match_pair) == 1: # if the women is matched
+            curr_match = match_pair[0][0]
+            prefer = who_prefer(women[the_woman][prefs], curr_match, anyman)
             if prefer == anyman: # prefers anyman to curr_match
-                men_copy[curr_match][0] = None # unmatch curr_math and the_woman
+                men_copy[curr_match][match] = None # unmatch curr_math and the_woman
                 unmatched.add(curr_match) # curr_match is now unmatched
-                men_copy[anyman][0] = the_woman  # set the woman to the matched slot
-                men_copy[anyman][1].remove(the_woman)  # remove the woman from the preference list
+                men_copy[anyman][match] = the_woman  # set the woman to the matched slot
+                men_copy[anyman][prefs].remove(the_woman)  # remove the woman from the preference list
                 if trace:
                     print("{} proposes to {} (a matched woman); she prefers her new match, so she accepts the proposal\n".format(anyman, the_woman))
             else: # prefers curr_match to anyman
-                men_copy[anyman][1].remove(the_woman)
+                men_copy[anyman][prefs].remove(the_woman)
                 unmatched.add(anyman)
                 if trace:
                     print("{} proposes to {} (a matched woman); she prefers her current match, so she rejects the proposal\n".format(anyman, the_woman))
