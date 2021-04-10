@@ -1,5 +1,6 @@
 import prompt
 import goody
+import copy
 from collections import defaultdict
 
 # Use these global variables to index the list associated with each name in the dictionary.
@@ -28,28 +29,67 @@ def dict_as_str(d : {str:[str,[str]]}, key : callable=None, reverse : bool=False
 
 
 def who_prefer(order : [str], p1 : str, p2 : str) -> str:
-    pass
+    return p1 if order.index(p1) < order.index(p2) else p2
 
 
 def extract_matches(men : {str:[str,[str]]}) -> {(str,str)}:
-    pass
+    return {(key, value[0]) for key, value in men.items()}
 
 
 def make_match(men : {str:[str,[str]]}, women : {str:[str,[str]]}, trace : bool = False) -> {(str,str)}:
-    pass    
-  
+    if trace:
+        print("Women Preferences (unchanging)\n" + dict_as_str(women))
+    men_copy = copy.deepcopy(men)
+    unmatched = set(men_copy.keys())
+    while len(unmatched) > 0:
+        if trace:
+            print("Men Preferences (current)\n" + dict_as_str(men_copy))
+            print("unmatched men = " + str(unmatched) + '\n')
 
+        anyman = unmatched.pop()
+        the_woman = men_copy[anyman][1][0] # the first woman on the list
+        match = [p for p in list(extract_matches(men_copy)) if p[1] == the_woman] # get the match that contains the woman
 
-  
+        if len(match) == 0: # if the women is unmatched
+            men_copy[anyman][0] = the_woman # set the woman to the matched slot
+            men_copy[anyman][1].remove(the_woman) # remove the woman from the preference list
+            if trace:
+                print("{} proposes to {} (an unmatched woman); so she accepts the proposal\n".format(anyman, the_woman))
+        elif len(match) == 1: # if the women is matched
+            curr_match = match[0][0]
+            prefer = who_prefer(women[the_woman][1], curr_match, anyman)
+            if prefer == anyman: # prefers anyman to curr_match
+                men_copy[curr_match][0] = None # unmatch curr_math and the_woman
+                unmatched.add(curr_match) # curr_match is now unmatched
+                men_copy[anyman][0] = the_woman  # set the woman to the matched slot
+                men_copy[anyman][1].remove(the_woman)  # remove the woman from the preference list
+                if trace:
+                    print("{} proposes to {} (a matched woman); she prefers her new match, so she accepts the proposal\n".format(anyman, the_woman))
+            else: # prefers curr_match to anyman
+                men_copy[anyman][1].remove(the_woman)
+                unmatched.add(anyman)
+                if trace:
+                    print("{} proposes to {} (a matched woman); she prefers her current match, so she rejects the proposal\n".format(anyman, the_woman))
+    if trace:
+        print("Tracing option finished: final matches = {}".format(str(extract_matches(men_copy))))
+    else:
+        print("\nThe final matches = {}".format(str(extract_matches(men_copy))))
+    return extract_matches(men_copy)
+
     
 if __name__ == '__main__':
     # Write script here
     mfile = goody.safe_open('Input the file name detailing the preferences for men: ',
                            'r', 'Illegal file name', default='men0.txt')
-    # wfile = goody.safe_open('Input the file name detailing the preferences for women: ',
-    #                         'r', 'Illegal file name', default='men0.txt')
-    d = read_match_preferences(mfile)
-    print(dict_as_str(d, reverse=True))
+    wfile = goody.safe_open('Input the file name detailing the preferences for women: ',
+                            'r', 'Illegal file name', default='women0.txt')
+    men_d = read_match_preferences(mfile)
+    women_d = read_match_preferences(wfile)
+    print("\nMen Preferences\n" + dict_as_str(men_d))
+    print("Women Preferences\n" + dict_as_str(women_d))
+    trace = False if input("Input tracing algorithm option[True]: ") == "False" else True
+    make_match(men_d, women_d, trace)
+
     # For running batch self-tests
     print()
     import driver
