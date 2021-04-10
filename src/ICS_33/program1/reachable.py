@@ -23,10 +23,8 @@ def reachable(graph : {str:{str}}, start : str, trace : bool = False) -> {str}:
     reached_set = set()
     exploring_list = list(start)
     while True:
-
         if len(exploring_list) == 0:
             return reached_set
-
         else:
             if trace:
                 print("reached set    = " + str(reached_set))
