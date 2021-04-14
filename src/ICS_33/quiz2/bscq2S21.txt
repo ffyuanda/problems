@@ -1,0 +1,120 @@
+# Setup
+c-->from importlib import reload
+c-->import q2solution
+c-->reload(q2solution)
+c-->from q2solution import expand_re, multi_search
+c-->import re
+
+# Read/Test Regular Expression Patterns (read from repattern files)
+c-->p1a = open('repattern1a.txt').readline().rstrip()
+c-->print('   ...Testing the pattern p1a: ',p1a)
+
+# The following text should match the pattern
+!=-->re.match(p1a,'1')-->None
+!=-->re.match(p1a,'2')-->None
+!=-->re.match(p1a,'3')-->None
+!=-->re.match(p1a,'4')-->None
+!=-->re.match(p1a,'5')-->None
+!=-->re.match(p1a,'6')-->None
+!=-->re.match(p1a,'7')-->None
+!=-->re.match(p1a,'8')-->None
+!=-->re.match(p1a,'9')-->None
+!=-->re.match(p1a,'10')-->None
+!=-->re.match(p1a,'11')-->None
+!=-->re.match(p1a,'12')-->None
+!=-->re.match(p1a,'13')-->None
+!=-->re.match(p1a,'14')-->None
+!=-->re.match(p1a,'15')-->None
+!=-->re.match(p1a,'16')-->None
+!=-->re.match(p1a,'17')-->None
+!=-->re.match(p1a,'18')-->None
+!=-->re.match(p1a,'19')-->None
+!=-->re.match(p1a,'20')-->None
+!=-->re.match(p1a,'21')-->None
+!=-->re.match(p1a,'22')-->None
+!=-->re.match(p1a,'23')-->None
+!=-->re.match(p1a,'24')-->None
+!=-->re.match(p1a,'25')-->None
+!=-->re.match(p1a,'26')-->None
+!=-->re.match(p1a,'27')-->None
+!=-->re.match(p1a,'28')-->None
+!=-->re.match(p1a,'29')-->None
+!=-->re.match(p1a,'30')-->None
+!=-->re.match(p1a,'31')-->None
+
+# The following text should NOT match the pattern
+==-->re.match(p1a,'0')-->None
+==-->re.match(p1a,'01')-->None
+==-->re.match(p1a,'32')-->None
+
+# Read/Test Regular Expression Patterns (read from repattern files)
+c-->p1b = open('repattern1b.txt').readline().rstrip()
+c-->print('   ...Testing the pattern p1b: ',p1b)
+
+# The following text should match the pattern
+!=-->re.match(p1b,'2/10')-->None
+!=-->re.match(p1b,'2/10/06')-->None
+!=-->re.match(p1b,'2/10/1906')-->None
+!=-->re.match(p1b,'12/31/15')-->None
+!=-->re.match(p1b,'12/3')-->None
+!=-->re.match(p1b,'12/03')-->None
+!=-->re.match(p1b,'2/31')-->None
+!=-->re.match(p1b,'9/4/13')-->None
+!=-->re.match(p1b,'10/11/2017')-->None
+
+# The following text should NOT match the pattern
+==-->re.match(p1b,'02/10')-->None
+==-->re.match(p1b,'13/10')-->None
+==-->re.match(p1b,'21/13')-->None
+==-->re.match(p1b,'12/ 13')-->None
+==-->re.match(p1b,'5')-->None
+==-->re.match(p1b,'5/')-->None
+==-->re.match(p1b,'5//')-->None
+
+# Read/Test Regular Expression Patterns (read from repattern files)
+c-->p1c = open('repattern1c.txt').readline().rstrip()
+c-->print('   ...Testing the pattern p1c: ',p1c)
+
+# The following text should match the pattern, and provide the shown groups
+==-->re.match(p1c,'2/10').groups()-->('2', '10', None)
+==-->re.match(p1c,'2/10/06').groups()-->('2', '10', '06')
+==-->re.match(p1c,'2/10/1906').groups()-->('2', '10', '1906')
+==-->re.match(p1c,'12/31/15').groups()-->('12', '31', '15')
+==-->re.match(p1c,'12/3').groups()-->('12', '3', None)
+==-->re.match(p1c,'12/03').groups()-->('12', '03', None)
+==-->re.match(p1c,'2/31').groups()-->('2', '31', None)
+==-->re.match(p1c,'9/4/13').groups()-->('9', '4', '13')
+==-->re.match(p1c,'10/11/2017').groups()-->('10', '11', '2017')
+
+# Read/Test Regular Expression Patterns (read from repattern files)
+c-->p2 = open('repattern2.txt').readline().rstrip()
+c-->print('   ...Testing the pattern p2: ',p2)
+
+# The following text should match the pattern
+!=-->re.match(p2,'EC')-->None
+!=-->re.match(p2,'EEBBBBC')-->None
+!=-->re.match(p2,'EEEPDPPDPPPDPPPPDC')-->None
+!=-->re.match(p2,'EEEPPDBBPDBBBBC')-->None
+!=-->re.match(p2,'EEEBBPPPDBBBBPDBBBBC')-->None
+
+# The following text should NOT match the pattern
+==-->re.match(p2,'EEBB')-->None
+==-->re.match(p2,'EBBBC')-->None
+==-->re.match(p2,'EEPPPPPDBBC')-->None
+==-->re.match(p2,'EEPPBBC')-->None
+==-->re.match(p2,'EEBBDC')-->None
+
+# Testing expand_re
+c-->pd = dict(digit=r'[0-9]', integer=r'[=-]?#digit##digit#*')
+c-->expand_re(pd)
+==-->dict(pd.items())-->{'digit': '[0-9]', 'integer': '[=-]?(?:[0-9])(?:[0-9])*'}
+c-->pd = dict(int=r'[+-]?[0-9]+', int_range =r'#int#(..#int#)?', int_list  =r'#int_range#(,#int_range#)*', int_set =r'{#int_list#?}')
+c-->expand_re(pd)
+==-->dict(pd.items())-->{'int': '[+-]?[0-9]+', 'int_range': '(?:[+-]?[0-9]+)(..(?:[+-]?[0-9]+))?', 'int_list': '(?:(?:[+-]?[0-9]+)(..(?:[+-]?[0-9]+))?)(,(?:(?:[+-]?[0-9]+)(..(?:[+-]?[0-9]+))?))*', 'int_set': '{(?:(?:(?:[+-]?[0-9]+)(..(?:[+-]?[0-9]+))?)(,(?:(?:[+-]?[0-9]+)(..(?:[+-]?[0-9]+))?))*)?}'}
+c-->pd = dict(f='#e#',alpha='x',b='#alpha#',e='#d#',c='#b#',d='#c#',g='#f#')
+c-->expand_re(pd)
+==-->dict(pd.items())-->{'alpha': 'x', 'b': '(?:x)', 'c': '(?:(?:x))', 'd': '(?:(?:(?:x)))', 'e': '(?:(?:(?:(?:x))))', 'f': '(?:(?:(?:(?:(?:x)))))', 'g': '(?:(?:(?:(?:(?:(?:x))))))'}
+
+# Testing multi_search
+==-->multi_search(open('pats1.txt'),open('texts1.txt'))-->[(1, 'See Spot.', [1, 2]), (2, 'See Snoopy', [1]), (3, '  run.', [2]), (5, 'Run dogs run.', [1, 2, 3]), (6, 'Dogs are great.', [1, 2, 3])]
+==-->multi_search(open('pats2.txt'),open('texts2.txt'))-->[(1, 'amoeba', [1, 3]), (2, 'balance', [2, 3]), (3, 'footstool', [1, 2, 3]), (4, 'grammar', [2, 3]), (5, 'cooperate', [1, 3])]

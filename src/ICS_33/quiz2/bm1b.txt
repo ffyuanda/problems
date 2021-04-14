@@ -1,0 +1,17 @@
+2/10
+2/10/06
+2/10/1906
+12/31/15
+12/3
+12/03
+2/31
+9/4/13
+10/11/2017
+Above should match; below should not (and of course, not this line)
+02/10
+13/10
+21/13
+12/ 13
+5
+5/
+5//
