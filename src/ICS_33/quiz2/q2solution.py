@@ -9,13 +9,23 @@ from collections import defaultdict
 
 
 def expand_re(pat_dict:{str:str}):
-    pass
+    for key in pat_dict.keys():
+        while '#' in pat_dict[key]:
+            for in_key, in_value in pat_dict.items():
+                pat_dict[key] = re.sub('#'+in_key+'#', '(?:'+in_value+')', pat_dict[key])
 
 
 def multi_search(pat_file : open, text_file : open) -> [(int,str,[int])]:
-    pass
-
-
+    output_list, pat_list = [], pat_file.readlines()
+    for line, text in enumerate(text_file):
+        pattern_line_list, pattern_line_count = [], 0
+        for pattern in pat_list:
+            pattern_line_count += 1
+            if re.search(pattern.rstrip(), text.rstrip()) is not None:
+                pattern_line_list.append(pattern_line_count)
+        if len(pattern_line_list) > 0:
+            output_list.append((line+1, text.rstrip(), pattern_line_list))
+    return output_list
 
 
 if __name__ == '__main__':
