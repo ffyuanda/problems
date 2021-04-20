@@ -120,6 +120,9 @@ class Time:
     def __radd__(self, other):
         return self.__add__(other)
 
+    def __call__(self, *args):
+        self.__init__(args[0], args[1], args[2])
+
 
 if __name__ == '__main__':
     # Put in simple tests for Time before allowing driver to run
@@ -128,24 +131,9 @@ if __name__ == '__main__':
     print('Start simple testing')
     print()
 
-    test_Time1 = Time(13, 10, 20)
-    test_Time2 = Time(13, 10, 20)
-    print(test_Time1)
-    # print(test_Time1 == test_Time2)
-    print(str(test_Time1 + 370090))
-
-
     import driver
     driver.default_file_name = 'bscq31S21.txt'
 #     driver.default_show_traceback=True
 #     driver.default_show_exception=True
 #     driver.default_show_exception_message=True
     driver.driver()
-
-
-
-        
-        
-        
-        
-        
