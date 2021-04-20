@@ -1,0 +1,123 @@
+# Setup
+c-->from importlib import reload
+c-->import ttime
+c-->reload(ttime)
+c-->from ttime import Time
+
+# Test __init__
+c-->t = Time(12)
+e-->t.hour-->12
+e-->t.minute-->0
+e-->t.second-->0
+c-->t = Time(8,34)
+e-->t.hour-->8
+e-->t.minute-->34
+e-->t.second-->0
+c-->t = Time(16,2,5)
+e-->t.hour-->16
+e-->t.minute-->2
+e-->t.second-->5
+^-->Time(-1)-->AssertionError
+^-->Time(24)-->AssertionError
+^-->Time(0,-1)-->AssertionError
+^-->Time(0,60)-->AssertionError
+^-->Time(0,0,-1)-->AssertionError
+^-->Time(0,0,60)-->AssertionError
+^-->Time(0.,0.,0.)-->AssertionError
+
+# Test __getitem__
+c-->t = Time(12,34,14)
+e-->t[1]-->12
+e-->t[2]-->34
+e-->t[3]-->14
+e-->t[1,2]-->(12, 34)
+e-->t[3,1]-->(14, 12)
+e-->t[1,2,3]-->(12, 34, 14)
+e-->t[1,2,3,2,1]-->(12, 34, 14, 34, 12)
+^-->t['hour']-->IndexError
+^-->t[0]-->IndexError
+^-->t[4]-->IndexError
+^-->t[1,4,1]-->IndexError
+
+# Test __repr__ and __str__
+c-->t = Time(16,32,18)
+e-->repr(t)-->Time(16,32,18)
+e-->str(t)-->4:32:18pm
+c-->t = Time(2,3,4)
+e-->repr(t)-->Time(2,3,4)
+e-->str(t)-->2:03:04am
+c-->t = Time(1,2,3)
+e-->repr(t)-->Time(1,2,3)
+e-->str(t)-->1:02:03am
+c-->t = Time(12,6,48)
+e-->repr(t)-->Time(12,6,48)
+e-->str(t)-->12:06:48pm
+c-->t = Time(12,0,0)
+e-->repr(t)-->Time(12,0,0)
+e-->str(t)-->12:00:00pm
+c-->t = Time(23,59,40)
+e-->repr(t)-->Time(23,59,40)
+e-->str(t)-->11:59:40pm
+c-->t = Time(0,33,4)
+e-->repr(t)-->Time(0,33,4)
+e-->str(t)-->12:33:04am
+
+# Test __bool__
+e-->(True if Time(0,0,0) else False)-->False
+e-->(True if Time(0,0,1) else False)-->True
+e-->(True if Time(12,59,59) else False)-->True
+
+# Test __len__
+e-->len(Time(0,0,0))-->0
+e-->len(Time(12,0,0))-->43200
+e-->len(Time(23,59,59))-->86399
+e-->len(Time(2,34,6))-->9246
+e-->len(Time(18,8,12))-->65292
+
+# Test <
+c-->t1 = Time(0,0,0)
+c-->t2 = Time(12,0,0)
+e-->t1 < t2-->True
+e-->t2 > t1-->True
+e-->t1 > t2-->False
+e-->t2 < t1-->False
+e-->t1 < 5-->True
+e-->5 > t1-->True
+^-->t1 < 5.-->TypeError
+^-->5. < t2-->TypeError
+
+# Test == and !=
+e-->t1 == t1-->True
+e-->t2 == t2-->True
+e-->t1 == t2-->False
+e-->t1 != t1-->False
+e-->t2 != t2-->False
+e-->t1 != t2-->True
+e-->t1 == 1-->False
+e-->1 == t1-->False
+
+# Test __add__
+c-->t = Time()
+e-->t+1-->12:00:01am
+e-->t+70-->12:01:10am
+e-->t+3600-->1:00:00am
+e-->t+86400-->12:00:00am
+e-->t-->12:00:00am
+e-->Time(4,56,23)+500-->5:04:43am
+e-->Time(23,58,6)+736-->12:10:22am
+e-->1+t-->12:00:01am
+e-->70+t-->12:01:10am
+e-->3600+t-->1:00:00am
+e-->86400+t-->12:00:00am
+e-->500+Time(4,56,23)-->5:04:43am
+e-->736+Time(23,58,6)-->12:10:22am
+^-->Time()+1.-->TypeError
+^-->1.+Time()-->TypeError
+
+# Test __call__
+c-->t = Time()
+c-->t(16,2,5)
+e-->t-->4:02:05pm
+c-->t(4,23,16)
+e-->t-->4:23:16am
+^-->t(5,60,12)-->AssertionError

@@ -1,0 +1,33 @@
+# Setup
+c-->from importlib import reload
+c-->import trackhistory
+c-->reload(trackhistory)
+c-->from trackhistory import TrackHistory
+c-->x=TrackHistory()
+
+# Test __setattr__
+^-->x.mumble_prev_mumble = 1-->NameError
+c-->x.z = 1
+c-->x.z = 2
+c-->x.z = 3
+c-->x.y = 1
+c-->x.y = 2
+
+# Test __getattr__
+^-->x.q-->NameError
+^-->x.q_prev-->NameError
+^-->x.q_prev1-->NameError
+^-->x.z_prev_prev-->NameError
+e-->x.z-->3
+e-->x.z_prev0-->3
+e-->x.z_prev-->2
+e-->x.z_prev1-->2
+e-->x.z_prev2-->1
+e-->x.z_prev3-->None
+^-->x.c_prev2-->NameError
+
+# Test __getitem__
+^-->x[1]-->IndexError
+==-->x[0]-->{'z':3,'y':2}
+==-->x[-1]-->{'z':2,'y':1}
+==-->x[-2]-->{'z':1,'y':None}
