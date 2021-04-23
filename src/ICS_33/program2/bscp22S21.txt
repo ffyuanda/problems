@@ -1,0 +1,186 @@
+# Setup
+c-->from importlib import reload
+c-->import rational
+c-->reload(rational)
+c-->from rational import Rational as Rat
+
+# Test __init__, __str__
+e-->Rat(0,5)-->0/1
+e-->Rat(1,-2)-->-1/2
+e-->Rat(2,6)-->1/3
+e-->Rat(46,-437)-->-2/19
+^-->r = Rat(1.,0)-->AssertionError
+^-->r = Rat(0,1.)-->AssertionError
+^-->r = Rat(5,0)-->AssertionError
+
+# __repr__
+e-->repr(Rat(0,5))-->Rational(0,1)
+e-->repr(Rat(1,-2))-->Rational(-1,2)
+e-->repr(Rat(2,6))-->Rational(1,3)
+e-->repr(Rat(46,-437))-->Rational(-2,19)
+
+# __bool__
+e-->True if Rat(1,2) else False-->True
+e-->True if Rat(0,2) else False-->False
+
+# Unary arithmetic operators and abs function
+c-->a = Rat(1,3)
+c-->b = Rat(-1,3)
+e-->+a-->1/3
+e-->-a-->-1/3
+e-->+b-->-1/3
+e-->-b-->1/3
+e-->--a-->1/3
+e-->--b-->-1/3
+e-->abs(Rat(1,2))-->1/2
+e-->abs(Rat(-1,2))-->1/2
+e-->-abs(Rat(1,2))-->-1/2
+e-->-abs(Rat(-1,2))-->-1/2
+
+# __getitem__
+c-->r = Rat(101,57)
+e-->r[0]-->101
+e-->all( [r['NuMeRaToR'[0:x]]==101 for x in range(1,len('numerator'))] )-->True
+e-->r[1]-->57
+e-->all( [r['DeNoMiNaToR'[0:x]]==57 for x in range(1,len('denominator'))] )-->True
+^-->r[2]-->TypeError
+^-->r['numarator']-->TypeError
+^-->r['denomn']-->TypeError
+^-->r['']-->TypeError
+
+# __add__/__radd__
+c-->r1 = Rat(1,2)
+c-->r2 = Rat(1,3)
+e-->r1+r2-->5/6
+e-->r1+2-->5/2
+e-->r2+r1-->5/6
+e-->2+r1-->5/2
+e-->r1 + r1 + r1-->3/2
+e-->r2 + r2 + r2-->1/1
+^-->r+1.-->TypeError
+^-->1.+r-->TypeError
+
+# __sub__/__rsub__
+c-->r1 = Rat(1,2)
+c-->r2 = Rat(1,3)
+e-->r1-r2-->1/6
+e-->r1-2-->-3/2
+e-->r2-r1-->-1/6
+e-->2-r1-->3/2
+e-->Rat(1,1)-r1-r1-r1-->-1/2
+e-->Rat(1,1)-r2-r2-r2-->0/1
+^-->r1-1.-->TypeError
+^-->1.-r1-->TypeError
+
+# __mul__/__rmul__
+c-->r1 = Rat(1,2)
+c-->r2 = Rat(1,3)
+e-->r1*r2-->1/6
+e-->r1*3-->3/2
+e-->r2*r1-->1/6
+e-->3*r1-->3/2
+e-->r1*r1*r1-->1/8
+e-->r2*r2*r2-->1/27
+^-->r*1.-->TypeError
+^-->1.*r-->TypeError
+
+# __truediv__/__rtruediv__
+c-->r1 = Rat(1,2)
+c-->r2 = Rat(1,3)
+e-->r1/r2-->3/2
+e-->r2/r1-->2/3
+e-->r1/3-->1/6
+e-->3/r1-->6/1
+e-->r2/3-->1/9
+e-->3/r2-->9/1
+e-->r2/r1-->2/3
+^-->r1/1.-->TypeError
+^-->1./r1-->TypeError
+
+# __pow__
+c-->r = Rat(1,2)
+e-->r**10-->1/1024
+e-->Rat(2,1)**-10-->1/1024
+^-->r**3.-->TypeError
+
+#  ==
+c-->r1 = Rat(1,2)
+c-->r2 = Rat(1,3)
+e-->r1==r2-->False
+e-->r2==r1-->False
+e-->r1==Rat(1,2)-->True
+e-->r2==Rat(1,3)-->True
+e-->r1==2-->False
+e-->2==r1-->False
+^-->r2==1.-->TypeError
+^-->1.==r2-->TypeError
+
+#  !=
+c-->r1 = Rat(1,2)
+c-->r2 = Rat(1,3)
+e-->r1!=r2-->True
+e-->r2!=r1-->True
+e-->r1!=Rat(1,2)-->False
+e-->r2!=Rat(1,3)-->False
+e-->r1!=2-->True
+e-->2!=r1-->True
+^-->a!=1.-->TypeError
+^-->1.!=a-->TypeError
+
+#  <
+c-->r1 = Rat(1,2)
+c-->r2 = Rat(1,3)
+e-->r1<r2-->False
+e-->r2<r1-->True
+e-->r1<r1-->False
+e-->r1<2-->True
+e-->2<r1-->False
+^-->a<1.-->TypeError
+^-->1.<a-->TypeError
+
+#  <=
+c-->r1 = Rat(1,2)
+c-->r2 = Rat(1,3)
+e-->r1<=r2-->False
+e-->r2<=r1-->True
+e-->r1<=r1-->True
+e-->r1<=2-->True
+e-->2<=r1-->False
+^-->a<=1.-->TypeError
+^-->1.<=a-->TypeError
+
+#  >=
+c-->r1 = Rat(1,2)
+c-->r2 = Rat(1,3)
+e-->r1>=r2-->True
+e-->r2>=r1-->False
+e-->r1>=r1-->True
+e-->r1>=2-->False
+e-->2>=r1-->True
+^-->a>=1.-->TypeError
+^-->1.>=a-->TypeError
+
+#  >
+c-->r1 = Rat(1,2)
+c-->r2 = Rat(1,3)
+e-->r1>=r2-->True
+e-->r2>r1-->False
+e-->r1>r1-->False
+e-->r1>2-->False
+e-->2>r1-->True
+^-->a>1.-->TypeError
+^-->1.>a-->TypeError
+
+# Compute pi
+e-->rational.compute_pi(5)-->951195037/302776320
+e-->rational.compute_pi(20)-->309516439544912724470574680406138530563/98522142643553374931479190068160102400
+
+# __call__
+e-->rational.compute_pi(50)(50)-->3.14159265358979323846264338327950228625461732116543
+e-->rational.compute_pi(100)(100)-->3.1415926535897932384626433832795028841971693993751058209749445921367643116059398860906071351971336473
+
+# __setattr__ (assuming instance variables are named num and denom)
+c-->r = Rat(1,2)
+^-->r.num = 1-->NameError
+^-->r.denom = 1-->NameError
+^-->r.x = 1-->NameError
