@@ -1,2 +1,4 @@
 #Pycharm files
 *.xml
+*.pyc
+*.idea
