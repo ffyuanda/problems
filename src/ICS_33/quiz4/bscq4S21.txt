@@ -1,0 +1,66 @@
+# Setup
+c-->from importlib import reload
+c-->import q4solution
+c-->reload(q4solution)
+c-->from helpers  import primes, hide, nth
+c-->from helpers2 import test1, test2, test3, test4, test5, test6
+c-->from inspect  import isgenerator, getsource
+c-->from q4solution import differences, once_in_a_row, in_between, pick, slice_gen, alternate_all, ListSI, fool_it
+
+# Test differences
+e-->isgenerator(differences('3.14159265', '3x14129285'))-->True
+==-->[d for d in differences('3.14159265', '3x14129285')]-->[(2, '.', 'x'), (6, '5', '2'), (9, '6', '8')]
+==-->[d for d in differences(hide('3.14159265'), hide('3x14129285'))]-->[(2, '.', 'x'), (6, '5', '2'), (9, '6', '8')]
+==-->[d for d in differences(primes(), hide([2, 3, 1, 7, 11, 1, 17, 19, 1, 29]))]-->[(3, 5, 1), (6, 13, 1), (9, 23, 1)]
+==-->[d for d in differences(hide([2, 3, 1, 7, 11, 1, 17, 19, 1, 29]), primes())]-->[(3, 1, 5), (6, 1, 13), (9, 1, 23)]
+
+# Test once_in_a_row
+e-->isgenerator(once_in_a_row('abcccaaabddeee'))-->True
+e-->''.join([v for v in once_in_a_row('abcccaaabddeee')])-->abcabde
+e-->''.join([v for v in once_in_a_row(hide('abcccaaabddeee'))])-->abcabde
+e-->''.join([v for v in once_in_a_row(l.rstrip() for l in open('in_a_row.txt'))])-->xazcmlxfij
+e-->[v for v in once_in_a_row([None, 1, 1, 2, None])]-->[None, 1, 2, None]
+
+# Test in_between
+e-->isgenerator(in_between('123abczdefalmanozstuzavuwz45z', (lambda x : x == 'a'), (lambda x : x == 'z')))-->True
+e-->''.join([v for v in in_between('123abczdefalmanozstuzavuwz45z', (lambda x : x == 'a'), (lambda x : x == 'z'))])-->abczalmanozavuwz
+e-->''.join([v for v in in_between(hide('123abczdefalmanozstuzavuwz45z'), (lambda x : x == 'a'), (lambda x : x == 'z'))])-->abczalmanozavuwz
+e-->nth(in_between(primes(), (lambda x : x%10 == 3), (lambda x : x%10 == 7)),50)-->359
+e-->nth(in_between(primes(), (lambda x : x%10 == 3), (lambda x : x%10 == 7)),500)-->5647
+e-->''.join([v for v in in_between('123abczdefalmanozstuzavuwz45z', (lambda x : x == 'a'), (lambda x : x == 'a'))])-->aaaa
+
+# Test pick
+e-->isgenerator(pick('abcdefghijklm',4))-->True
+==-->[v for v in pick('abcdefghijklm',4)]-->[['a', 'b', 'c', 'd'], ['e', 'f', 'g', 'h'], ['i', 'j', 'k', 'l']]
+==-->[v for v in pick(hide('abcdefghijklm'),4)]-->[['a', 'b', 'c', 'd'], ['e', 'f', 'g', 'h'], ['i', 'j', 'k', 'l']]
+e-->nth(pick(primes(),3), 50)-->[857, 859, 863]
+e-->nth(pick(primes(),3),200)-->[4391, 4397, 4409]
+
+# Test slice_gen
+e-->isgenerator(slice_gen('abcdefghijk', 3,7,1))-->True
+e-->''.join([v for v in slice_gen('abcdefghijk', 3,7,1)])-->defg
+e-->''.join([v for v in slice_gen('abcdefghijk', 3,20,1)])-->defghijk
+e-->''.join([v for v in slice_gen(hide('abcdefghijklmnopqrstuvwxyz'),3,20,3)])-->dgjmps
+==-->[p for p in slice_gen(primes(), 100,200,5)]-->[547, 577, 607, 641, 661, 701, 739, 769, 811, 839, 877, 911, 947, 983, 1019, 1049, 1087, 1109, 1153, 1193] 
+^-->[v for v in slice_gen(primes(),  3, 7, 0)]-->AssertionError
+^-->[v for v in slice_gen(primes(),  3, 7, 0)]-->AssertionError
+
+# Test alternate_all
+e-->''.join([v for v in alternate_all('abcde','fg','hijk')])-->afhbgicjdke
+e-->''.join([v for v in alternate_all(hide('abcde'),hide('fg'),hide('hijk'))])-->afhbgicjdke
+e-->''.join([v for v in alternate_all(hide('fg'),hide('hijk'),hide('abcde'))])-->fhagibjckde
+e-->''.join([v for v in alternate_all(hide('abcd'), hide('efghi'),hide('jklm'))])-->aejbfkcgldhmi
+
+# Test ListSI
+c-->l = ListSI([1,2,3,4,5])
+e-->[v for v in l]-->[1, 2, 3, 4, 5]
+e-->test1()-->['a', 'b', 'c', 'z']
+e-->test4()-->['a', 'b', 'c', 'z']
+^-->test2()-->RuntimeError
+^-->test3()-->RuntimeError
+^-->test5()-->RuntimeError
+^-->test6()-->RuntimeError
+
+# Test fool_it
+^-->fool_it()-->RuntimeError
+e-->getsource(fool_it).count('break') >= 1-->True
