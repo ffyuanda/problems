@@ -1,0 +1,54 @@
+# Setup
+c-->from imp import reload
+c-->import q5solution
+c-->reload(q5solution)
+c-->import predicate,random
+c-->from functools import reduce
+c-->from q5solution import compare, is_sorted, merge, sort, max_value
+
+# Test compare
+e-->compare('','')-->=
+e-->compare('','abc')--><
+e-->compare('abc','')-->>
+e-->compare('abc','abc')-->=
+e-->compare('bc','abc')-->>
+e-->compare('abc','bc')--><
+e-->compare('aaaxc','aaabd')-->>
+e-->compare('aaabd','aaaxc')--><
+
+# Test is_sorted
+e-->is_sorted([])-->True
+e-->is_sorted([1])-->True
+e-->is_sorted([1,2,3,4,5,6,7])-->True
+e-->is_sorted([1,2,3,7,4,5,6])-->False
+e-->is_sorted([1,2,3,4,5,6,5])-->False
+e-->is_sorted([7,6,5,4,3,2,1])-->False
+
+# Test merge
+e-->merge([],[])-->[]
+e-->merge([],[1,2,3,4])-->[1, 2, 3, 4]
+e-->merge([1,2,3,4],[])-->[1, 2, 3, 4]
+e-->merge([0,1,2,3,4],[5,6,7,8,9])-->[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+e-->merge([5,6,7,8,9],[0,1,2,3,4])-->[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+e-->merge([1,3,5,7,9],[0,2,4,6,8])-->[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+e-->merge([0,2,4,6,8],[1,3,5,7,9])-->[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+e-->merge([1,2,5,7,10,10],[1,2,6,10,12])-->[1, 1, 2, 2, 5, 6, 7, 10, 10, 10, 12]
+e-->merge([0,1,2,3,4],[-8,-6,-4,-2,-1,0])-->[-8, -6, -4, -2, -1, 0, 0, 1, 2, 3, 4]
+
+# Test sort
+e-->sort([1,2,3,4,5,6,7])-->[1, 2, 3, 4, 5, 6, 7]
+e-->sort([7,6,5,4,3,2,1])-->[1, 2, 3, 4, 5, 6, 7]
+e-->sort([4,5,3,1,2,7,6])-->[1, 2, 3, 4, 5, 6, 7]
+e-->sort([1,7,2,6,3,5,4])-->[1, 2, 3, 4, 5, 6, 7]
+c-->l = [i+1 for i in range(30)]
+c-->random.shuffle(l)
+c-->l = sort(l)
+==-->l-->[i+1 for i in range(30)]
+
+# Test max_value
+c-->gifts1 = ((10,60), (20,100), (30,120))
+e-->max_value(gifts1,50)-->220
+c-->gifts2 = ((10,70),(15,80),(20,140),(20,150),(30,200))
+e-->max_value(gifts2,50)-->360
+c-->gifts3 = ((4, 35), (4, 40), (7, 45), (18, 30), (4, 45), (19, 40), (4, 10), (10, 40), (13, 25), (9, 40), (9, 15), (19, 15))
+e-->max_value(gifts3,50)-->260
