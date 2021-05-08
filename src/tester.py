@@ -197,7 +197,22 @@ print(can_do(db, "painting"))
 # b_1 = b[:divide]
 # b_2 = b[divide:]
 # print(b_1, b_2)
-a = ((10,60), (20,100), (30,120))
-print(a[0])
-
+# a = ((10,60), (20,100), (30,120))
+# print(a[0])
+a = 1
+print(type(a))
+a = '1'
+print(type(a))
 # print("aaa">"aaab")
+gift = [1, 2, 3, 4]
+print(gift[0:2])
+print(gift[0:1])
+print(gift[0:0])
+
+
+def func_test(var1, var2) -> int:
+    print(var1, var2)
+
+
+func_test(1, 2)
+x = 1

@@ -43,11 +43,11 @@ def sort(l : list) -> list:
 
 
 def max_value(gifts : ((int,int),) , weight_limit : int) -> int:
-    if len(gifts) == 0:
+    if len(gifts) == 0: # base case
         return 0
     else:
         w, v = gifts[0]
-        if weight_limit - w < 0:
+        if weight_limit < w:
             return max_value(gifts[1:], weight_limit)
         return max(max_value(gifts[1:], weight_limit), v + max_value(gifts[1:], weight_limit - w))
 
