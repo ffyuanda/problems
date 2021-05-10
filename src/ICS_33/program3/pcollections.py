@@ -3,7 +3,7 @@ import re, traceback, keyword
 
 def pnamedtuple(type_name, field_names, mutable = False,  defaults =  {}):
     def show_listing(s):
-        for ln_number, text_of_ln in enumerate(s.split('\n'),1):     
+        for ln_number, text_of_ln in enumerate(s.split('\n'),1):
             print(f' {ln_number: >3} {text_of_ln.rstrip()}')
 
     def check_name_legit(name: str) -> bool:
@@ -76,7 +76,9 @@ def pnamedtuple(type_name, field_names, mutable = False,  defaults =  {}):
         within_brace1 = within_brace1.rstrip(", ")
         init_content = init_content.rstrip()
         base_func = """def __init__(self, {within_brace1}):
-{init_content}""".format(within_brace1=within_brace1, init_content=init_content)
+{init_content}
+        if not self._mutable:
+            self._isfrozen = True""".format(within_brace1=within_brace1, init_content=init_content)
         return base_func
 
     def gen_get() -> str:
@@ -135,7 +137,35 @@ def pnamedtuple(type_name, field_names, mutable = False,  defaults =  {}):
 
     def gen_replace() -> str:
         base_func = """def _replace(self, **kwargs):
-        pass"""
+        for key in kwargs.keys():
+            if key not in self._fields:
+                raise TypeError("the key is not in the original pnamedtuple object")
+                
+        if self._mutable:
+            for key, value in kwargs.items():
+                
+                exec_str = 'self.{} = {}'.format(key, value) 
+                exec(exec_str)
+                # self.key = value
+                # print(self.key)
+        else:
+            value_list = list()
+            for i in self._fields:
+                value_list.append(self[i])
+                
+            for key, value in kwargs.items():
+                index = self._fields.index(key)
+                value_list[index] = value
+            return self._make(value_list)"""
+
+        return base_func
+
+    def gen_set_attr() -> str:
+        base_func = """def __setattr__(self, key, value):
+        if self._isfrozen:
+            raise AttributeError("no change allowed after init")
+        else:
+            super().__setattr__(key, value)"""
         return base_func
 
     # put your code here
@@ -148,12 +178,14 @@ def pnamedtuple(type_name, field_names, mutable = False,  defaults =  {}):
     asdict = gen_asdict()
     make = gen_make()
     replace = gen_replace()
+    set_attr = gen_set_attr()
 
     combined_input_checker()
 
     class_template = """class {type_name}:
     _fields = {field_names} 
     _mutable = {mutable}
+    _isfrozen = False
 
     {init_str}
     
@@ -167,9 +199,12 @@ def pnamedtuple(type_name, field_names, mutable = False,  defaults =  {}):
     
     {asdict}
     
+    @staticmethod
     {make}
     
     {replace}
+    
+    {set_attr}
 """
     class_definition = class_template.format(type_name=type_name,
                                              field_names=fields,
@@ -181,14 +216,15 @@ def pnamedtuple(type_name, field_names, mutable = False,  defaults =  {}):
                                              eq=eq,
                                              asdict=asdict,
                                              make=make,
-                                             replace=replace)
-    show_listing(class_definition)
+                                             replace=replace,
+                                             set_attr=set_attr)
+    # show_listing(class_definition)
 
     name_space = dict( __name__ = f'pnamedtuple_{type_name}')
     try:
         exec(class_definition, name_space)
         name_space[type_name].source_code = class_definition
-    except (TypeError,SyntaxError):                  
+    except (TypeError,SyntaxError):
         show_listing(class_definition)
         traceback.print_exc()
     return name_space[type_name]
@@ -197,11 +233,8 @@ def pnamedtuple(type_name, field_names, mutable = False,  defaults =  {}):
 if __name__ == '__main__':
     # driver tests
     Point = pnamedtuple('Point', 'x,y')
-    Triple1 = pnamedtuple('Triple1', 'a b c')
-    t1 = Triple1._make([1, 2, 3])
-    print(t1)
-    # TestPoint = pnamedtuple('TestPoint', 'x,y,z,c')
-    import driver  
+
+    import driver
     driver.default_file_name = 'bscp3S21.txt'
 #     driver.default_show_exception_message= True
 #     driver.default_show_traceback= True
