@@ -2,3 +2,6 @@
 *.xml
 *.pyc
 *.idea
+src/tester.py
+*.iml
+src/tester.py
