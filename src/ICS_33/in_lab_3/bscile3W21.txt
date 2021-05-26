@@ -1,0 +1,51 @@
+# Setup
+c-->from imp import reload
+c-->import exam
+c-->reload(exam)
+c-->from exam import max_skip_ties, can_sum_to, sorted_dict
+c-->from ile3helper import ints, primes, hide, nth, nth_for_m, is_prime, randoms
+c-->from inspect import isgeneratorfunction, isgenerator
+
+# Test max_skip_ties: 5 finite/hidden, 2 infinite
+e-->isgenerator(max_skip_ties())-->True
+e-->list(max_skip_ties())-->[]
+e-->list(max_skip_ties(hide([1]), hide([2]), hide([])))-->[]
+e-->list(max_skip_ties(hide([1,3,1]), hide([1,2]), hide([3,3,1,4])))-->[3, 2]
+e-->list(max_skip_ties(hide([1,2,3,1]), hide([2,2,3,1]), hide([3,3,2])))-->[3, 3, 2]
+e-->list(max_skip_ties(hide([3,3,1]), hide([3,3,2])))-->[2]
+e-->nth_for_m(max_skip_ties(randoms(1234,100,10),randoms(4123,100,10)),10000,20)-->[7, 6, 9, 2, 9, 8, 8, 5, 9, 5, 3, 9, 8, 5, 3, 8, 6, 8, 6, 4]
+e-->nth_for_m(max_skip_ties(randoms(1234,100,10),randoms(2341,100,10),randoms(3412,100,10),randoms(4123,100,10)),10000,20)-->[9, 7, 9, 1, 9, 4, 9, 6, 3, 9, 7, 4, 9, 9, 8, 5, 7, 9, 6, 5]
+
+
+# Test can_sum_to
+e-->can_sum_to({}, 0)-->True
+e-->can_sum_to({1}, 1)-->True
+e-->can_sum_to({1}, 2)-->False
+e-->can_sum_to({1,5,8,-2},  4)-->True
+e-->can_sum_to({1,5,8,-2}, 10)-->False
+e-->can_sum_to({32,7,-85,83,-44,87,-70,94},  6)-->False
+e-->can_sum_to({32,7,-85,83,-44,87,-70,94}, 14)-->True
+
+# Test sorted_dict
+c-->sd = sorted_dict()
+e-->repr(sd.show_info())-->'  temporal_index/_temporal_keys = 0/{}\n  keys/values in dict order     = {}'
+c-->sd['a'] = 10
+e-->repr(sd.show_info())-->"  temporal_index/_temporal_keys = 1/{'a': 1}\n  keys/values in dict order     = {'a': 10}"
+c-->sd['c'] = 30
+e-->repr(sd.show_info())-->"  temporal_index/_temporal_keys = 2/{'a': 1, 'c': 2}\n  keys/values in dict order     = {'a': 10, 'c': 30}"
+c-->sd['b'] = 20
+e-->repr(sd.show_info())-->"  temporal_index/_temporal_keys = 3/{'a': 1, 'c': 2, 'b': 3}\n  keys/values in dict order     = {'a': 10, 'c': 30, 'b': 20}"
+e-->sd-->{'a': 10, 'c': 30, 'b': 20}
+c-->sd.set_sorting(key  = (lambda x : x[1]), reverse = True)
+e-->sd-->{'c': 30, 'b': 20, 'a': 10}
+c-->sd.set_sorting(key  = (lambda x : x[2]))
+e-->sd-->{'a': 10, 'b': 20, 'c': 30}
+c-->del sd['c']
+e-->repr(sd.show_info())-->"  temporal_index/_temporal_keys = 3/{'a': 1, 'c': 2, 'b': 3}\n  keys/values in dict order     = {'a': 10, 'b': 20}"
+e-->sd-->{'a': 10, 'b': 20}
+c-->sd['c'] = -7
+e-->repr(sd.show_info())-->"  temporal_index/_temporal_keys = 3/{'a': 1, 'c': 2, 'b': 3}\n  keys/values in dict order     = {'a': 10, 'b': 20, 'c': -7}"
+e-->sd-->{'c': -7, 'a': 10, 'b': 20}
+c-->sd.set_sorting(key  = (lambda x : x[0]))
+e-->sd-->{'a': 10, 'c': -7, 'b': 20}
+
