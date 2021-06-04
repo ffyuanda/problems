@@ -8,6 +8,7 @@ from floater   import Floater
 from blackhole import Black_Hole
 from pulsator  import Pulsator
 from hunter    import Hunter
+from prey import Prey
 
 
 # Global variables: declare them global in functions that assign to them: e.g., ... = or +=
@@ -15,6 +16,7 @@ running     = False
 cycle_count = 0
 balls       = set()
 selected_object = None
+
 
 #return a 2-tuple of the width and height of the canvas (defined in the controller)
 def world():
@@ -57,26 +59,27 @@ def step ():
 def select_object(kind):
     global selected_object
     selected_object = kind
-    print(kind)
+    # print(selected_object)
+
+
+def random_angle():
+    # between 0 and 2pi
+    return random.random() * math.pi * 2
 
 
 #add the kind of remembered object to the simulation (or remove all objects that contain the
 #  clicked (x,y) coordinate
 def mouse_click(x,y):
-    def random_angle():
-        # between 0 and 2pi
-        return random.random() * math.pi * 2
-    if selected_object is None:
-        pass
-    else:
-        s = eval(f"{selected_object}({x}, {y}, random_angle())")
+
+    if selected_object is not None:
+        s = eval(f"{selected_object}({x}, {y})")
         add(s)
 
 
 #add simulton s to the simulation
 def add(s):
     balls.add(s)
-    
+
 
 # remove simulton s from the simulation    
 def remove(s):
@@ -84,8 +87,12 @@ def remove(s):
     
 
 #find/return a set of simultons that each satisfy predicate p    
-def find(p):
-    pass
+def find(p: callable):
+    return_set = set()
+    for s in balls:
+        if p(s):
+            return_set.add(s)
+    return return_set
 
 
 # for each simulton in this simulation, call update (passing model to it) 
@@ -95,10 +102,15 @@ def find(p):
 #  simultons are in the simulation
 def update_all():
     global cycle_count
+    all_eaten = set()
     if running:
         cycle_count += 1
         for b in balls:
-            b.update()
+            eaten = b.update()
+            if eaten is not None:
+                all_eaten.update(eaten)
+        for s in all_eaten:
+            remove(s)
 
 #How to animate: 1st: delete all simultons on the canvas; 2nd: call display on
 #  all simulton being simulated, adding each back to the canvas, maybe in a
