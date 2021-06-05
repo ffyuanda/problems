@@ -9,6 +9,7 @@ from blackhole import Black_Hole
 from pulsator  import Pulsator
 from hunter    import Hunter
 from prey import Prey
+from special import Special
 
 
 # Global variables: declare them global in functions that assign to them: e.g., ... = or +=
@@ -59,7 +60,6 @@ def step ():
 def select_object(kind):
     global selected_object
     selected_object = kind
-    # print(selected_object)
 
 
 def random_angle():
@@ -70,8 +70,12 @@ def random_angle():
 #add the kind of remembered object to the simulation (or remove all objects that contain the
 #  clicked (x,y) coordinate
 def mouse_click(x,y):
+    if selected_object == "Remove":
+        for_remove = find(lambda ball: ball.contains((x,y)))
+        for s in for_remove:
+            remove(s)
 
-    if selected_object is not None:
+    elif selected_object is not None:
         s = eval(f"{selected_object}({x}, {y})")
         add(s)
 

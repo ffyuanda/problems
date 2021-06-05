@@ -18,7 +18,6 @@ class Pulsator(Black_Hole):
         width, height = self.get_dimension()
 
         if len(eaten) > 0:  # ate something
-            # print("ENLARGE!")
             self.radius += 0.5 * len(eaten)
 
             self.set_dimension(width + 1 * len(eaten), height + 1 * len(eaten))  # after eat
@@ -28,13 +27,10 @@ class Pulsator(Black_Hole):
             self.counter += 1
 
         if self.counter % 30 == 0 and self.counter > 0:  # shirk if hungry for every 30 updates
-            # print("SHRINK!")
             self.radius -= 0.5
             self.set_dimension(width - 1, height - 1)
             self.counter = 0
 
         if self.radius <= 0:  # kill itself
             eaten.add(self)
-        # print("radius", self.radius)
-        # print("counter", self.counter)
         return eaten

@@ -22,12 +22,11 @@ class Hunter(Pulsator, Mobile_Simulton):
 
         for s in preys:
             if self.contains(s.get_location(), _range=self.sight):  # within distance of 200
-                # print("SPOTTED!")
                 if self.distance(s.get_location()) <= closest_range:
                     closest_range = self.distance(s.get_location())
                     closest_prey = s
             else:  # out of sight
-                print("NO SIGHT!")
+                pass
 
         if closest_prey is not None:  # closest_prey is found
             prey_x, prey_y = closest_prey.get_location()
