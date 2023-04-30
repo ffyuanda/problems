@@ -1,17 +1,36 @@
-from utilities import *
 import copy
-DEV_MODE = False
+import random
 game_over = True
 quit = False
 
-test_board = [[1, 0, 0, 0],
-              [4, 0, 0, 2],
-              [16, 0, 0, 0],
-              [1024, 0, 0, 0]]
 board = [[0, 0, 0, 0],
           [0, 0, 0, 0],
           [0, 0, 0, 0],
           [0, 0, 0, 0]]
+
+def print_board(game_board: [[int, ], ]) -> None:
+    """
+    Print a formatted version of the game board.
+    :param game_board: a 4x4 2D list of integers representing a game of 2048
+    """
+    for row in game_board:
+        print("+----+" * 4)
+        print(''.join(f"|{cell if cell else '':^4}|" for cell in row))
+        print("+----+" * 4)
+
+
+def place_random(game_board: [[int, ], ]) -> {str: int, }:
+    """
+    Generates a random value and coordinates for the next number to be placed on the board.
+    Will raise error if the provided board is full.
+    :param game_board: a 4x4 2D list of integers representing a game of 2048
+    :return: dictionary with the following keys: {'row': int, 'column': int, 'value': int}
+    """
+    empty_cells = [(y, x) for y, row in enumerate(game_board) for x, cell in enumerate(row) if not cell]
+    if not empty_cells:
+        raise Exception("Board Full")
+    return dict(
+        zip(('row', 'column', 'value'), (*random.choice(empty_cells), (2 if random.random() * 100 < 90 else 4))))
 
 
 def basic_move(in_row):
@@ -224,5 +243,4 @@ def main(game_board):
 
 
 if __name__ == "__main__":
-
     main(board)
